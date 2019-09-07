@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>클린 업 on AWS Android Social HoL</title>
+    <link>/cleanup/</link>
+    <description>Recent content in 클린 업 on AWS Android Social HoL</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>kr-ko</language>
+    
+	<atom:link href="/cleanup/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>리소스 삭제</title>
+      <link>/cleanup/delete_alb/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/cleanup/delete_alb/</guid>
+      <description>아래 명령어로 서버쪽 리소스를 한번에 삭제합니다.
+amplify delete  </description>
+    </item>
+    
+  </channel>
+</rss>

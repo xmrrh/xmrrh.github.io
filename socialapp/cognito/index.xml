@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>가입하기 - Amazon Cognito on AWS Android Social HoL</title>
+    <link>/socialapp/cognito/</link>
+    <description>Recent content in 가입하기 - Amazon Cognito on AWS Android Social HoL</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>kr-ko</language>
+    <lastBuildDate>Tue, 07 Aug 2018 08:30:11 -0700</lastBuildDate>
+    
+	<atom:link href="/socialapp/cognito/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Amazon Cognito Service 만들기</title>
+      <link>/socialapp/cognito/amplify-cognito/</link>
+      <pubDate>Tue, 07 Aug 2018 08:30:11 -0700</pubDate>
+      
+      <guid>/socialapp/cognito/amplify-cognito/</guid>
+      <description>Amazon Cognito를 사용하면 모바일 앱에 빠르고 손쉽게 사용자 가입, 로그인 및 액세스 제어 기능을 추가할 수 있습니다. 아래 명령어를 통해 손쉽게 생성하실 수 있습니다.
+amplify add auth  진행 중 선택항목은 아래 그림을 참고하세요.
+완료되면 다음 명령어를 통해 클라우드 리소스를 업데이트 합니다.
+amplify push  참고로 status 명령어를 통해 amplify project의 상태를 확인하실 수 있습니다.
+amplify status  Amazon Cognito 가 생성된 것을 확인하기 위해 콘솔에 접속합니다.
+AWS console &amp;gt; service &amp;gt; Cognito &amp;gt; user pool &amp;gt;</description>
+    </item>
+    
+    <item>
+      <title>안드로이드 로그인 액티비티 생성하기 - 코드 설명하지 않음 :customUI로 변경예정(by성진님)</title>
+      <link>/socialapp/cognito/android-cognito/</link>
+      <pubDate>Tue, 07 Aug 2018 08:30:11 -0700</pubDate>
+      
+      <guid>/socialapp/cognito/android-cognito/</guid>
+      <description>이제 안드로이드 프로젝트에 로그인에 사용할 액티비티를 생성해 보도록 하겠습니다.
+우선 build.gradle (Module: app) 에 아래와 같이 추가 합니다.
+AWSMobileClient를 이용하면 애플리케이션에서 사용자의 &amp;ldquo;로그인 상태&amp;rdquo;를 쿼리 할 수 있습니다. 또한 애플리케이션에 간단한 &amp;ldquo;드롭 인&amp;rdquo;UI를 위해 드롭 인 인증 UI를 다음과 같이 추가합니다.
+ //For AWSMobileClient only: implementation(&#39;com.amazonaws:aws-android-sdk-mobile-client:2.14.+@aar&#39;) { transitive = true } //For the drop-in UI also: implementation(&#39;com.amazonaws:aws-android-sdk-auth-userpools:2.14.+@aar&#39;) { transitive = true } implementation &#39;com.amazonaws:aws-android-sdk-auth-ui:2.14.+&#39;  다음으로 인증을 위한 액티비티를 생성합니다.</description>
+    </item>
+    
+  </channel>
+</rss>

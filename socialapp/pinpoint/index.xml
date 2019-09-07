@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Push 메시지 보내기 on AWS Android Social HoL</title>
+    <link>/socialapp/pinpoint/</link>
+    <description>Recent content in Push 메시지 보내기 on AWS Android Social HoL</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>kr-ko</language>
+    <lastBuildDate>Tue, 07 Aug 2018 08:30:11 -0700</lastBuildDate>
+    
+	<atom:link href="/socialapp/pinpoint/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title> Firebase Cloud Messaging (FCM)설정하기</title>
+      <link>/socialapp/pinpoint/fcm-settings/</link>
+      <pubDate>Tue, 07 Aug 2018 08:30:11 -0700</pubDate>
+      
+      <guid>/socialapp/pinpoint/fcm-settings/</guid>
+      <description>Amazon Pinpoint는 push notification을 보내기 위해 Firebase Cloud Messaging (FCM) 을 사용합니다. 이를 위해 firebase project를 생성해야 합니다.
+https://console.firebase.google.com/ 페이지로 이동합니다.
+만약 Google계정을 없거나 sign out되어 있다면 sign in 하십시요
+Create a project 를 선택하십시요. 프로젝트 이름을 넣으시고 계속 을 눌러 다음단계로 이동합니다.
+본 워크샵은 FCM을 push message 용도로만 사용할 예정이기 때문에 Not right now 를 선택하고 다음단계로 이동합니다.
+project가 생성되면 아래와 같은 화면이 보이게 됩니다. 왼쪽 상단에 설정 아이콘인 톱니바퀴 모양의 아이콘을 선택하고 Project settings 를 선택합니다.</description>
+    </item>
+    
+    <item>
+      <title>Amazon Pinpoint 생성하기 </title>
+      <link>/socialapp/pinpoint/amplify-pinpoint/</link>
+      <pubDate>Tue, 07 Aug 2018 08:30:11 -0700</pubDate>
+      
+      <guid>/socialapp/pinpoint/amplify-pinpoint/</guid>
+      <description>이제 안드로이드 프로젝트에 게시물 작성 하기 액티비티와 연동해보도록 하겠습니다.
+build.gradle (Module: app) 에 plugin을 적용시킵니다. 이 plugin에 의해 코드가 자동생성됩니다.
+apply plugin: &#39;com.amazonaws.appsync&#39; // REQUIRED  또한 같은 파일에 -build.gradle (Module: app)- 에 아래와 같이 dependency를 추가 합니다.
+dependencies { ... // REQUIRED: Typical dependencies implementation &#39;com.amazonaws:aws-android-sdk-appsync:2.9.+&#39; implementation &#39;org.eclipse.paho:org.eclipse.paho.client.mqttv3:1.2.0&#39; implementation &#39;org.eclipse.paho:org.eclipse.paho.android.service:1.1.1&#39; implementation &#39;com.amazonaws:aws-android-sdk-s3:2.14.+&#39; ... }  우선 build.gradle (Module: Project) 에 아래와 같이 dependency를 추가 합니다.
+classpath &#39;com.amazonaws:aws-android-sdk-appsync-gradle-plugin:2.9.+&#39;  다음으로 자주 사용되는 AWSAppSyncClient 를 재사용하기 위해 ClientFactory class를 아래와 같이 생성합니다.</description>
+    </item>
+    
+    <item>
+      <title>Push Notification을 위한 안드로이드 코드 작성하기  </title>
+      <link>/socialapp/pinpoint/android-pinpoint/</link>
+      <pubDate>Tue, 07 Aug 2018 08:30:11 -0700</pubDate>
+      
+      <guid>/socialapp/pinpoint/android-pinpoint/</guid>
+      <description>이제 안드로이드 프로젝트에 Push Notification 을 받기 위해 안드로이드 프로젝트와 연동해보도록 하겠습니다.
+우선 build.gradle (Module: Project) 에 아래와 같이 dependency를 추가 합니다.
+dependencies { ... classpath &#39;com.google.gms:google-services:4.0.1&#39; ... }  build.gradle (Module: app) 에 plugin을 적용시킵니다.
+apply plugin: &#39;com.google.gms.google-services&#39;  또한 같은 파일에 -build.gradle (Module: app)- 에 아래와 같이 dependency를 추가 합니다.
+dependencies { ... // Overrides an auth dependency to ensure correct behavior implementation &#39;com.google.android.gms:play-services-auth:15.0.1&#39; implementation &#39;com.google.firebase:firebase-core:16.0.1&#39; implementation &#39;com.google.firebase:firebase-messaging:17.3.0&#39; implementation &#39;com.</description>
+    </item>
+    
+    <item>
+      <title>Push 메시지 보내기</title>
+      <link>/socialapp/pinpoint/s3iam/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/socialapp/pinpoint/s3iam/</guid>
+      <description>Push 메시지는 pinpoint의 campaign을 통해 보내실 수 있습니다. shell에서 아래와 같이 실행하신 후 (콘솔상에서 직접 이동하셔도 됩니다.)
+amplify notifications console  AWS console &amp;gt; service &amp;gt; Pinpoint &amp;gt; campaigns &amp;gt; create a campaign  까지 이동합니다.
+Campaign name에 first-push라고 입력하신후 Next 단계로 이동합니다.
+Create a segment 를 선택하신후 myGroup 라고 이름을 넣습니다. 나머지 설정은 그대로 두신 후 Next 단계로 이동합니다. 우측에 3 endpoints 는 현재 여러분의 앱이 활성화 되어있는 모바일 디바이스의 수를 의미합니다.</description>
+    </item>
+    
+  </channel>
+</rss>
