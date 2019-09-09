@@ -26,19 +26,6 @@ project가 생성되면 아래와 같은 화면이 보이게 됩니다. 왼쪽 �
     </item>
     
     <item>
-      <title>Amazon Pinpoint 생성하기 </title>
-      <link>/socialapp/pinpoint/amplify-pinpoint/</link>
-      <pubDate>Tue, 07 Aug 2018 08:30:11 -0700</pubDate>
-      
-      <guid>/socialapp/pinpoint/amplify-pinpoint/</guid>
-      <description>이제 안드로이드 프로젝트에 게시물 작성 하기 액티비티와 연동해보도록 하겠습니다.
-build.gradle (Module: app) 에 plugin을 적용시킵니다. 이 plugin에 의해 코드가 자동생성됩니다.
-apply plugin: &#39;com.amazonaws.appsync&#39; // REQUIRED  또한 같은 파일에 -build.gradle (Module: app)- 에 아래와 같이 dependency를 추가 합니다.
-dependencies { ... // REQUIRED: Typical dependencies implementation &#39;com.amazonaws:aws-android-sdk-appsync:2.9.+&#39; implementation &#39;org.eclipse.paho:org.eclipse.paho.client.mqttv3:1.2.0&#39; implementation &#39;org.eclipse.paho:org.eclipse.paho.android.service:1.1.1&#39; implementation &#39;com.amazonaws:aws-android-sdk-s3:2.14.+&#39; ... }  우선 build.gradle (Module: Project) 에 아래와 같이 dependency를 추가 합니다.
-classpath &#39;com.amazonaws:aws-android-sdk-appsync-gradle-plugin:2.9.+&#39;  다음으로 자주 사용되는 AWSAppSyncClient 를 재사용하기 위해 ClientFactory class를 아래와 같이 생성합니다.</description>
-    </item>
-    
-    <item>
       <title>Push Notification을 위한 안드로이드 코드 작성하기  </title>
       <link>/socialapp/pinpoint/android-pinpoint/</link>
       <pubDate>Tue, 07 Aug 2018 08:30:11 -0700</pubDate>

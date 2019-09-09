@@ -8,7 +8,7 @@
     <meta property="og:url" content="https://jenosys.github.io/tic-tac-toe-workshop-hol/tic-tac-toe/" />
     <meta property="og:image" content="https://jenosys.github.io/tic-tac-toe-workshop-hol/images/tic-tac-toe/dashboard.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-    <meta name="generator" content="Hugo 0.57.2" />
+    <meta name="generator" content="Hugo 0.52" />
     <meta name="description" content="ECS HoL">
 <meta name="author" content="Brent Langston">
 
@@ -18,21 +18,21 @@
     <title>게시물 작성하기  :: AWS Android Social HoL</title>
 
     
-    <link href="../../../css/nucleus.css?1567897481" rel="stylesheet">
-    <link href="../../../css/fontawesome-all.min.css?1567897481" rel="stylesheet">
-    <link href="../../../css/hybrid.css?1567897481" rel="stylesheet">
-    <link href="../../../css/featherlight.min.css?1567897481" rel="stylesheet">
-    <link href="../../../css/perfect-scrollbar.min.css?1567897481" rel="stylesheet">
-    <link href="../../../css/auto-complete.css?1567897481" rel="stylesheet">
-    <link href="../../../css/theme.css?1567897481" rel="stylesheet">
-    <link href="../../../css/hugo-theme.css?1567897481" rel="stylesheet">
-    <link href="../../../css/jquery-ui.min.css?1567897481" rel="stylesheet">
+    <link href="../../../css/nucleus.css?1568027959" rel="stylesheet">
+    <link href="../../../css/fontawesome-all.min.css?1568027959" rel="stylesheet">
+    <link href="../../../css/hybrid.css?1568027959" rel="stylesheet">
+    <link href="../../../css/featherlight.min.css?1568027959" rel="stylesheet">
+    <link href="../../../css/perfect-scrollbar.min.css?1568027959" rel="stylesheet">
+    <link href="../../../css/auto-complete.css?1568027959" rel="stylesheet">
+    <link href="../../../css/theme.css?1568027959" rel="stylesheet">
+    <link href="../../../css/hugo-theme.css?1568027959" rel="stylesheet">
+    <link href="../../../css/jquery-ui.min.css?1568027959" rel="stylesheet">
     
-      <link href="../../../css/theme-mine.css?1567897481" rel="stylesheet">
+      <link href="../../../css/theme-mine.css?1568027959" rel="stylesheet">
     
 
-    <script src="../../../js/jquery-3.3.1.min.js?1567897481"></script>
-    <script src="../../../js/jquery-ui-1.12.1.min.js?1567897481"></script>
+    <script src="../../../js/jquery-3.3.1.min.js?1568027959"></script>
+    <script src="../../../js/jquery-ui-1.12.1.min.js?1568027959"></script>
 
 
     <style type="text/css">
@@ -64,14 +64,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="../../../js/lunr.min.js?1567897481"></script>
-<script type="text/javascript" src="../../../js/auto-complete.js?1567897481"></script>
+<script type="text/javascript" src="../../../js/lunr.min.js?1568027959"></script>
+<script type="text/javascript" src="../../../js/auto-complete.js?1568027959"></script>
 <script type="text/javascript">
     
         var baseurl = "";
     
 </script>
-<script type="text/javascript" src="../../../js/search.js?1567897481"></script>
+<script type="text/javascript" src="../../../js/search.js?1568027959"></script>
 
     
   </div>
@@ -573,25 +573,6 @@
  
   
     
-      <li data-nav-id="/socialapp/pinpoint/amplify-pinpoint/" title="Amazon Pinpoint 생성하기 " class="dd-item ">
-        <a href="../../../socialapp/pinpoint/amplify-pinpoint/">
-        Amazon Pinpoint 생성하기 
-        
-        </a>
-    </li>
-     
-  
- 
-
-            
-          
-            
-            
-
-
- 
-  
-    
       <li data-nav-id="/socialapp/pinpoint/android-pinpoint/" title="Push Notification을 위한 안드로이드 코드 작성하기  " class="dd-item ">
         <a href="../../../socialapp/pinpoint/android-pinpoint/">
         Push Notification을 위한 안드로이드 코드 작성하기  
@@ -915,7 +896,7 @@ public class ClientFactory {
                 .region(region)
                 .localUri(bitmapPath)
                 .mimeType(mimeType).build();
-        PutPostWithPhotoMutation addPostMutation = PutPostWithPhotoMutation.builder()
+        CreatePostInput createTodoInput = CreatePostInput.builder()
                 .title(title.getText().toString())
                 .author(ClientFactory.getUserID())
                 .url(bitmapPath)
@@ -926,8 +907,36 @@ public class ClientFactory {
                 .id(UUID.randomUUID().toString())
                 .build();
 
-        ClientFactory.getAppSyncClient().mutate(addPostMutation).enqueue(postsCallback);
-    }
+	      CreatePostMutation addPostMutation = CreatePostMutation.builder()
+                .input(createTodoInput).build();
+
+        ClientFactory.getAppSyncClient().mutate(addPostMutation).enqueue(postsCallback);    }
+
+    private GraphQLCall.Callback&lt;CreatePostMutation.Data&gt; postsCallback = new GraphQLCall.Callback&lt;CreatePostMutation.Data&gt;() {
+        @Override
+        public void onResponse(@Nonnull final Response&lt;CreatePostMutation.Data&gt; response) {
+            runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    dismissWaitDialog();
+                    WriteActivity.this.finish();
+                }
+            });
+        }
+
+        @Override
+        public void onFailure(@Nonnull final ApolloException e) {
+            runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    dismissWaitDialog();
+
+                    Log.e(&quot;&quot;, &quot;Failed to perform AddPostMutation&quot;, e);
+                    WriteActivity.this.finish();
+                }
+            });
+        }
+    };
 </code></pre>
 
 <p>이 함수는 onCreate함수의 saveBtn에 onClick event시 호출될 수 있도록 합니다.</p>
@@ -1383,22 +1392,6 @@ public class ClientFactory {
             
         
                     
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
             
         
                     
@@ -1456,20 +1449,20 @@ public class ClientFactory {
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="../../../js/clipboard.min.js?1567897481"></script>
-    <script src="../../../js/perfect-scrollbar.min.js?1567897481"></script>
-    <script src="../../../js/perfect-scrollbar.jquery.min.js?1567897481"></script>
-    <script src="../../../js/jquery.sticky.js?1567897481"></script>
-    <script src="../../../js/featherlight.min.js?1567897481"></script>
-    <script src="../../../js/html5shiv-printshiv.min.js?1567897481"></script>
-    <script src="../../../js/highlight.pack.js?1567897481"></script>
+    <script src="../../../js/clipboard.min.js?1568027959"></script>
+    <script src="../../../js/perfect-scrollbar.min.js?1568027959"></script>
+    <script src="../../../js/perfect-scrollbar.jquery.min.js?1568027959"></script>
+    <script src="../../../js/jquery.sticky.js?1568027959"></script>
+    <script src="../../../js/featherlight.min.js?1568027959"></script>
+    <script src="../../../js/html5shiv-printshiv.min.js?1568027959"></script>
+    <script src="../../../js/highlight.pack.js?1568027959"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="../../../js/modernizr.custom-3.6.0.js?1567897481"></script>
-    <script src="../../../js/learn.js?1567897481"></script>
-    <script src="../../../js/hugo-learn.js?1567897481"></script>
+    <script src="../../../js/modernizr.custom-3.6.0.js?1568027959"></script>
+    <script src="../../../js/learn.js?1568027959"></script>
+    <script src="../../../js/hugo-learn.js?1568027959"></script>
 
-    <link href="../../../mermaid/mermaid.css?1567897481" type="text/css" rel="stylesheet" />
-    <script src="../../../mermaid/mermaid.min.js?1567897481"></script>
+    <link href="../../../mermaid/mermaid.css?1568027959" type="text/css" rel="stylesheet" />
+    <script src="../../../mermaid/mermaid.min.js?1568027959"></script>
     <script>
 	var config = {
         startOnLoad:true,
