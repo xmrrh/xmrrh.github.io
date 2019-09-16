@@ -68,7 +68,17 @@
   </url>
   
   <url>
-    <loc>/socialapp/cognito/android-cognito/</loc>
+    <loc>/socialapp/cognito/cognito-splash/</loc>
+    <lastmod>2018-08-07T08:30:11-07:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/socialapp/cognito/cognito-auth-social/</loc>
+    <lastmod>2018-08-07T08:30:11-07:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/socialapp/cognito/cognito-auth-email/</loc>
     <lastmod>2018-08-07T08:30:11-07:00</lastmod>
   </url>
   
@@ -78,6 +88,11 @@
   
   <url>
     <loc>/socialapp/translate/translate/</loc>
+  </url>
+  
+  <url>
+    <loc>/socialapp/cognito/cognito-auth-login/</loc>
+    <lastmod>2018-08-07T08:30:11-07:00</lastmod>
   </url>
   
   <url>
