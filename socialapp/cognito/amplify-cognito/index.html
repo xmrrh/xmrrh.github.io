@@ -8,7 +8,7 @@
     <meta property="og:url" content="https://jenosys.github.io/tic-tac-toe-workshop-hol/tic-tac-toe/" />
     <meta property="og:image" content="https://jenosys.github.io/tic-tac-toe-workshop-hol/images/tic-tac-toe/dashboard.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-    <meta name="generator" content="Hugo 0.52" />
+    <meta name="generator" content="Hugo 0.58.2" />
     <meta name="description" content="ECS HoL">
 <meta name="author" content="Brent Langston">
 
@@ -18,21 +18,21 @@
     <title>Amazon Cognito Service 만들기 :: AWS Android Social HoL</title>
 
     
-    <link href="../../../css/nucleus.css?1568027959" rel="stylesheet">
-    <link href="../../../css/fontawesome-all.min.css?1568027959" rel="stylesheet">
-    <link href="../../../css/hybrid.css?1568027959" rel="stylesheet">
-    <link href="../../../css/featherlight.min.css?1568027959" rel="stylesheet">
-    <link href="../../../css/perfect-scrollbar.min.css?1568027959" rel="stylesheet">
-    <link href="../../../css/auto-complete.css?1568027959" rel="stylesheet">
-    <link href="../../../css/theme.css?1568027959" rel="stylesheet">
-    <link href="../../../css/hugo-theme.css?1568027959" rel="stylesheet">
-    <link href="../../../css/jquery-ui.min.css?1568027959" rel="stylesheet">
+    <link href="../../../css/nucleus.css?1568599817" rel="stylesheet">
+    <link href="../../../css/fontawesome-all.min.css?1568599817" rel="stylesheet">
+    <link href="../../../css/hybrid.css?1568599817" rel="stylesheet">
+    <link href="../../../css/featherlight.min.css?1568599817" rel="stylesheet">
+    <link href="../../../css/perfect-scrollbar.min.css?1568599817" rel="stylesheet">
+    <link href="../../../css/auto-complete.css?1568599817" rel="stylesheet">
+    <link href="../../../css/theme.css?1568599817" rel="stylesheet">
+    <link href="../../../css/hugo-theme.css?1568599817" rel="stylesheet">
+    <link href="../../../css/jquery-ui.min.css?1568599817" rel="stylesheet">
     
-      <link href="../../../css/theme-mine.css?1568027959" rel="stylesheet">
+      <link href="../../../css/theme-mine.css?1568599817" rel="stylesheet">
     
 
-    <script src="../../../js/jquery-3.3.1.min.js?1568027959"></script>
-    <script src="../../../js/jquery-ui-1.12.1.min.js?1568027959"></script>
+    <script src="../../../js/jquery-3.3.1.min.js?1568599817"></script>
+    <script src="../../../js/jquery-ui-1.12.1.min.js?1568599817"></script>
 
 
     <style type="text/css">
@@ -64,14 +64,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="../../../js/lunr.min.js?1568027959"></script>
-<script type="text/javascript" src="../../../js/auto-complete.js?1568027959"></script>
+<script type="text/javascript" src="../../../js/lunr.min.js?1568599817"></script>
+<script type="text/javascript" src="../../../js/auto-complete.js?1568599817"></script>
 <script type="text/javascript">
     
         var baseurl = "";
     
 </script>
-<script type="text/javascript" src="../../../js/search.js?1568027959"></script>
+<script type="text/javascript" src="../../../js/search.js?1568599817"></script>
 
     
   </div>
@@ -275,13 +275,13 @@
  
   
     
-    <li data-nav-id="/socialapp/cognito/" title="가입하기 - Amazon Cognito" class="dd-item 
+    <li data-nav-id="/socialapp/cognito/" title="회원관리 기능 구현하기" class="dd-item 
         parent
         
         
         ">
       <a href="../../../socialapp/cognito/">
-          가입하기 - Amazon Cognito
+          회원관리 기능 구현하기
           
       </a>
       
@@ -292,6 +292,25 @@
           
           
         
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/socialapp/cognito/facebook-config/" title="Facebook OAuth 설정하기" class="dd-item ">
+        <a href="../../../socialapp/cognito/facebook-config/">
+        Facebook OAuth 설정하기
+        
+        </a>
+    </li>
+     
+  
+ 
+
+            
           
             
             
@@ -573,6 +592,25 @@
  
   
     
+      <li data-nav-id="/socialapp/pinpoint/amplify-pinpoint/" title="Amazon Pinpoint 생성하기 " class="dd-item ">
+        <a href="../../../socialapp/pinpoint/amplify-pinpoint/">
+        Amazon Pinpoint 생성하기 
+        
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
       <li data-nav-id="/socialapp/pinpoint/android-pinpoint/" title="Push Notification을 위한 안드로이드 코드 작성하기  " class="dd-item ">
         <a href="../../../socialapp/pinpoint/android-pinpoint/">
         Push Notification을 위한 안드로이드 코드 작성하기  
@@ -719,7 +757,7 @@
             
           
           
-            <a href='../../../'>Android App On AWS</a> > <a href='../../../socialapp/'>서비스 구성</a> > <a href='../../../socialapp/cognito/'>가입하기 - Amazon Cognito</a> > Amazon Cognito Service 만들기
+            <a href='../../../'>Android App On AWS</a> > <a href='../../../socialapp/'>서비스 구성</a> > <a href='../../../socialapp/cognito/'>회원관리 기능 구현하기</a> > Amazon Cognito Service 만들기
           
          
           
@@ -751,40 +789,51 @@
         
 
 
-<p>Amazon Cognito를 사용하면 모바일 앱에 빠르고 손쉽게 사용자 가입, 로그인 및 액세스 제어 기능을 추가할 수 있습니다. 아래 명령어를 통해 손쉽게 생성하실 수 있습니다.</p>
+<p>Amazon Cognito를 사용하면 모바일 앱에 빠르고 손쉽게 사용자 가입, 로그인 및 액세스 제어 기능을 추가할 수 있습니다.</p>
+
+<p>안드로이드 프로젝트 최상위 위치에서 다음 명령을 실행합니다.</p>
 
 <pre><code class="language-shell">amplify add auth
 </code></pre>
 
 <p>진행 중 선택항목은 아래 그림을 참고하세요.</p>
 
-<p><img src="../../../images/addauth.png" alt="Example Service" /></p>
+<p><img src="../../../images/amplify-auth-config.png" alt="Example Service" /></p>
 
 <p>완료되면 다음 명령어를 통해 클라우드 리소스를 업데이트 합니다.</p>
 
 <pre><code class="language-shell">amplify push
 </code></pre>
 
-<p><img src="../../../images/pushauth.png" alt="Example Service" /></p>
+<p><img src="../../../images/amplify-auth-push.png" alt="Example Service" /></p>
 
-<p>참고로 status 명령어를 통해 amplify project의 상태를 확인하실 수 있습니다.</p>
+<p>정상적으로 필요한 자원이 생성된 경우 아래 그림과 같이 Hosted UI Endpoint를 확인할 수 있습니다.
+<img src="../../../images/amplify-auth-cli-result.png" alt="Example Service" /></p>
 
-<pre><code class="language-shell">amplify status
-</code></pre>
+<p>Cognito User Pool이 생성된 것을 확인하기 위해 AWS 관리 콘솔(AWS console &gt; Services &gt; Cognito &gt; User Pools)에 접속합니다.
+<img src="../../../images/auth-cognito-userpool.png" alt="Example Service" /></p>
 
-<p><img src="../../../images/authstatus.png" alt="Example Service" /></p>
+<p>또한 안드로이드 스튜디오에서 res/raw/awsconfiguration.json 파일에 각 환경설정 값들이 생성된 것을 확인하실 수 있습니다.
+<img src="../../../images/auth-android-config.png" alt="Example Service" /></p>
 
-<p>Amazon Cognito 가 생성된 것을 확인하기 위해 콘솔에 접속합니다.</p>
+<p>마지막으로, Facebook 개발자 사이트에 접속하여 생성한 Cognito 도메인 정보를 업데이트 합니다.</p>
 
-<p><b>AWS console &gt; service &gt; Cognito &gt; user pool &gt; </b></p>
+<ol>
+<li><p>Facebook 개발자 사이트에서 이전 장에서 생성한 앱(AWSAndroidWorkshop)을 선택합니다.</p></li>
 
-<p>아래와 같이 user pool이 생성된 것을 확인하실 수 있습니다.</p>
+<li><p>좌측 네비게이션 바에서 Settings &gt; Basic을 선택한다. App Domains에 Amplify CLI 실행 결과 출력된 Hosted UI Endpoint (Cognito의 User Pool Domain Name과 동일한 값) 값을 저장한다. <br>
+<strong>https://&lt;your-user-pool-domain&gt;</strong>
+<img src="../../../images/facebook-app-domain.png" alt="Facebook" /></p></li>
 
-<p><img src="../../../images/cognito.png" alt="Example Service" /></p>
+<li><p>Facebook 개발자 사이트의 Dashboard 메뉴로 이동한다. <br>
+Add a Product에서 Facebook Login 항목의 Set Up 버튼을 선택한다.
+<img src="../../../images/facebook-add-product.png" alt="Facebook" /></p></li>
 
-<p>또한 안드로이드 스튜디오에서 res/raw/awsconfiguration.json.file 파일이 생성된 것을 확인하실 수 있습니다.</p>
-
-<p><img src="../../../images/configure-cognito.png" alt="Example Service" /></p>
+<li><p>Facebook 개발자 사이트의 Products &gt; Facebook Login &gt; Settings 항목으로 이동한다. <br>
+Embedded Browser OAuth Login을 활성화 하고, Valid OAuth Redirects URIs에 아래 형식의 URI를 입력한다. <br>
+<strong>https://&lt;your-user-pool-domain&gt;/oauth2/idpresponse</strong>
+<img src="../../../images/facebook-oauth-redirect.png" alt="Facebook" /></p></li>
+</ol>
 
 
 <footer class=" footline" >
@@ -971,6 +1020,25 @@
             
                 
                     
+                        
+                        
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
                     
                 
                 
@@ -1194,6 +1262,22 @@
             
         
                     
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
             
         
                     
@@ -1239,7 +1323,7 @@
 
 
         
-            <a class="nav nav-prev" href="../../../socialapp/cognito/" title="가입하기 - Amazon Cognito"> <i class="fas fa-chevron-left"></i></a>
+            <a class="nav nav-prev" href="../../../socialapp/cognito/facebook-config/" title="Facebook OAuth 설정하기"> <i class="fas fa-chevron-left"></i></a>
         
         
             <a class="nav nav-next" href="../../../socialapp/cognito/android-cognito/" title="안드로이드 로그인 액티비티 생성하기 - 코드 설명하지 않음 :customUI로 변경예정(by성진님)" style="margin-right: 0px;"><i class="fas fa-chevron-right"></i></a>
@@ -1251,20 +1335,20 @@
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="../../../js/clipboard.min.js?1568027959"></script>
-    <script src="../../../js/perfect-scrollbar.min.js?1568027959"></script>
-    <script src="../../../js/perfect-scrollbar.jquery.min.js?1568027959"></script>
-    <script src="../../../js/jquery.sticky.js?1568027959"></script>
-    <script src="../../../js/featherlight.min.js?1568027959"></script>
-    <script src="../../../js/html5shiv-printshiv.min.js?1568027959"></script>
-    <script src="../../../js/highlight.pack.js?1568027959"></script>
+    <script src="../../../js/clipboard.min.js?1568599817"></script>
+    <script src="../../../js/perfect-scrollbar.min.js?1568599817"></script>
+    <script src="../../../js/perfect-scrollbar.jquery.min.js?1568599817"></script>
+    <script src="../../../js/jquery.sticky.js?1568599817"></script>
+    <script src="../../../js/featherlight.min.js?1568599817"></script>
+    <script src="../../../js/html5shiv-printshiv.min.js?1568599817"></script>
+    <script src="../../../js/highlight.pack.js?1568599817"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="../../../js/modernizr.custom-3.6.0.js?1568027959"></script>
-    <script src="../../../js/learn.js?1568027959"></script>
-    <script src="../../../js/hugo-learn.js?1568027959"></script>
+    <script src="../../../js/modernizr.custom-3.6.0.js?1568599817"></script>
+    <script src="../../../js/learn.js?1568599817"></script>
+    <script src="../../../js/hugo-learn.js?1568599817"></script>
 
-    <link href="../../../mermaid/mermaid.css?1568027959" type="text/css" rel="stylesheet" />
-    <script src="../../../mermaid/mermaid.min.js?1568027959"></script>
+    <link href="../../../mermaid/mermaid.css?1568599817" type="text/css" rel="stylesheet" />
+    <script src="../../../mermaid/mermaid.min.js?1568599817"></script>
     <script>
 	var config = {
         startOnLoad:true,

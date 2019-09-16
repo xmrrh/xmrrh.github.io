@@ -3,16 +3,16 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>/</loc>
+    <lastmod>2018-08-07T08:30:11-07:00</lastmod>
+  </url>
+  
+  <url>
     <loc>/socialapp/amplifyinstall/install_cli/</loc>
   </url>
   
   <url>
     <loc>/socialapp/amplifyinstall/</loc>
-  </url>
-  
-  <url>
-    <loc>/</loc>
-    <lastmod>2018-08-07T08:30:11-07:00</lastmod>
   </url>
   
   <url>
@@ -25,11 +25,16 @@
   </url>
   
   <url>
+    <loc>/socialapp/appsync/</loc>
+    <lastmod>2018-08-07T08:30:11-07:00</lastmod>
+  </url>
+  
+  <url>
     <loc>/cleanup/delete_alb/</loc>
   </url>
   
   <url>
-    <loc>/socialapp/appsync/</loc>
+    <loc>/socialapp/cognito/facebook-config/</loc>
     <lastmod>2018-08-07T08:30:11-07:00</lastmod>
   </url>
   
@@ -50,6 +55,11 @@
   
   <url>
     <loc>/prerequisites/</loc>
+  </url>
+  
+  <url>
+    <loc>/socialapp/pinpoint/amplify-pinpoint/</loc>
+    <lastmod>2018-08-07T08:30:11-07:00</lastmod>
   </url>
   
   <url>
@@ -119,7 +129,6 @@
   
   <url>
     <loc>/categories/</loc>
-    <priority>0</priority>
   </url>
   
   <url>
@@ -128,7 +137,6 @@
   
   <url>
     <loc>/tags/</loc>
-    <priority>0</priority>
   </url>
   
 </urlset>
