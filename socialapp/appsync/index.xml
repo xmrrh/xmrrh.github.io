@@ -20,7 +20,7 @@
       <description>Amplify를 이용하여 api를 추가합니다.
 amplify add api  입력값은 아래 그림을 참고하여 넣습니다. API인가를 위해 Amazon Cognito User Pool을 선택합니다. Amazon Cognito에 가입하고 로그인한 사용자의 경우 AWS 리소스접근에 대한 인가를 부여합니다. Api 접근시에도 인가가 필요한데, 이 인가 방법으로 cognito를 사용한다는 의미입니다.
 스키마는 아래 값을 사용합니다.
-type Post @model{ id: ID! author: String! title: String content: String url: String ups: Int downs: Int photo: S3Object version: Int! } type S3Object { bucket: String!</description>
+아래 @model 을 사용하시면 DynamoDB table, AppSync DataSource, IAM role, AppSync Resolvers등을 생성해줍니다. @key에 의해 DynamoDB의 파티션키와 정렬키를 생성합니다. 즉, DEV-DAY로 생성된 Post중 upload time으로 정렬을 하는데 사용할 예정입니다.</description>
     </item>
     
     <item>
@@ -31,8 +31,8 @@ type Post @model{ id: ID! author: String! title: String content: String url: Str
       <guid>/socialapp/appsync/android-appsync/</guid>
       <description>이제 안드로이드 프로젝트에 게시물 작성 하기 액티비티와 연동해보도록 하겠습니다.
 build.gradle (Module: app) 에 plugin을 적용시킵니다. 이 plugin에 의해 코드가 자동생성됩니다.
-apply plugin: &#39;com.amazonaws.appsync&#39; // REQUIRED  또한 같은 파일에 -build.gradle (Module: app)- 에 아래와 같이 dependency를 추가 합니다.
-dependencies { ... // REQUIRED: Typical dependencies implementation &#39;com.amazonaws:aws-android-sdk-appsync:2.9.+&#39; implementation &#39;org.eclipse.paho:org.eclipse.paho.client.mqttv3:1.2.0&#39; implementation &#39;org.eclipse.paho:org.eclipse.paho.android.service:1.1.1&#39; implementation &#39;com.amazonaws:aws-android-sdk-s3:2.14.+&#39; ... }  우선 build.gradle (Module: Project) 에 아래와 같이 dependency를 추가 합니다.
+apply plugin: &#39;com.amazonaws.appsync&#39;  또한 같은 파일에 -build.gradle (Module: app)- 에 아래와 같이 dependencies에 4개의 implementation을 추가 합니다.
+dependencies { ... implementation &#39;com.amazonaws:aws-android-sdk-appsync:2.9.+&#39; implementation &#39;org.eclipse.paho:org.eclipse.paho.client.mqttv3:1.2.0&#39; implementation &#39;org.eclipse.paho:org.eclipse.paho.android.service:1.1.1&#39; implementation &#39;com.amazonaws:aws-android-sdk-s3:2.14.+&#39; ... }  build.gradle (Module: Project) 에 아래와 같이 dependencies에 classpath를 추가 합니다.
 classpath &#39;com.amazonaws:aws-android-sdk-appsync-gradle-plugin:2.9.+&#39;  다음으로 자주 사용되는 AWSAppSyncClient 를 재사용하기 위해 ClientFactory class를 아래와 같이 생성합니다.</description>
     </item>
     
@@ -53,10 +53,11 @@ classpath &#39;com.amazonaws:aws-android-sdk-appsync-gradle-plugin:2.9.+&#39;  �
       
       <guid>/socialapp/appsync/android-appsync-query/</guid>
       <description>이제 메인 화면에서 사용자가 게시한 화면을 list up 해보도록 하겠습니다.
-MainActivity.java 의 onCreate 함수에서 위에서 생성한 ClientFactory 이용하여 AWSAppSyncClient를 생성합니다.
-@Override protected void onCreate(Bundle savedInstanceState) { super.onCreate(savedInstanceState); setContentView(R.layout.activity_main); checkPermission(); //appsync ClientFactory.appSyncInit(getApplicationContext()); ... }  상속된 onResume()에 아래와 같이 queryList()를 호출하도록 코드를 추가합니다.
+MainActivity.java 의 onCreate 함수에서 위에서 ClientFactory 이용하여 AWSAppSyncClient를 생성합니다.
+아래와 같이 ClientFactory.appSyncInit(&amp;hellip;)를 onCreate()함수내에 복사합니다.
+@Override protected void onCreate(Bundle savedInstanceState) { super.onCreate(savedInstanceState); setContentView(R.layout.activity_main); checkPermission(); //appsync ClientFactory.appSyncInit(getApplicationContext()); ... }  onResume()에 아래와 같이 queryList()를 호출하도록 코드를 추가합니다.
 protected void onResume() { super.onResume(); //appsync queryList(); }  queryList() 함수와 필요한 쿼리 결과를 얻어오는 콜백함수를 아래와 같이 추가합니다.
-private PostAdapter mAdapter; //appsync public void queryList() { ClientFactory.getAppSyncClient().query(ListPostsQuery.builder().build()) .</description>
+private PostAdapter mAdapter; public void queryList() { ClientFactory.</description>
     </item>
     
   </channel>

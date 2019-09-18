@@ -8,7 +8,7 @@
     <meta property="og:url" content="https://jenosys.github.io/tic-tac-toe-workshop-hol/tic-tac-toe/" />
     <meta property="og:image" content="https://jenosys.github.io/tic-tac-toe-workshop-hol/images/tic-tac-toe/dashboard.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-    <meta name="generator" content="Hugo 0.58.2" />
+    <meta name="generator" content="Hugo 0.57.2" />
     <meta name="description" content="ECS HoL">
 <meta name="author" content="Brent Langston">
 
@@ -18,21 +18,21 @@
     <title>게시물 리스트업하기  :: AWS Android Social HoL</title>
 
     
-    <link href="../../../css/nucleus.css?1568641709" rel="stylesheet">
-    <link href="../../../css/fontawesome-all.min.css?1568641709" rel="stylesheet">
-    <link href="../../../css/hybrid.css?1568641709" rel="stylesheet">
-    <link href="../../../css/featherlight.min.css?1568641709" rel="stylesheet">
-    <link href="../../../css/perfect-scrollbar.min.css?1568641709" rel="stylesheet">
-    <link href="../../../css/auto-complete.css?1568641709" rel="stylesheet">
-    <link href="../../../css/theme.css?1568641709" rel="stylesheet">
-    <link href="../../../css/hugo-theme.css?1568641709" rel="stylesheet">
-    <link href="../../../css/jquery-ui.min.css?1568641709" rel="stylesheet">
+    <link href="../../../css/nucleus.css?1568791008" rel="stylesheet">
+    <link href="../../../css/fontawesome-all.min.css?1568791008" rel="stylesheet">
+    <link href="../../../css/hybrid.css?1568791008" rel="stylesheet">
+    <link href="../../../css/featherlight.min.css?1568791008" rel="stylesheet">
+    <link href="../../../css/perfect-scrollbar.min.css?1568791008" rel="stylesheet">
+    <link href="../../../css/auto-complete.css?1568791008" rel="stylesheet">
+    <link href="../../../css/theme.css?1568791008" rel="stylesheet">
+    <link href="../../../css/hugo-theme.css?1568791008" rel="stylesheet">
+    <link href="../../../css/jquery-ui.min.css?1568791008" rel="stylesheet">
     
-      <link href="../../../css/theme-mine.css?1568641709" rel="stylesheet">
+      <link href="../../../css/theme-mine.css?1568791008" rel="stylesheet">
     
 
-    <script src="../../../js/jquery-3.3.1.min.js?1568641709"></script>
-    <script src="../../../js/jquery-ui-1.12.1.min.js?1568641709"></script>
+    <script src="../../../js/jquery-3.3.1.min.js?1568791008"></script>
+    <script src="../../../js/jquery-ui-1.12.1.min.js?1568791008"></script>
 
 
     <style type="text/css">
@@ -64,14 +64,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="../../../js/lunr.min.js?1568641709"></script>
-<script type="text/javascript" src="../../../js/auto-complete.js?1568641709"></script>
+<script type="text/javascript" src="../../../js/lunr.min.js?1568791008"></script>
+<script type="text/javascript" src="../../../js/auto-complete.js?1568791008"></script>
 <script type="text/javascript">
     
         var baseurl = "";
     
 </script>
-<script type="text/javascript" src="../../../js/search.js?1568641709"></script>
+<script type="text/javascript" src="../../../js/search.js?1568791008"></script>
 
     
   </div>
@@ -848,7 +848,9 @@
 
 <p>이제 메인 화면에서 사용자가 게시한 화면을 list up 해보도록 하겠습니다.</p>
 
-<p>MainActivity.java 의 onCreate 함수에서 위에서 생성한 ClientFactory 이용하여 AWSAppSyncClient를 생성합니다.</p>
+<p>MainActivity.java 의 onCreate 함수에서 위에서 ClientFactory 이용하여 AWSAppSyncClient를 생성합니다.</p>
+
+<p>아래와 같이 ClientFactory.appSyncInit(&hellip;)를 onCreate()함수내에 복사합니다.</p>
 
 <pre><code class="language-java">  @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -861,7 +863,7 @@
   }
 </code></pre>
 
-<p>상속된 onResume()에 아래와 같이 queryList()를 호출하도록 코드를 추가합니다.</p>
+<p>onResume()에 아래와 같이 queryList()를 호출하도록 코드를 추가합니다.</p>
 
 <pre><code class="language-java">    protected void onResume() {
         super.onResume();
@@ -874,16 +876,16 @@
 
 <pre><code class="language-java">    private PostAdapter mAdapter;
 
-
-//appsync
-    public void queryList() {
-        ClientFactory.getAppSyncClient().query(ListPostsQuery.builder().build())
+public void queryList() {
+        ClientFactory.getAppSyncClient().query(ListPostsQuery.builder()
+                .id(&quot;DEV-DAY&quot;)
+                .sortDirection(ModelSortDirection.DESC)
+                .build())
                 .responseFetcher(AppSyncResponseFetchers.CACHE_AND_NETWORK)
                 .enqueue(queryCallback);
     }
-//appsync
     private ArrayList&lt;ListPostsQuery.Item&gt; mItems;
-//appsync
+
     private GraphQLCall.Callback&lt;ListPostsQuery.Data&gt; queryCallback = new GraphQLCall.Callback&lt;ListPostsQuery.Data&gt;() {
 
         @Override
@@ -904,7 +906,7 @@
 
         @Override
         public void onFailure(@Nonnull ApolloException e) {
-
+						e.printStackTrace();
         }
     };
 </code></pre>
@@ -1032,12 +1034,17 @@ public class PostAdapter extends RecyclerView.Adapter&lt;PostAdapter.Holder&gt; 
 
 <p>RecyclerView에서 사용할 PostAdapter를 생성하여 연동합니다.</p>
 
-<pre><code class="language-java">mAdapter = new PostAdapter(getApplicationContext());
+<p>MainActivity.java의 onCreate()함수 아랫부분에 아래와 같이 작성해주세요</p>
 
-recyclerView = findViewById(R.id.itemlist);
-recyclerView.setLayoutManager(new LinearLayoutManager(this));
-recyclerView.setHasFixedSize(true);
-recyclerView.setAdapter(mAdapter);
+<pre><code class="language-java">protected void onCreate(Bundle savedInstanceState) {
+  ...
+    mAdapter = new PostAdapter(getApplicationContext());
+
+    recyclerView = findViewById(R.id.itemlist);
+    recyclerView.setLayoutManager(new LinearLayoutManager(this));
+    recyclerView.setHasFixedSize(true);
+    recyclerView.setAdapter(mAdapter);
+}
 </code></pre>
 
 <p>이제 앱을  실행하면 게시물작성하기에서 만들었던 첫번째 게시물을 확인하실 수 있습니다.</p>
@@ -1592,20 +1599,20 @@ recyclerView.setAdapter(mAdapter);
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="../../../js/clipboard.min.js?1568641709"></script>
-    <script src="../../../js/perfect-scrollbar.min.js?1568641709"></script>
-    <script src="../../../js/perfect-scrollbar.jquery.min.js?1568641709"></script>
-    <script src="../../../js/jquery.sticky.js?1568641709"></script>
-    <script src="../../../js/featherlight.min.js?1568641709"></script>
-    <script src="../../../js/html5shiv-printshiv.min.js?1568641709"></script>
-    <script src="../../../js/highlight.pack.js?1568641709"></script>
+    <script src="../../../js/clipboard.min.js?1568791008"></script>
+    <script src="../../../js/perfect-scrollbar.min.js?1568791008"></script>
+    <script src="../../../js/perfect-scrollbar.jquery.min.js?1568791008"></script>
+    <script src="../../../js/jquery.sticky.js?1568791008"></script>
+    <script src="../../../js/featherlight.min.js?1568791008"></script>
+    <script src="../../../js/html5shiv-printshiv.min.js?1568791008"></script>
+    <script src="../../../js/highlight.pack.js?1568791008"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="../../../js/modernizr.custom-3.6.0.js?1568641709"></script>
-    <script src="../../../js/learn.js?1568641709"></script>
-    <script src="../../../js/hugo-learn.js?1568641709"></script>
+    <script src="../../../js/modernizr.custom-3.6.0.js?1568791008"></script>
+    <script src="../../../js/learn.js?1568791008"></script>
+    <script src="../../../js/hugo-learn.js?1568791008"></script>
 
-    <link href="../../../mermaid/mermaid.css?1568641709" type="text/css" rel="stylesheet" />
-    <script src="../../../mermaid/mermaid.min.js?1568641709"></script>
+    <link href="../../../mermaid/mermaid.css?1568791008" type="text/css" rel="stylesheet" />
+    <script src="../../../mermaid/mermaid.min.js?1568791008"></script>
     <script>
 	var config = {
         startOnLoad:true,

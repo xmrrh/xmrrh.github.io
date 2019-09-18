@@ -8,7 +8,7 @@
     <meta property="og:url" content="https://jenosys.github.io/tic-tac-toe-workshop-hol/tic-tac-toe/" />
     <meta property="og:image" content="https://jenosys.github.io/tic-tac-toe-workshop-hol/images/tic-tac-toe/dashboard.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-    <meta name="generator" content="Hugo 0.58.2" />
+    <meta name="generator" content="Hugo 0.57.2" />
     <meta name="description" content="ECS HoL">
 <meta name="author" content="Brent Langston">
 
@@ -18,21 +18,21 @@
     <title>저장소 생성 및 API 생성 :: AWS Android Social HoL</title>
 
     
-    <link href="../../../css/nucleus.css?1568641709" rel="stylesheet">
-    <link href="../../../css/fontawesome-all.min.css?1568641709" rel="stylesheet">
-    <link href="../../../css/hybrid.css?1568641709" rel="stylesheet">
-    <link href="../../../css/featherlight.min.css?1568641709" rel="stylesheet">
-    <link href="../../../css/perfect-scrollbar.min.css?1568641709" rel="stylesheet">
-    <link href="../../../css/auto-complete.css?1568641709" rel="stylesheet">
-    <link href="../../../css/theme.css?1568641709" rel="stylesheet">
-    <link href="../../../css/hugo-theme.css?1568641709" rel="stylesheet">
-    <link href="../../../css/jquery-ui.min.css?1568641709" rel="stylesheet">
+    <link href="../../../css/nucleus.css?1568791008" rel="stylesheet">
+    <link href="../../../css/fontawesome-all.min.css?1568791008" rel="stylesheet">
+    <link href="../../../css/hybrid.css?1568791008" rel="stylesheet">
+    <link href="../../../css/featherlight.min.css?1568791008" rel="stylesheet">
+    <link href="../../../css/perfect-scrollbar.min.css?1568791008" rel="stylesheet">
+    <link href="../../../css/auto-complete.css?1568791008" rel="stylesheet">
+    <link href="../../../css/theme.css?1568791008" rel="stylesheet">
+    <link href="../../../css/hugo-theme.css?1568791008" rel="stylesheet">
+    <link href="../../../css/jquery-ui.min.css?1568791008" rel="stylesheet">
     
-      <link href="../../../css/theme-mine.css?1568641709" rel="stylesheet">
+      <link href="../../../css/theme-mine.css?1568791008" rel="stylesheet">
     
 
-    <script src="../../../js/jquery-3.3.1.min.js?1568641709"></script>
-    <script src="../../../js/jquery-ui-1.12.1.min.js?1568641709"></script>
+    <script src="../../../js/jquery-3.3.1.min.js?1568791008"></script>
+    <script src="../../../js/jquery-ui-1.12.1.min.js?1568791008"></script>
 
 
     <style type="text/css">
@@ -64,14 +64,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="../../../js/lunr.min.js?1568641709"></script>
-<script type="text/javascript" src="../../../js/auto-complete.js?1568641709"></script>
+<script type="text/javascript" src="../../../js/lunr.min.js?1568791008"></script>
+<script type="text/javascript" src="../../../js/auto-complete.js?1568791008"></script>
 <script type="text/javascript">
     
         var baseurl = "";
     
 </script>
-<script type="text/javascript" src="../../../js/search.js?1568641709"></script>
+<script type="text/javascript" src="../../../js/search.js?1568791008"></script>
 
     
   </div>
@@ -857,33 +857,43 @@
 
 <p>스키마는 아래 값을 사용합니다.</p>
 
+<p>아래 @model 을 사용하시면 DynamoDB table, AppSync DataSource, IAM role, AppSync Resolvers등을 생성해줍니다. @key에 의해 DynamoDB의 파티션키와 정렬키를 생성합니다. 즉, DEV-DAY로 생성된 Post중 upload time으로 정렬을 하는데 사용할 예정입니다.</p>
+
 <pre><code class="language-bash">
-type Post @model{
-        id: ID!
-        author: String!
-        title: String
-        content: String
-        url: String
-        ups: Int
-        downs: Int
-        photo: S3Object
-        version: Int!
-}
-
-
-type S3Object {
-        bucket: String!
-        key: String!
-        region: String!
-}
-
-input S3ObjectInput {
-        bucket: String!
-        key: String!
-        region: String!
-        localUri: String
-        mimeType: String
-}
+type Mutation {
+      putPostWithPhoto(
+          id: String!,
+          author: String!,
+          title: String,
+          content: String,
+          url: String,
+          uptime: String!,
+          photo: S3ObjectInput
+          version: Int!
+      ): Post
+  }
+  type S3Object {
+       bucket: String!
+       key: String!
+       region: String!
+  }
+  input S3ObjectInput {
+       bucket: String!
+       key: String!
+       region: String!
+       localUri: String
+       mimeType: String
+  }
+  type Post @model @key(fields:[&quot;id&quot;,&quot;uptime&quot;]){
+      id: String!
+      author: String!
+      title: String
+      content: String
+      url: String
+      uptime: String!
+      photo: S3Object
+      version: Int!
+  }
 </code></pre>
 
 <p>amplify add api 가 완료되면 클라우드리소스 생성을 위해 push합니다.</p>
@@ -903,23 +913,38 @@ input S3ObjectInput {
 
 <p><img src="../../../images/console-api-ds.png" alt="Example Service" /></p>
 
-<p>이제 Mutation 에 새로 추가한 api를 dynamodb와 연계할 수 있는 Resolver를 변경 해보겠습니다. <b>AWS console &gt; service &gt; AppSync &gt;Schema</b>에서 Resolvers중 <strong>createPost()</strong> 를 찾아 <strong>Attach</strong>를  누릅니다.</p>
+<p>이제 Mutation 에 새로 추가한 api를 dynamodb와 연계할 수 있는 Resolver를 변경 해보겠습니다. <b>AWS console &gt; service &gt; AppSync &gt;Schema</b>에서 Resolvers중 <strong>putPostWithPhoto(..)</strong> 를 찾아 <strong>Attach</strong>를  누릅니다.</p>
 
-<p><img src="../../../images/createpost.png" alt="Example Service" /></p>
+<p><img src="../../../images/console-api-cr.png" alt="Example Service" /></p>
 
-<p>Data source name에 <strong>PostTable</strong> 를 선택합니다. Configure the request mapping template은 <strong>Put item with S3 ObjectPut</strong> 를 선택하시고 **Save Resolver **을 눌러 저장합니다.</p>
+<p>Data source name에 <strong>PostTable</strong> 를 선택합니다. Configure the request mapping template은 <strong>Put item with S3 ObjectPut</strong> 를 선택하세요.</p>
 
-<p><img src="../../../images/console-cr-create.png" alt="Example Service" /></p>
+<p><img src="../../../images/put_1.png" alt="Example Service" /></p>
 
-<p>또한 안드로이드 스튜디오에서 res/raw/awsconfiguration.json.file 파일이 생성된 것을 확인하실 수 있습니다.</p>
+<p>불러 온 템플릿의 key 부분을 아래와 같이 수정합니다. 소스로 부터 전달받은 id를 사용하겠다는 의미입니다.</p>
+
+<pre><code class="language-bash">&quot;key&quot; : {
+        &quot;id&quot; : { &quot;S&quot; : &quot;$ctx.args.id&quot; }
+    },
+</code></pre>
+
+<p>Configure the response mapping template은 기존의 코드를 삭제하시고 아래와 같이 작성합니다.</p>
+
+<p>그리고  **Save Resolver **을 눌러 저장합니다.</p>
+
+<pre><code class="language-bash">$util.toJson($util.dynamodb.fromS3ObjectJson($context.source.file))
+
+</code></pre>
+
+<p><img src="../../../images/put_2.png" alt="Example Service" /></p>
+
+<p>안드로이드 스튜디오에서 res/raw/awsconfiguration.json.file 파일이 생성된 것을 확인하실 수 있습니다.</p>
 
 <p><img src="../../../images/json-appsync.png" alt="Example Service" /></p>
 
-<p>Amplify codegen을 통해 를 이용하여 api를 추가합니다.  api는 <b>AWS console &gt; service &gt; AppSync &gt;Settings</b>에서 확인가능합니다.</p>
+<p>Amplify codegen을 통해 를 이용하여 생성된 코드를 안드로이드 프로젝트 폴더에 다운로드 합니다.</p>
 
-<p><img src="../../../images/console-codeapi.png" alt="Example Service" /></p>
-
-<pre><code class="language-bash">amplify add codegen --apiId xxx
+<pre><code class="language-bash">amplify codegen
 </code></pre>
 
 <p>만약 &ldquo;Codegen support only one GraphQL API per project&rdquo; 에러가 나올경우 아래 처럼 remove하시고 다시 추가하십시요</p>
@@ -928,9 +953,28 @@ input S3ObjectInput {
 amplify add codegen --apiId xxx
 </code></pre>
 
-<p>진행중 나오는 질문은 모두 default로 처리하십시요</p>
+<p>api는 <b>AWS console &gt; service &gt; AppSync &gt;Settings</b>에서 확인가능합니다.</p>
+
+<p><img src="../../../images/console-codeapi.png" alt="Example Service" /></p>
+
+<pre><code class="language-bash">amplify codegen
+</code></pre>
+
+<p>진행 중 나오는 질문은 모두 default로 처리하십시요</p>
 
 <p><img src="../../../images/codeapi.png" alt="Example Service" /></p>
+
+<p>실제 저장되는 저장공간인 S3에 버킷을 생성합니다.</p>
+
+<p><strong>AWS console &gt; service &gt; S3</strong> 로 이동합니다.</p>
+
+<p>파란색 버튼 <b> 버킷만들기</b> 를 선택합니다.</p>
+
+<p><img src="../../../images/bucket1.png" alt="Example Service" /></p>
+
+<p>버킷이름을 넣고 생성을 누르세요. 이때 버킷이름은 global하게 unique해야합니다.</p>
+
+<p><img src="../../../images/bucket2.png" alt="Example Service" /></p>
 
 
 <footer class=" footline" >
@@ -1477,20 +1521,20 @@ amplify add codegen --apiId xxx
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="../../../js/clipboard.min.js?1568641709"></script>
-    <script src="../../../js/perfect-scrollbar.min.js?1568641709"></script>
-    <script src="../../../js/perfect-scrollbar.jquery.min.js?1568641709"></script>
-    <script src="../../../js/jquery.sticky.js?1568641709"></script>
-    <script src="../../../js/featherlight.min.js?1568641709"></script>
-    <script src="../../../js/html5shiv-printshiv.min.js?1568641709"></script>
-    <script src="../../../js/highlight.pack.js?1568641709"></script>
+    <script src="../../../js/clipboard.min.js?1568791008"></script>
+    <script src="../../../js/perfect-scrollbar.min.js?1568791008"></script>
+    <script src="../../../js/perfect-scrollbar.jquery.min.js?1568791008"></script>
+    <script src="../../../js/jquery.sticky.js?1568791008"></script>
+    <script src="../../../js/featherlight.min.js?1568791008"></script>
+    <script src="../../../js/html5shiv-printshiv.min.js?1568791008"></script>
+    <script src="../../../js/highlight.pack.js?1568791008"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="../../../js/modernizr.custom-3.6.0.js?1568641709"></script>
-    <script src="../../../js/learn.js?1568641709"></script>
-    <script src="../../../js/hugo-learn.js?1568641709"></script>
+    <script src="../../../js/modernizr.custom-3.6.0.js?1568791008"></script>
+    <script src="../../../js/learn.js?1568791008"></script>
+    <script src="../../../js/hugo-learn.js?1568791008"></script>
 
-    <link href="../../../mermaid/mermaid.css?1568641709" type="text/css" rel="stylesheet" />
-    <script src="../../../mermaid/mermaid.min.js?1568641709"></script>
+    <link href="../../../mermaid/mermaid.css?1568791008" type="text/css" rel="stylesheet" />
+    <script src="../../../mermaid/mermaid.min.js?1568791008"></script>
     <script>
 	var config = {
         startOnLoad:true,

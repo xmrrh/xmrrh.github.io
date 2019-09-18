@@ -8,7 +8,7 @@
     <meta property="og:url" content="https://jenosys.github.io/tic-tac-toe-workshop-hol/tic-tac-toe/" />
     <meta property="og:image" content="https://jenosys.github.io/tic-tac-toe-workshop-hol/images/tic-tac-toe/dashboard.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-    <meta name="generator" content="Hugo 0.58.2" />
+    <meta name="generator" content="Hugo 0.57.2" />
     <meta name="description" content="ECS HoL">
 <meta name="author" content="Brent Langston">
 
@@ -18,21 +18,21 @@
     <title>게시물 작성하기  :: AWS Android Social HoL</title>
 
     
-    <link href="../../../css/nucleus.css?1568641709" rel="stylesheet">
-    <link href="../../../css/fontawesome-all.min.css?1568641709" rel="stylesheet">
-    <link href="../../../css/hybrid.css?1568641709" rel="stylesheet">
-    <link href="../../../css/featherlight.min.css?1568641709" rel="stylesheet">
-    <link href="../../../css/perfect-scrollbar.min.css?1568641709" rel="stylesheet">
-    <link href="../../../css/auto-complete.css?1568641709" rel="stylesheet">
-    <link href="../../../css/theme.css?1568641709" rel="stylesheet">
-    <link href="../../../css/hugo-theme.css?1568641709" rel="stylesheet">
-    <link href="../../../css/jquery-ui.min.css?1568641709" rel="stylesheet">
+    <link href="../../../css/nucleus.css?1568791008" rel="stylesheet">
+    <link href="../../../css/fontawesome-all.min.css?1568791008" rel="stylesheet">
+    <link href="../../../css/hybrid.css?1568791008" rel="stylesheet">
+    <link href="../../../css/featherlight.min.css?1568791008" rel="stylesheet">
+    <link href="../../../css/perfect-scrollbar.min.css?1568791008" rel="stylesheet">
+    <link href="../../../css/auto-complete.css?1568791008" rel="stylesheet">
+    <link href="../../../css/theme.css?1568791008" rel="stylesheet">
+    <link href="../../../css/hugo-theme.css?1568791008" rel="stylesheet">
+    <link href="../../../css/jquery-ui.min.css?1568791008" rel="stylesheet">
     
-      <link href="../../../css/theme-mine.css?1568641709" rel="stylesheet">
+      <link href="../../../css/theme-mine.css?1568791008" rel="stylesheet">
     
 
-    <script src="../../../js/jquery-3.3.1.min.js?1568641709"></script>
-    <script src="../../../js/jquery-ui-1.12.1.min.js?1568641709"></script>
+    <script src="../../../js/jquery-3.3.1.min.js?1568791008"></script>
+    <script src="../../../js/jquery-ui-1.12.1.min.js?1568791008"></script>
 
 
     <style type="text/css">
@@ -64,14 +64,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="../../../js/lunr.min.js?1568641709"></script>
-<script type="text/javascript" src="../../../js/auto-complete.js?1568641709"></script>
+<script type="text/javascript" src="../../../js/lunr.min.js?1568791008"></script>
+<script type="text/javascript" src="../../../js/auto-complete.js?1568791008"></script>
 <script type="text/javascript">
     
         var baseurl = "";
     
 </script>
-<script type="text/javascript" src="../../../js/search.js?1568641709"></script>
+<script type="text/javascript" src="../../../js/search.js?1568791008"></script>
 
     
   </div>
@@ -850,24 +850,22 @@
 
 <p>build.gradle (Module: app) 에 plugin을 적용시킵니다. 이 plugin에 의해 코드가 자동생성됩니다.</p>
 
-<pre><code class="language-java">apply plugin: 'com.amazonaws.appsync' // REQUIRED
+<pre><code class="language-java">apply plugin: 'com.amazonaws.appsync' 
 </code></pre>
 
-<p>또한 같은 파일에 -build.gradle (Module: app)-  에 아래와 같이 dependency를  추가 합니다.</p>
+<p>또한 같은 파일에 -build.gradle (Module: app)-  에 아래와 같이 dependencies에  4개의 implementation을 추가 합니다.</p>
 
 <pre><code class="language-java">dependencies {
 ...
-// REQUIRED: Typical dependencies
 implementation 'com.amazonaws:aws-android-sdk-appsync:2.9.+'
 implementation 'org.eclipse.paho:org.eclipse.paho.client.mqttv3:1.2.0'
 implementation 'org.eclipse.paho:org.eclipse.paho.android.service:1.1.1'
-
 implementation 'com.amazonaws:aws-android-sdk-s3:2.14.+'
 ...
 }
 </code></pre>
 
-<p>우선 build.gradle (Module: Project) 에 아래와 같이 dependency를 추가 합니다.</p>
+<p>build.gradle (Module: Project) 에 아래와 같이 dependencies에  classpath를 추가 합니다.</p>
 
 <pre><code class="language-java">classpath 'com.amazonaws:aws-android-sdk-appsync-gradle-plugin:2.9.+'
 </code></pre>
@@ -963,6 +961,8 @@ public class ClientFactory {
 
 <p>WriteActivity.java 의 onCreate 함수에서 위에서 생성한 ClientFactory 이용하여 AWSAppSyncClient를 생성합니다.</p>
 
+<p>onCreate()함수에  아래와 같이 ClientFactory.appSyncInit(..) 를 추가하세요.</p>
+
 <pre><code class="language-java">  @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -973,12 +973,12 @@ public class ClientFactory {
   }
 </code></pre>
 
-<p>WriteActivity.java에서 <strong>DONE</strong> 버튼으로 게시물을 업로드 할경우 저장소에 게시물이 저장될 수 있도록 <strong>addComment</strong> 함수를 추가합니다. <strong>putYourBucketName 변수명을 다른 이름으로 수정합니다.</strong></p>
+<p>WriteActivity.java에서 <strong>DONE</strong> 버튼으로 게시물을 업로드 할경우 저장소에 게시물이 저장될 수 있도록 <strong>addComment</strong> 함수를 추가합니다. **putYourBucketName 변수값을 <span style="color:red">여러분의 S3 버킷 이름</span>으로 교체 하세요. **</p>
 
 <pre><code class="language-java">     //appsync upload
- private final String putYourBucketName = &quot;xmrrh-east-1&quot;;
+ private final String putYourBucketName = &quot;putYourBucketName&quot;;
  private final String mimeType = &quot;image/jpg&quot;;
- private final String region = &quot;xmrrh-east-1&quot;;
+ private final String region = &quot;us-east-1&quot;;
  private final String folderName = &quot;public/&quot;;
  
  private void addComment() {
@@ -991,25 +991,24 @@ public class ClientFactory {
                 .region(region)
                 .localUri(bitmapPath)
                 .mimeType(mimeType).build();
-        CreatePostInput createTodoInput = CreatePostInput.builder()
+        PutPostWithPhotoMutation addPostMutation = PutPostWithPhotoMutation.builder()
                 .title(title.getText().toString())
                 .author(ClientFactory.getUserID())
                 .url(bitmapPath)
                 .content(contents.getText().toString())
-                .ups(0)
-                .downs(0)
+                .uptime(String.valueOf(System.currentTimeMillis()))
                 .photo(s3ObjectInput)
-                .id(UUID.randomUUID().toString())
+                .id(&quot;DEV-DAY&quot;)
                 .build();
 
-	      CreatePostMutation addPostMutation = CreatePostMutation.builder()
-                .input(createTodoInput).build();
 
-        ClientFactory.getAppSyncClient().mutate(addPostMutation).enqueue(postsCallback);    }
 
-    private GraphQLCall.Callback&lt;CreatePostMutation.Data&gt; postsCallback = new GraphQLCall.Callback&lt;CreatePostMutation.Data&gt;() {
+        ClientFactory.getAppSyncClient().mutate(addPostMutation).enqueue(postsCallback);
+    }
+
+    private GraphQLCall.Callback&lt;PutPostWithPhotoMutation.Data&gt; postsCallback = new GraphQLCall.Callback&lt;PutPostWithPhotoMutation.Data&gt;() {
         @Override
-        public void onResponse(@Nonnull final Response&lt;CreatePostMutation.Data&gt; response) {
+        public void onResponse(@Nonnull final Response&lt;PutPostWithPhotoMutation.Data&gt; response) {
             runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
@@ -1035,6 +1034,8 @@ public class ClientFactory {
 </code></pre>
 
 <p>이 함수는 onCreate함수의 saveBtn에 onClick event시 호출될 수 있도록 합니다.</p>
+
+<p>기존의 코드인 WriteActivity.this.finish() 는 지우시고, 그자리에 addComment()를 넣으세요.</p>
 
 <pre><code class="language-java">  @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -1624,20 +1625,20 @@ public class ClientFactory {
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="../../../js/clipboard.min.js?1568641709"></script>
-    <script src="../../../js/perfect-scrollbar.min.js?1568641709"></script>
-    <script src="../../../js/perfect-scrollbar.jquery.min.js?1568641709"></script>
-    <script src="../../../js/jquery.sticky.js?1568641709"></script>
-    <script src="../../../js/featherlight.min.js?1568641709"></script>
-    <script src="../../../js/html5shiv-printshiv.min.js?1568641709"></script>
-    <script src="../../../js/highlight.pack.js?1568641709"></script>
+    <script src="../../../js/clipboard.min.js?1568791008"></script>
+    <script src="../../../js/perfect-scrollbar.min.js?1568791008"></script>
+    <script src="../../../js/perfect-scrollbar.jquery.min.js?1568791008"></script>
+    <script src="../../../js/jquery.sticky.js?1568791008"></script>
+    <script src="../../../js/featherlight.min.js?1568791008"></script>
+    <script src="../../../js/html5shiv-printshiv.min.js?1568791008"></script>
+    <script src="../../../js/highlight.pack.js?1568791008"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="../../../js/modernizr.custom-3.6.0.js?1568641709"></script>
-    <script src="../../../js/learn.js?1568641709"></script>
-    <script src="../../../js/hugo-learn.js?1568641709"></script>
+    <script src="../../../js/modernizr.custom-3.6.0.js?1568791008"></script>
+    <script src="../../../js/learn.js?1568791008"></script>
+    <script src="../../../js/hugo-learn.js?1568791008"></script>
 
-    <link href="../../../mermaid/mermaid.css?1568641709" type="text/css" rel="stylesheet" />
-    <script src="../../../mermaid/mermaid.min.js?1568641709"></script>
+    <link href="../../../mermaid/mermaid.css?1568791008" type="text/css" rel="stylesheet" />
+    <script src="../../../mermaid/mermaid.min.js?1568791008"></script>
     <script>
 	var config = {
         startOnLoad:true,
