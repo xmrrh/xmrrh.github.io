@@ -8,7 +8,7 @@
     <meta property="og:url" content="https://jenosys.github.io/tic-tac-toe-workshop-hol/tic-tac-toe/" />
     <meta property="og:image" content="https://jenosys.github.io/tic-tac-toe-workshop-hol/images/tic-tac-toe/dashboard.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-    <meta name="generator" content="Hugo 0.58.2" />
+    <meta name="generator" content="Hugo 0.57.2" />
     <meta name="description" content="ECS HoL">
 <meta name="author" content="Brent Langston">
 
@@ -18,21 +18,21 @@
     <title>Amplify CLI 설치 :: AWS Android Social HoL</title>
 
     
-    <link href="../../../css/nucleus.css?1568641709" rel="stylesheet">
-    <link href="../../../css/fontawesome-all.min.css?1568641709" rel="stylesheet">
-    <link href="../../../css/hybrid.css?1568641709" rel="stylesheet">
-    <link href="../../../css/featherlight.min.css?1568641709" rel="stylesheet">
-    <link href="../../../css/perfect-scrollbar.min.css?1568641709" rel="stylesheet">
-    <link href="../../../css/auto-complete.css?1568641709" rel="stylesheet">
-    <link href="../../../css/theme.css?1568641709" rel="stylesheet">
-    <link href="../../../css/hugo-theme.css?1568641709" rel="stylesheet">
-    <link href="../../../css/jquery-ui.min.css?1568641709" rel="stylesheet">
+    <link href="../../../css/nucleus.css?1568970484" rel="stylesheet">
+    <link href="../../../css/fontawesome-all.min.css?1568970484" rel="stylesheet">
+    <link href="../../../css/hybrid.css?1568970484" rel="stylesheet">
+    <link href="../../../css/featherlight.min.css?1568970484" rel="stylesheet">
+    <link href="../../../css/perfect-scrollbar.min.css?1568970484" rel="stylesheet">
+    <link href="../../../css/auto-complete.css?1568970484" rel="stylesheet">
+    <link href="../../../css/theme.css?1568970484" rel="stylesheet">
+    <link href="../../../css/hugo-theme.css?1568970484" rel="stylesheet">
+    <link href="../../../css/jquery-ui.min.css?1568970484" rel="stylesheet">
     
-      <link href="../../../css/theme-mine.css?1568641709" rel="stylesheet">
+      <link href="../../../css/theme-mine.css?1568970484" rel="stylesheet">
     
 
-    <script src="../../../js/jquery-3.3.1.min.js?1568641709"></script>
-    <script src="../../../js/jquery-ui-1.12.1.min.js?1568641709"></script>
+    <script src="../../../js/jquery-3.3.1.min.js?1568970484"></script>
+    <script src="../../../js/jquery-ui-1.12.1.min.js?1568970484"></script>
 
 
     <style type="text/css">
@@ -64,14 +64,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="../../../js/lunr.min.js?1568641709"></script>
-<script type="text/javascript" src="../../../js/auto-complete.js?1568641709"></script>
+<script type="text/javascript" src="../../../js/lunr.min.js?1568970484"></script>
+<script type="text/javascript" src="../../../js/auto-complete.js?1568970484"></script>
 <script type="text/javascript">
     
         var baseurl = "";
     
 </script>
-<script type="text/javascript" src="../../../js/search.js?1568641709"></script>
+<script type="text/javascript" src="../../../js/search.js?1568970484"></script>
 
     
   </div>
@@ -649,9 +649,9 @@
  
   
     
-      <li data-nav-id="/socialapp/pinpoint/amplify-pinpoint/" title="Amazon Pinpoint 생성하기 " class="dd-item ">
+      <li data-nav-id="/socialapp/pinpoint/amplify-pinpoint/" title="Amazon Pinpoint 서비스 생성" class="dd-item ">
         <a href="../../../socialapp/pinpoint/amplify-pinpoint/">
-        Amazon Pinpoint 생성하기 
+        Amazon Pinpoint 서비스 생성
         
         </a>
     </li>
@@ -846,11 +846,20 @@
         
 
 
-<p>Amplify를 사용하기 위해 Amplify CLI를 설치합니다.</p>
+<p>AWS Amplify를 사용하면 AWS 기반의 확장 가능한 모바일 및 웹 앱을 손쉽게 생성, 구성 및 구현할 수 있습니다. Amplify는 모바일 애플리케이션을 위한 백엔드를 프로비저닝하고 관리합니다. 사용자가 인증, 분석, 오프라인 데이터 동기화 등 필요한 기능을 선택하기만 하면 Amplify가 각 기능을 제공하는 AWS 서비스를 자동으로 프로비저닝하고 관리합니다.</p>
+
+<p>Amplify CLI 설치를 위해서 npm을 이용합니다. npm이 설치 되어 있지 않다면</p>
+
+<p><a href="https://nodejs.org/en/download/" target="_blank">https://nodejs.org/en/download/</a> 를 통해 설치합니다.</p>
+
+<p>Amplify CLI를 설치합니다.</p>
 
 <pre><code class="language-bash">npm install -g @aws-amplify/cli
-or 
-sudo npm install -g --unsafe-perm --verbose @aws-amplify/cli
+</code></pre>
+
+<p>만약 인스톨이 되지 않으면 아래와 같이 진행해보세요</p>
+
+<pre><code class="language-bash">sudo npm install -g --unsafe-perm --verbose @aws-amplify/cli
 </code></pre>
 
 <p>Amplify에서 사용할 configure를 설정합니다.</p>
@@ -1426,20 +1435,20 @@ sudo npm install -g --unsafe-perm --verbose @aws-amplify/cli
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="../../../js/clipboard.min.js?1568641709"></script>
-    <script src="../../../js/perfect-scrollbar.min.js?1568641709"></script>
-    <script src="../../../js/perfect-scrollbar.jquery.min.js?1568641709"></script>
-    <script src="../../../js/jquery.sticky.js?1568641709"></script>
-    <script src="../../../js/featherlight.min.js?1568641709"></script>
-    <script src="../../../js/html5shiv-printshiv.min.js?1568641709"></script>
-    <script src="../../../js/highlight.pack.js?1568641709"></script>
+    <script src="../../../js/clipboard.min.js?1568970484"></script>
+    <script src="../../../js/perfect-scrollbar.min.js?1568970484"></script>
+    <script src="../../../js/perfect-scrollbar.jquery.min.js?1568970484"></script>
+    <script src="../../../js/jquery.sticky.js?1568970484"></script>
+    <script src="../../../js/featherlight.min.js?1568970484"></script>
+    <script src="../../../js/html5shiv-printshiv.min.js?1568970484"></script>
+    <script src="../../../js/highlight.pack.js?1568970484"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="../../../js/modernizr.custom-3.6.0.js?1568641709"></script>
-    <script src="../../../js/learn.js?1568641709"></script>
-    <script src="../../../js/hugo-learn.js?1568641709"></script>
+    <script src="../../../js/modernizr.custom-3.6.0.js?1568970484"></script>
+    <script src="../../../js/learn.js?1568970484"></script>
+    <script src="../../../js/hugo-learn.js?1568970484"></script>
 
-    <link href="../../../mermaid/mermaid.css?1568641709" type="text/css" rel="stylesheet" />
-    <script src="../../../mermaid/mermaid.min.js?1568641709"></script>
+    <link href="../../../mermaid/mermaid.css?1568970484" type="text/css" rel="stylesheet" />
+    <script src="../../../mermaid/mermaid.min.js?1568970484"></script>
     <script>
 	var config = {
         startOnLoad:true,

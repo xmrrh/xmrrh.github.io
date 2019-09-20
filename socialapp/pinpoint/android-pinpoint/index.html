@@ -8,7 +8,7 @@
     <meta property="og:url" content="https://jenosys.github.io/tic-tac-toe-workshop-hol/tic-tac-toe/" />
     <meta property="og:image" content="https://jenosys.github.io/tic-tac-toe-workshop-hol/images/tic-tac-toe/dashboard.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-    <meta name="generator" content="Hugo 0.58.2" />
+    <meta name="generator" content="Hugo 0.57.2" />
     <meta name="description" content="ECS HoL">
 <meta name="author" content="Brent Langston">
 
@@ -18,21 +18,21 @@
     <title>Push Notification을 위한 안드로이드 코드 작성하기   :: AWS Android Social HoL</title>
 
     
-    <link href="../../../css/nucleus.css?1568641709" rel="stylesheet">
-    <link href="../../../css/fontawesome-all.min.css?1568641709" rel="stylesheet">
-    <link href="../../../css/hybrid.css?1568641709" rel="stylesheet">
-    <link href="../../../css/featherlight.min.css?1568641709" rel="stylesheet">
-    <link href="../../../css/perfect-scrollbar.min.css?1568641709" rel="stylesheet">
-    <link href="../../../css/auto-complete.css?1568641709" rel="stylesheet">
-    <link href="../../../css/theme.css?1568641709" rel="stylesheet">
-    <link href="../../../css/hugo-theme.css?1568641709" rel="stylesheet">
-    <link href="../../../css/jquery-ui.min.css?1568641709" rel="stylesheet">
+    <link href="../../../css/nucleus.css?1568970484" rel="stylesheet">
+    <link href="../../../css/fontawesome-all.min.css?1568970484" rel="stylesheet">
+    <link href="../../../css/hybrid.css?1568970484" rel="stylesheet">
+    <link href="../../../css/featherlight.min.css?1568970484" rel="stylesheet">
+    <link href="../../../css/perfect-scrollbar.min.css?1568970484" rel="stylesheet">
+    <link href="../../../css/auto-complete.css?1568970484" rel="stylesheet">
+    <link href="../../../css/theme.css?1568970484" rel="stylesheet">
+    <link href="../../../css/hugo-theme.css?1568970484" rel="stylesheet">
+    <link href="../../../css/jquery-ui.min.css?1568970484" rel="stylesheet">
     
-      <link href="../../../css/theme-mine.css?1568641709" rel="stylesheet">
+      <link href="../../../css/theme-mine.css?1568970484" rel="stylesheet">
     
 
-    <script src="../../../js/jquery-3.3.1.min.js?1568641709"></script>
-    <script src="../../../js/jquery-ui-1.12.1.min.js?1568641709"></script>
+    <script src="../../../js/jquery-3.3.1.min.js?1568970484"></script>
+    <script src="../../../js/jquery-ui-1.12.1.min.js?1568970484"></script>
 
 
     <style type="text/css">
@@ -64,14 +64,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="../../../js/lunr.min.js?1568641709"></script>
-<script type="text/javascript" src="../../../js/auto-complete.js?1568641709"></script>
+<script type="text/javascript" src="../../../js/lunr.min.js?1568970484"></script>
+<script type="text/javascript" src="../../../js/auto-complete.js?1568970484"></script>
 <script type="text/javascript">
     
         var baseurl = "";
     
 </script>
-<script type="text/javascript" src="../../../js/search.js?1568641709"></script>
+<script type="text/javascript" src="../../../js/search.js?1568970484"></script>
 
     
   </div>
@@ -649,9 +649,9 @@
  
   
     
-      <li data-nav-id="/socialapp/pinpoint/amplify-pinpoint/" title="Amazon Pinpoint 생성하기 " class="dd-item ">
+      <li data-nav-id="/socialapp/pinpoint/amplify-pinpoint/" title="Amazon Pinpoint 서비스 생성" class="dd-item ">
         <a href="../../../socialapp/pinpoint/amplify-pinpoint/">
-        Amazon Pinpoint 생성하기 
+        Amazon Pinpoint 서비스 생성
         
         </a>
     </li>
@@ -848,7 +848,7 @@
 
 <p>이제 안드로이드 프로젝트에 Push Notification 을 받기 위해 안드로이드 프로젝트와 연동해보도록 하겠습니다.</p>
 
-<p>우선 build.gradle (Module: Project) 에 아래와 같이 dependency를 추가 합니다.</p>
+<p>우선 build.gradle (Module: Project) 에 아래와 같이 dependencies를 추가 합니다.</p>
 
 <pre><code class="language-java">dependencies {
         ...
@@ -887,6 +887,18 @@
                 &lt;action android:name=&quot;com.google.firebase.MESSAGING_EVENT&quot;/&gt;
             &lt;/intent-filter&gt;
         &lt;/service&gt;
+&lt;/application&gt;
+</code></pre>
+
+<p>Push 메시지를 누르면 App을 open 시키기 위해 아래와 같이 Receiver를 AndroidManifest.xml에 추가합니다.</p>
+
+<pre><code class="language-xml">&lt;application&gt;
+        ...
+        &lt;receiver android:name=&quot;com.amazonaws.mobileconnectors.pinpoint.targeting.notification.PinpointNotificationReceiver&quot; android:exported=&quot;false&quot; &gt;
+        &lt;intent-filter&gt;
+            &lt;action android:name=&quot;com.amazonaws.intent.fcm.NOTIFICATION_OPEN&quot; /&gt;
+        &lt;/intent-filter&gt;
+    &lt;/receiver&gt;
 &lt;/application&gt;
 </code></pre>
 
@@ -1577,7 +1589,7 @@ import android.content.Intent;
 
 
         
-            <a class="nav nav-prev" href="../../../socialapp/pinpoint/amplify-pinpoint/" title="Amazon Pinpoint 생성하기 "> <i class="fas fa-chevron-left"></i></a>
+            <a class="nav nav-prev" href="../../../socialapp/pinpoint/amplify-pinpoint/" title="Amazon Pinpoint 서비스 생성"> <i class="fas fa-chevron-left"></i></a>
         
         
             <a class="nav nav-next" href="../../../socialapp/pinpoint/s3iam/" title="Push 메시지 보내기" style="margin-right: 0px;"><i class="fas fa-chevron-right"></i></a>
@@ -1589,20 +1601,20 @@ import android.content.Intent;
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="../../../js/clipboard.min.js?1568641709"></script>
-    <script src="../../../js/perfect-scrollbar.min.js?1568641709"></script>
-    <script src="../../../js/perfect-scrollbar.jquery.min.js?1568641709"></script>
-    <script src="../../../js/jquery.sticky.js?1568641709"></script>
-    <script src="../../../js/featherlight.min.js?1568641709"></script>
-    <script src="../../../js/html5shiv-printshiv.min.js?1568641709"></script>
-    <script src="../../../js/highlight.pack.js?1568641709"></script>
+    <script src="../../../js/clipboard.min.js?1568970484"></script>
+    <script src="../../../js/perfect-scrollbar.min.js?1568970484"></script>
+    <script src="../../../js/perfect-scrollbar.jquery.min.js?1568970484"></script>
+    <script src="../../../js/jquery.sticky.js?1568970484"></script>
+    <script src="../../../js/featherlight.min.js?1568970484"></script>
+    <script src="../../../js/html5shiv-printshiv.min.js?1568970484"></script>
+    <script src="../../../js/highlight.pack.js?1568970484"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="../../../js/modernizr.custom-3.6.0.js?1568641709"></script>
-    <script src="../../../js/learn.js?1568641709"></script>
-    <script src="../../../js/hugo-learn.js?1568641709"></script>
+    <script src="../../../js/modernizr.custom-3.6.0.js?1568970484"></script>
+    <script src="../../../js/learn.js?1568970484"></script>
+    <script src="../../../js/hugo-learn.js?1568970484"></script>
 
-    <link href="../../../mermaid/mermaid.css?1568641709" type="text/css" rel="stylesheet" />
-    <script src="../../../mermaid/mermaid.min.js?1568641709"></script>
+    <link href="../../../mermaid/mermaid.css?1568970484" type="text/css" rel="stylesheet" />
+    <script src="../../../mermaid/mermaid.min.js?1568970484"></script>
     <script>
 	var config = {
         startOnLoad:true,
