@@ -58,11 +58,6 @@
   </url>
   
   <url>
-    <loc>/socialapp/pinpoint/amplify-pinpoint/</loc>
-    <lastmod>2018-08-07T08:30:11-07:00</lastmod>
-  </url>
-  
-  <url>
     <loc>/socialapp/appsync/android-appsync/</loc>
     <lastmod>2018-08-07T08:30:11-07:00</lastmod>
   </url>
@@ -97,6 +92,10 @@
   
   <url>
     <loc>/socialapp/translate/translateiam/</loc>
+  </url>
+  
+  <url>
+    <loc>/socialapp/pinpoint/amplify-pinpoint/</loc>
   </url>
   
   <url>

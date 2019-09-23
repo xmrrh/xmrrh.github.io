@@ -8,7 +8,7 @@
     <meta property="og:url" content="https://jenosys.github.io/tic-tac-toe-workshop-hol/tic-tac-toe/" />
     <meta property="og:image" content="https://jenosys.github.io/tic-tac-toe-workshop-hol/images/tic-tac-toe/dashboard.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-    <meta name="generator" content="Hugo 0.57.2" />
+    <meta name="generator" content="Hugo 0.58.2" />
     <meta name="description" content="ECS HoL">
 <meta name="author" content="Brent Langston">
 
@@ -18,21 +18,21 @@
     <title>게시물 작성하기  :: AWS Android Social HoL</title>
 
     
-    <link href="../../../css/nucleus.css?1568970484" rel="stylesheet">
-    <link href="../../../css/fontawesome-all.min.css?1568970484" rel="stylesheet">
-    <link href="../../../css/hybrid.css?1568970484" rel="stylesheet">
-    <link href="../../../css/featherlight.min.css?1568970484" rel="stylesheet">
-    <link href="../../../css/perfect-scrollbar.min.css?1568970484" rel="stylesheet">
-    <link href="../../../css/auto-complete.css?1568970484" rel="stylesheet">
-    <link href="../../../css/theme.css?1568970484" rel="stylesheet">
-    <link href="../../../css/hugo-theme.css?1568970484" rel="stylesheet">
-    <link href="../../../css/jquery-ui.min.css?1568970484" rel="stylesheet">
+    <link href="../../../css/nucleus.css?1569200782" rel="stylesheet">
+    <link href="../../../css/fontawesome-all.min.css?1569200782" rel="stylesheet">
+    <link href="../../../css/hybrid.css?1569200782" rel="stylesheet">
+    <link href="../../../css/featherlight.min.css?1569200782" rel="stylesheet">
+    <link href="../../../css/perfect-scrollbar.min.css?1569200782" rel="stylesheet">
+    <link href="../../../css/auto-complete.css?1569200782" rel="stylesheet">
+    <link href="../../../css/theme.css?1569200782" rel="stylesheet">
+    <link href="../../../css/hugo-theme.css?1569200782" rel="stylesheet">
+    <link href="../../../css/jquery-ui.min.css?1569200782" rel="stylesheet">
     
-      <link href="../../../css/theme-mine.css?1568970484" rel="stylesheet">
+      <link href="../../../css/theme-mine.css?1569200782" rel="stylesheet">
     
 
-    <script src="../../../js/jquery-3.3.1.min.js?1568970484"></script>
-    <script src="../../../js/jquery-ui-1.12.1.min.js?1568970484"></script>
+    <script src="../../../js/jquery-3.3.1.min.js?1569200782"></script>
+    <script src="../../../js/jquery-ui-1.12.1.min.js?1569200782"></script>
 
 
     <style type="text/css">
@@ -64,14 +64,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="../../../js/lunr.min.js?1568970484"></script>
-<script type="text/javascript" src="../../../js/auto-complete.js?1568970484"></script>
+<script type="text/javascript" src="../../../js/lunr.min.js?1569200782"></script>
+<script type="text/javascript" src="../../../js/auto-complete.js?1569200782"></script>
 <script type="text/javascript">
     
         var baseurl = "";
     
 </script>
-<script type="text/javascript" src="../../../js/search.js?1568970484"></script>
+<script type="text/javascript" src="../../../js/search.js?1569200782"></script>
 
     
   </div>
@@ -848,6 +848,11 @@
 
 <p>이제 안드로이드 프로젝트에 게시물 작성 하기 액티비티와 연동해보도록 하겠습니다.</p>
 
+<p>build.gradle (Module: Project) 에 아래와 같이 dependencies에  classpath를 추가 합니다.</p>
+
+<pre><code class="language-java">classpath 'com.amazonaws:aws-android-sdk-appsync-gradle-plugin:2.9.+'
+</code></pre>
+
 <p>build.gradle (Module: app) 에 plugin을 적용시킵니다. build.gradle (Module: app) 상단에 아래와 같이 복사해서 붙여 넣습니다. 이 plugin에 의해 코드가 자동생성됩니다.</p>
 
 <pre><code class="language-java">apply plugin: 'com.amazonaws.appsync' 
@@ -863,11 +868,6 @@ implementation 'org.eclipse.paho:org.eclipse.paho.android.service:1.1.1'
 implementation 'com.amazonaws:aws-android-sdk-s3:2.14.+'
 ...
 }
-</code></pre>
-
-<p>build.gradle (Module: Project) 에 아래와 같이 dependencies에  classpath를 추가 합니다.</p>
-
-<pre><code class="language-java">classpath 'com.amazonaws:aws-android-sdk-appsync-gradle-plugin:2.9.+'
 </code></pre>
 
 <p>다음으로 자주 사용되는 AWSAppSyncClient 를 재사용하기 위해 ClientFactory class를 아래와 같이 생성합니다.</p>
@@ -1625,20 +1625,20 @@ public class ClientFactory {
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="../../../js/clipboard.min.js?1568970484"></script>
-    <script src="../../../js/perfect-scrollbar.min.js?1568970484"></script>
-    <script src="../../../js/perfect-scrollbar.jquery.min.js?1568970484"></script>
-    <script src="../../../js/jquery.sticky.js?1568970484"></script>
-    <script src="../../../js/featherlight.min.js?1568970484"></script>
-    <script src="../../../js/html5shiv-printshiv.min.js?1568970484"></script>
-    <script src="../../../js/highlight.pack.js?1568970484"></script>
+    <script src="../../../js/clipboard.min.js?1569200782"></script>
+    <script src="../../../js/perfect-scrollbar.min.js?1569200782"></script>
+    <script src="../../../js/perfect-scrollbar.jquery.min.js?1569200782"></script>
+    <script src="../../../js/jquery.sticky.js?1569200782"></script>
+    <script src="../../../js/featherlight.min.js?1569200782"></script>
+    <script src="../../../js/html5shiv-printshiv.min.js?1569200782"></script>
+    <script src="../../../js/highlight.pack.js?1569200782"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="../../../js/modernizr.custom-3.6.0.js?1568970484"></script>
-    <script src="../../../js/learn.js?1568970484"></script>
-    <script src="../../../js/hugo-learn.js?1568970484"></script>
+    <script src="../../../js/modernizr.custom-3.6.0.js?1569200782"></script>
+    <script src="../../../js/learn.js?1569200782"></script>
+    <script src="../../../js/hugo-learn.js?1569200782"></script>
 
-    <link href="../../../mermaid/mermaid.css?1568970484" type="text/css" rel="stylesheet" />
-    <script src="../../../mermaid/mermaid.min.js?1568970484"></script>
+    <link href="../../../mermaid/mermaid.css?1569200782" type="text/css" rel="stylesheet" />
+    <script src="../../../mermaid/mermaid.min.js?1569200782"></script>
     <script>
 	var config = {
         startOnLoad:true,

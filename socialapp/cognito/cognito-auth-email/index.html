@@ -8,7 +8,7 @@
     <meta property="og:url" content="https://jenosys.github.io/tic-tac-toe-workshop-hol/tic-tac-toe/" />
     <meta property="og:image" content="https://jenosys.github.io/tic-tac-toe-workshop-hol/images/tic-tac-toe/dashboard.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-    <meta name="generator" content="Hugo 0.57.2" />
+    <meta name="generator" content="Hugo 0.58.2" />
     <meta name="description" content="ECS HoL">
 <meta name="author" content="Brent Langston">
 
@@ -18,21 +18,21 @@
     <title>이메일 기반 회원 가입 기능 구현하기 :: AWS Android Social HoL</title>
 
     
-    <link href="../../../css/nucleus.css?1568970484" rel="stylesheet">
-    <link href="../../../css/fontawesome-all.min.css?1568970484" rel="stylesheet">
-    <link href="../../../css/hybrid.css?1568970484" rel="stylesheet">
-    <link href="../../../css/featherlight.min.css?1568970484" rel="stylesheet">
-    <link href="../../../css/perfect-scrollbar.min.css?1568970484" rel="stylesheet">
-    <link href="../../../css/auto-complete.css?1568970484" rel="stylesheet">
-    <link href="../../../css/theme.css?1568970484" rel="stylesheet">
-    <link href="../../../css/hugo-theme.css?1568970484" rel="stylesheet">
-    <link href="../../../css/jquery-ui.min.css?1568970484" rel="stylesheet">
+    <link href="../../../css/nucleus.css?1569200782" rel="stylesheet">
+    <link href="../../../css/fontawesome-all.min.css?1569200782" rel="stylesheet">
+    <link href="../../../css/hybrid.css?1569200782" rel="stylesheet">
+    <link href="../../../css/featherlight.min.css?1569200782" rel="stylesheet">
+    <link href="../../../css/perfect-scrollbar.min.css?1569200782" rel="stylesheet">
+    <link href="../../../css/auto-complete.css?1569200782" rel="stylesheet">
+    <link href="../../../css/theme.css?1569200782" rel="stylesheet">
+    <link href="../../../css/hugo-theme.css?1569200782" rel="stylesheet">
+    <link href="../../../css/jquery-ui.min.css?1569200782" rel="stylesheet">
     
-      <link href="../../../css/theme-mine.css?1568970484" rel="stylesheet">
+      <link href="../../../css/theme-mine.css?1569200782" rel="stylesheet">
     
 
-    <script src="../../../js/jquery-3.3.1.min.js?1568970484"></script>
-    <script src="../../../js/jquery-ui-1.12.1.min.js?1568970484"></script>
+    <script src="../../../js/jquery-3.3.1.min.js?1569200782"></script>
+    <script src="../../../js/jquery-ui-1.12.1.min.js?1569200782"></script>
 
 
     <style type="text/css">
@@ -64,14 +64,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="../../../js/lunr.min.js?1568970484"></script>
-<script type="text/javascript" src="../../../js/auto-complete.js?1568970484"></script>
+<script type="text/javascript" src="../../../js/lunr.min.js?1569200782"></script>
+<script type="text/javascript" src="../../../js/auto-complete.js?1569200782"></script>
 <script type="text/javascript">
     
         var baseurl = "";
     
 </script>
-<script type="text/javascript" src="../../../js/search.js?1568970484"></script>
+<script type="text/javascript" src="../../../js/search.js?1569200782"></script>
 
     
   </div>
@@ -859,7 +859,7 @@
 <ol>
 <li><p>이메일, 비밀번호를 입력하여 Signup을 진행합니다.
 <img src="../../../images/app-signup.png" alt="Example Service" />
-Signup과 관련된 코드는 다음과 같습니다. 입력한 이메일과 비밀번호로 Signup이 완료된 경우 SignUpConfirmFragment로 화면을 전환합니다.</p>
+아래 코드를 복사하여 회원 가입을 위한 <strong>signUp</strong> 메소드를 완성합니다. signUp 메소드에서는 입력받은 이메일과 비밀번호로 Cognito user pool에 새로운 사용자를 추가하고, 사용자 정보가 정상 등록된 경우에는 사용자 이메일 인증을 위한 SignUpConfirmFragment로 화면을 전환합니다.</p>
 
 <pre><code class="language-java">// SignUpActivity.java
 public class SignUpActivity extends FragmentActivity
@@ -868,15 +868,12 @@ public class SignUpActivity extends FragmentActivity
     
 ...
 
-private String userName, password;
-private Context context;
-
-...
-
 @Override
 public void signUp(String email, String password) {
     userName = email;
     this.password = password;
+
+    // Add code here
     final Map&lt;String, String&gt; attributes = new HashMap&lt;&gt;();
     attributes.put(&quot;email&quot;, email);
     AWSMobileClient.getInstance().signUp(userName, password, attributes, null, new Callback&lt;SignUpResult&gt;() {
@@ -914,7 +911,7 @@ public void signUp(String email, String password) {
 
 <li><p>인증코드 입력화면에서 이메일로 전달 받은 인증코드를 입력합니다.
 <img src="../../../images/app-email-verification.png" alt="Example Service" />
-인증 코드 확인과 관련된 코드는 다음과 같습니다.</p>
+아래 코드를 복사하여 회원 가입을 위한 <strong>confirmSignUp</strong> 메소드를 완성합니다. confirmSignUp 메소드에서는 사용자명(이메일)과 인증코드를 이용해 이메일 인증 과정이 이뤄집니다.</p>
 
 <pre><code class="language-java">// SignUpActivity.java
 public class SignUpActivity extends FragmentActivity
@@ -925,6 +922,7 @@ public class SignUpActivity extends FragmentActivity
 
 @Override
 public void confirmSignUp(String code) {
+    // Add code here
     AWSMobileClient.getInstance().confirmSignUp(userName, code, new Callback&lt;SignUpResult&gt;() {
         @Override
         public void onResult(final SignUpResult signUpResult) {
@@ -958,7 +956,7 @@ public void confirmSignUp(String code) {
 
 </code></pre></li>
 
-<li><p>이메일과 인증코드를 기반으로 이메일 인증이 완료된 경우, Activity에 유지된 이메일과 비밀번호를 기반으로 로그인을 진행합니다. 정상적으로 로그인된 경우 앱 메인화면으로 이동하게 됩니다.</p>
+<li><p>이메일과 인증코드를 기반으로 이메일 인증이 완료된 경우, Activity에 유지된 이메일과 비밀번호를 기반으로 로그인을 진행합니다. 정상적으로 로그인된 경우 앱 메인화면으로 이동하게 됩니다. <br>아래 코드를 복사하여 회원 가입을 위한 <strong>_signIn</strong> 메소드를 완성합니다.</p>
 
 <pre><code class="language-java">// SignUpActivity.java
 public class SignUpActivity extends FragmentActivity
@@ -967,11 +965,8 @@ public class SignUpActivity extends FragmentActivity
 
 ...
 
-private String userName, password;
-    
-...
-
 private void _signIn(String username, String password) {
+    // Add code here
     AWSMobileClient.getInstance().signIn(username, password, null, new Callback&lt;SignInResult&gt;() {
         @Override
         public void onResult(final SignInResult signInResult) {
@@ -1564,20 +1559,20 @@ private void _signIn(String username, String password) {
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="../../../js/clipboard.min.js?1568970484"></script>
-    <script src="../../../js/perfect-scrollbar.min.js?1568970484"></script>
-    <script src="../../../js/perfect-scrollbar.jquery.min.js?1568970484"></script>
-    <script src="../../../js/jquery.sticky.js?1568970484"></script>
-    <script src="../../../js/featherlight.min.js?1568970484"></script>
-    <script src="../../../js/html5shiv-printshiv.min.js?1568970484"></script>
-    <script src="../../../js/highlight.pack.js?1568970484"></script>
+    <script src="../../../js/clipboard.min.js?1569200782"></script>
+    <script src="../../../js/perfect-scrollbar.min.js?1569200782"></script>
+    <script src="../../../js/perfect-scrollbar.jquery.min.js?1569200782"></script>
+    <script src="../../../js/jquery.sticky.js?1569200782"></script>
+    <script src="../../../js/featherlight.min.js?1569200782"></script>
+    <script src="../../../js/html5shiv-printshiv.min.js?1569200782"></script>
+    <script src="../../../js/highlight.pack.js?1569200782"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="../../../js/modernizr.custom-3.6.0.js?1568970484"></script>
-    <script src="../../../js/learn.js?1568970484"></script>
-    <script src="../../../js/hugo-learn.js?1568970484"></script>
+    <script src="../../../js/modernizr.custom-3.6.0.js?1569200782"></script>
+    <script src="../../../js/learn.js?1569200782"></script>
+    <script src="../../../js/hugo-learn.js?1569200782"></script>
 
-    <link href="../../../mermaid/mermaid.css?1568970484" type="text/css" rel="stylesheet" />
-    <script src="../../../mermaid/mermaid.min.js?1568970484"></script>
+    <link href="../../../mermaid/mermaid.css?1569200782" type="text/css" rel="stylesheet" />
+    <script src="../../../mermaid/mermaid.min.js?1569200782"></script>
     <script>
 	var config = {
         startOnLoad:true,
