@@ -16,8 +16,10 @@
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>/cleanup/delete_alb/</guid>
-      <description>아래 명령어로 서버쪽 리소스를 한번에 삭제합니다.
-amplify delete  </description>
+      <description>아래 명령어를 이용해 리소스를 한번에 삭제합니다.
+amplify delete  사진이 업로드된 S3의 버킷을 삭제합니다.
+Pinpoint프로젝트를 삭제합니다.
+pinpoint&amp;gt;project&amp;gt;settings&amp;gt;General settings&amp;gt;Delete project</description>
     </item>
     
   </channel>
