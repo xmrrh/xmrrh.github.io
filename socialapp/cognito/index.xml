@@ -44,7 +44,7 @@ socialdemoapp://signout/  social providers 에서 facebook 선택시 Space bar �
       <pubDate>Tue, 07 Aug 2018 08:30:11 -0700</pubDate>
       
       <guid>/socialapp/cognito/cognito-splash/</guid>
-      <description>다음과 같은 형태의 앱 시작화면을 구성해보도록 하겠습니다. 시작화면에서는 Cognito의 로그인 상태를 확인하는 코드가 추가가 됩니다. 기존 로그인 정보가 없는 경우는 로그인 메인 화면으로 이동하고, 로그인 정보가 있는 경우는 앱 메인 화면으로 이동합니다.
+      <description>이번 실습에서는 앱의 시작화면을 구성해 봅니다. 시작화면에서는 Cognito의 로그인 상태를 확인하는 코드가 추가가 됩니다. 기존 로그인 정보가 없는 경우는 로그인 메인 화면으로 이동하고, 로그인 정보가 있는 경우는 앱 메인 화면으로 이동합니다.
 아래 코드 부분을 복사하여 _initCognito 메소드를 완성해 봅니다.
 // SplashActivity.java public class SplashActivity extends AppCompatActivity { ... private void _initCognito() { // Add code here AWSMobileClient.getInstance().initialize(getApplicationContext(), new Callback&amp;lt;UserStateDetails&amp;gt;() { @Override public void onResult(UserStateDetails userStateDetails) { switch (userStateDetails.getUserState()){ case SIGNED_IN: // Open Main Activity CommonAction.</description>
     </item>
@@ -55,7 +55,8 @@ socialdemoapp://signout/  social providers 에서 facebook 선택시 Space bar �
       <pubDate>Tue, 07 Aug 2018 08:30:11 -0700</pubDate>
       
       <guid>/socialapp/cognito/cognito-auth-social/</guid>
-      <description>인증 메인화면에는 소셜 로그인(페이스북, Google)을 위한 버튼과 이메일 기반의 로그인 및 회원 가입을 위한 링크가 제공 됩니다. 소셜 로그인의 경우 Cognito의 Hosted UI 기능을 사용해 서버간 OAuth2 인증이 이루어지고 User Pool에 등록도 자동으로 처리됩니다. Identity Provider에서 제공하는 별도의 모바일 SDK를 설치하실 필요는 없습니다.
+      <description>이번 실습에는 Cognito의 Hosted UI 기능을 사용해 페이스북 기반 소셜 로그인 기능을 구현해 보겠습니다.
+Hosted UI를 이용하면 OAuth2 인증이 Server to Server로 에 진행되기 때문에 페이스북에서 제공하는 별도의 모바일 SDK를 설치하실 필요는 없습니다. 현재 Hosted UI를 이용해 인증 가능한 Identity Provider는 Facebook, Google, Amazon입니다.
 아래 코드를 복사하여 Facebook 로그인을 위한 Hosted UI기능 추가를 위한 _openFacebookLogin 메소드를 완성해 봅니다.
 // AuthMainActivity.java public class AuthMainActivity extends AppCompatActivity { ... private void _openFacebookLogin() { // Add code here HostedUIOptions hostedUIOptions = HostedUIOptions.</description>
     </item>
@@ -66,10 +67,9 @@ socialdemoapp://signout/  social providers 에서 facebook 선택시 Space bar �
       <pubDate>Tue, 07 Aug 2018 08:30:11 -0700</pubDate>
       
       <guid>/socialapp/cognito/cognito-auth-email/</guid>
-      <description>이메일 기반 로그인 기능은 회원 가입 메뉴와 이메일 기반 로그인 메뉴로 구성됩니다.
-우선 회원 가입 기능을 구현해 보겠습니다. 이전 실습에서 amplify add auth 명령 실행 시 Email을 로그인 수단으로 설정하였습니다. AWS 관리 콘솔의 Attributes 항목을 확인 해보면 아래 그림과 같이 이메일이 로그인 수단으로 설정된 것을 확인할 수 있습니다. 회원 가입을 위한 안드로이드 UI는 다음과 같이 구성되어 있습니다.
-회원 가입은 다음과 같은 단계로 진행됩니다.
- 이메일, 비밀번호를 입력하여 Signup을 진행합니다. 아래 코드를 복사하여 회원 가입을 위한 signUp 메소드를 완성합니다.</description>
+      <description>이번 실습에서는 이메일 기반 회원 가입 기능을 구현해 보겠습니다.
+실습 시작 전, AWS Conginto 관리 콘솔에 접근해 이메일이 로그인 방법으로 지정되어 있는지 확인해보도록 하겠습니다. AWS 관리 콘솔의 Attributes 항목의 내용이 아래 그림과 같이 설정되어 있는지 확인합니다. 이제 단계별로 이메일 기반 회원 가입을 위한 코드를 완성해 보겠습니다.
+ 입력받은 이메일, 비밀번호를 이용해 회원 가입을 진행. 아래 코드를 복사하여 회원 가입을 위한 signUp 메소드를 완성합니다. signUp 메소드에서는 입력받은 이메일과 비밀번호로 Cognito user pool에 새로운 사용자를 추가합니다.</description>
     </item>
     
     <item>
@@ -79,8 +79,8 @@ socialdemoapp://signout/  social providers 에서 facebook 선택시 Space bar �
       
       <guid>/socialapp/cognito/cognito-auth-login/</guid>
       <description>이번 실습에서는 이메일 기반 로그인 기능을 구현해 보겠습니다.
-이메일 기반 로그인을 위한 안드로이드 UI는 다음과 같이 구성되어 있습니다. 아래 코드를 복사하여 회원 가입을 위한 _signIn 메소드를 완성합니다.
-// LoginActivity.java public class LoginActivity extends AppCompatActivity implements Validator.ValidationListener { ... private void _signIn(String userName, String password) { AWSMobileClient.getInstance().signIn(userName, password, null, new Callback&amp;lt;SignInResult&amp;gt;() { @Override public void onResult(final SignInResult signInResult) { runOnUiThread(() -&amp;gt; { Log.d(TAG, &amp;quot;Sign-in callback state: &amp;quot; + signInResult.getSignInState()); switch (signInResult.getSignInState()) { case DONE: makeToast(context,&amp;quot;Sign-in done.</description>
+아래 코드를 복사하여 이메일 기반 로그인을 수행하는 _signIn 메소드를 완성합니다.
+// LoginActivity.java public class LoginActivity extends AppCompatActivity implements Validator.ValidationListener { ... private void _signIn(String userName, String password) { AWSMobileClient.getInstance().signIn(userName, password, null, new Callback&amp;lt;SignInResult&amp;gt;() { @Override public void onResult(final SignInResult signInResult) { runOnUiThread(() -&amp;gt; { Log.d(TAG, &amp;quot;Sign-in callback state: &amp;quot; + signInResult.getSignInState()); switch (signInResult.getSignInState()) { case DONE: makeToast(context,&amp;quot;Sign-in done.&amp;quot;); CommonAction.openMain(context); break; case SMS_MFA: makeToast(context, &amp;quot;Please confirm sign-in with SMS.</description>
     </item>
     
   </channel>

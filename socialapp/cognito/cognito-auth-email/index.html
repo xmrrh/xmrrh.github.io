@@ -8,7 +8,7 @@
     <meta property="og:url" content="https://jenosys.github.io/tic-tac-toe-workshop-hol/tic-tac-toe/" />
     <meta property="og:image" content="https://jenosys.github.io/tic-tac-toe-workshop-hol/images/tic-tac-toe/dashboard.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-    <meta name="generator" content="Hugo 0.57.2" />
+    <meta name="generator" content="Hugo 0.58.2" />
     <meta name="description" content="ECS HoL">
 <meta name="author" content="Brent Langston">
 
@@ -18,21 +18,21 @@
     <title>이메일 기반 회원 가입 기능 구현하기 :: AWS Android Social HoL</title>
 
     
-    <link href="../../../css/nucleus.css?1569231386" rel="stylesheet">
-    <link href="../../../css/fontawesome-all.min.css?1569231386" rel="stylesheet">
-    <link href="../../../css/hybrid.css?1569231386" rel="stylesheet">
-    <link href="../../../css/featherlight.min.css?1569231386" rel="stylesheet">
-    <link href="../../../css/perfect-scrollbar.min.css?1569231386" rel="stylesheet">
-    <link href="../../../css/auto-complete.css?1569231386" rel="stylesheet">
-    <link href="../../../css/theme.css?1569231386" rel="stylesheet">
-    <link href="../../../css/hugo-theme.css?1569231386" rel="stylesheet">
-    <link href="../../../css/jquery-ui.min.css?1569231386" rel="stylesheet">
+    <link href="../../../css/nucleus.css?1569315308" rel="stylesheet">
+    <link href="../../../css/fontawesome-all.min.css?1569315308" rel="stylesheet">
+    <link href="../../../css/hybrid.css?1569315308" rel="stylesheet">
+    <link href="../../../css/featherlight.min.css?1569315308" rel="stylesheet">
+    <link href="../../../css/perfect-scrollbar.min.css?1569315308" rel="stylesheet">
+    <link href="../../../css/auto-complete.css?1569315308" rel="stylesheet">
+    <link href="../../../css/theme.css?1569315308" rel="stylesheet">
+    <link href="../../../css/hugo-theme.css?1569315308" rel="stylesheet">
+    <link href="../../../css/jquery-ui.min.css?1569315308" rel="stylesheet">
     
-      <link href="../../../css/theme-mine.css?1569231386" rel="stylesheet">
+      <link href="../../../css/theme-mine.css?1569315308" rel="stylesheet">
     
 
-    <script src="../../../js/jquery-3.3.1.min.js?1569231386"></script>
-    <script src="../../../js/jquery-ui-1.12.1.min.js?1569231386"></script>
+    <script src="../../../js/jquery-3.3.1.min.js?1569315308"></script>
+    <script src="../../../js/jquery-ui-1.12.1.min.js?1569315308"></script>
 
 
     <style type="text/css">
@@ -64,14 +64,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="../../../js/lunr.min.js?1569231386"></script>
-<script type="text/javascript" src="../../../js/auto-complete.js?1569231386"></script>
+<script type="text/javascript" src="../../../js/lunr.min.js?1569315308"></script>
+<script type="text/javascript" src="../../../js/auto-complete.js?1569315308"></script>
 <script type="text/javascript">
     
         var baseurl = "";
     
 </script>
-<script type="text/javascript" src="../../../js/search.js?1569231386"></script>
+<script type="text/javascript" src="../../../js/search.js?1569315308"></script>
 
     
   </div>
@@ -747,8 +747,8 @@
  
   
     
-      <li data-nav-id="/cleanup/delete_alb/" title="리소스 삭제" class="dd-item ">
-        <a href="../../../cleanup/delete_alb/">
+      <li data-nav-id="/cleanup/delete/" title="리소스 삭제" class="dd-item ">
+        <a href="../../../cleanup/delete/">
         리소스 삭제
         
         </a>
@@ -846,20 +846,15 @@
         
 
 
-<p>이메일 기반 로그인 기능은 회원 가입 메뉴와 이메일 기반 로그인 메뉴로 구성됩니다.</p>
+<p>이번 실습에서는 이메일 기반 회원 가입 기능을 구현해 보겠습니다.</p>
 
-<p>우선 회원 가입 기능을 구현해 보겠습니다.
-이전 실습에서 amplify add auth 명령 실행 시 Email을 로그인 수단으로 설정하였습니다. AWS 관리 콘솔의 Attributes 항목을 확인 해보면 아래 그림과 같이 이메일이 로그인 수단으로 설정된 것을 확인할 수 있습니다.
+<p>실습 시작 전, AWS Conginto 관리 콘솔에 접근해 이메일이 로그인 방법으로 지정되어 있는지 확인해보도록 하겠습니다. AWS 관리 콘솔의 Attributes 항목의 내용이 아래 그림과 같이 설정되어 있는지 확인합니다.
 <img src="../../../images/auth-cognito-email-setting.png" alt="Example Service" /></p>
 
-<p>회원 가입을 위한 안드로이드 UI는 다음과 같이 구성되어 있습니다.</p>
-
-<p>회원 가입은 다음과 같은 단계로 진행됩니다.</p>
+<p>이제 단계별로 이메일 기반 회원 가입을 위한 코드를 완성해 보겠습니다.</p>
 
 <ol>
-<li><p>이메일, 비밀번호를 입력하여 Signup을 진행합니다.
-<img src="../../../images/app-signup.png" alt="Example Service" />
-아래 코드를 복사하여 회원 가입을 위한 <strong>signUp</strong> 메소드를 완성합니다. signUp 메소드에서는 입력받은 이메일과 비밀번호로 Cognito user pool에 새로운 사용자를 추가하고, 사용자 정보가 정상 등록된 경우에는 사용자 이메일 인증을 위한 SignUpConfirmFragment로 화면을 전환합니다.</p>
+<li><p>입력받은 이메일, 비밀번호를 이용해 회원 가입을 진행. <br>아래 코드를 복사하여 회원 가입을 위한 <strong>signUp</strong> 메소드를 완성합니다. signUp 메소드에서는 입력받은 이메일과 비밀번호로 Cognito user pool에 새로운 사용자를 추가합니다. 사용자 정보가 정상 등록된 경우에는 사용자 이메일 인증을 위한 SignUpConfirmFragment로 화면을 전환합니다.</p>
 
 <pre><code class="language-java">// SignUpActivity.java
 public class SignUpActivity extends FragmentActivity
@@ -906,12 +901,7 @@ public void signUp(String email, String password) {
 }
 </code></pre></li>
 
-<li><p>등록한 이메일로 발송된 인증코드를 확인합니다.
-<img src="../../../images/auth-email-verfication.png" alt="Example Service" /></p></li>
-
-<li><p>인증코드 입력화면에서 이메일로 전달 받은 인증코드를 입력합니다.
-<img src="../../../images/app-email-verification.png" alt="Example Service" />
-아래 코드를 복사하여 회원 가입을 위한 <strong>confirmSignUp</strong> 메소드를 완성합니다. confirmSignUp 메소드에서는 사용자명(이메일)과 인증코드를 이용해 이메일 인증 과정이 이뤄집니다.</p>
+<li><p>이메일 인증. <br>1 단계에서 회원가입에 성공한 경우 이메일로 인증 코드가 발송됩니다. 아래 코드를 복사하여 이메일과 인증코드를 입력받아 회원 가입 단계를 마무리하는 <strong>confirmSignUp</strong> 메소드를 완성합니다.</p>
 
 <pre><code class="language-java">// SignUpActivity.java
 public class SignUpActivity extends FragmentActivity
@@ -956,7 +946,7 @@ public void confirmSignUp(String code) {
 
 </code></pre></li>
 
-<li><p>이메일과 인증코드를 기반으로 이메일 인증이 완료된 경우, Activity에 유지된 이메일과 비밀번호를 기반으로 로그인을 진행합니다. 정상적으로 로그인된 경우 앱 메인화면으로 이동하게 됩니다. <br>아래 코드를 복사하여 회원 가입을 위한 <strong>_signIn</strong> 메소드를 완성합니다.</p>
+<li><p>자동 로그인. <br>이메일 인증이 완료된 경우, 가입 단계에서 사용한 이메일과 비밀번호를 이용하여 자동 로그인 기능을 수행하는 <strong>_signIn</strong> 함수를 완성합니다.</p>
 
 <pre><code class="language-java">// SignUpActivity.java
 public class SignUpActivity extends FragmentActivity
@@ -1008,8 +998,37 @@ private void _signIn(String username, String password) {
 </code></pre></li>
 </ol>
 
+<p>이제 작성한 코드를 실행해 보도록 하겠습니다.</p>
+
+<p>안드로이드 스튜디오 프로젝트 상단에 <strong>실행버튼</strong>을 눌러 에뮬레이터로 어플리케이션을 실행합니다.
+<img src="../../../images/run.png" alt="c9after" /></p>
+
+<p>아래와 같은 화면이 나오면 <strong>회원가입</strong> 텍스트를 눌러서 이메일 기반 회원 가입 메뉴로 이동합니다.
+<img src="../../../images/app-authmain.png" alt="Example Service" /></p>
+
+<p>아래와 같은 화면이 나오면 이메일과 비밀번호를 입력하여 회원 가입을 진행합니다. 이메일 인증 과정이 필수로 적용되어 있기 때문에 수신 가능한 이메일 계정을 사용해주시기 바랍니다.
+<img src="../../../images/app-signup.png" alt="Example Service" /></p>
+
+<p>이메일 수신함을 확인하여 Cognito 서비스에서 발송된 인증 코드를 확인합니다.
+<img src="../../../images/auth-email-verfication.png" alt="Example Service" /></p>
+
+<p>인증코드 입력화면에서 이메일로 전달 받은 인증코드를 입력합니다.
+<img src="../../../images/app-email-verification.png" alt="Example Service" /></p>
+
+<p>회원가입이 정상적으로 이루어진 경우 아래와 같은 앱 메인화면으로 이동하게 됩니다.
+<img src="../../../images/app-main-empty.png" alt="Example Service" /></p>
+
 <p>가입된 사용자 정보는 AWS 관리 콘솔의 Cognito 메뉴를 통해 확인 가능합니다.
 <img src="../../../images/auth-cognito-email-user.png" alt="Example Service" /></p>
+
+<p>실습을 마무리 한 경우, 다음 실습을 위해 로그아웃을 진행합니다.</p>
+
+<ol>
+<li>앱 메인 화면의 SETTINGS 버튼을 선택
+<img src="../../../images/app-main-empty.png" alt="Example Service" /></li>
+<li>앱 설정 화면의 LOGOUT 버튼을 선택
+<img src="../../../images/app-settings.png" alt="Example Service" /></li>
+</ol>
 
 
 <footer class=" footline" >
@@ -1559,20 +1578,20 @@ private void _signIn(String username, String password) {
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="../../../js/clipboard.min.js?1569231386"></script>
-    <script src="../../../js/perfect-scrollbar.min.js?1569231386"></script>
-    <script src="../../../js/perfect-scrollbar.jquery.min.js?1569231386"></script>
-    <script src="../../../js/jquery.sticky.js?1569231386"></script>
-    <script src="../../../js/featherlight.min.js?1569231386"></script>
-    <script src="../../../js/html5shiv-printshiv.min.js?1569231386"></script>
-    <script src="../../../js/highlight.pack.js?1569231386"></script>
+    <script src="../../../js/clipboard.min.js?1569315308"></script>
+    <script src="../../../js/perfect-scrollbar.min.js?1569315308"></script>
+    <script src="../../../js/perfect-scrollbar.jquery.min.js?1569315308"></script>
+    <script src="../../../js/jquery.sticky.js?1569315308"></script>
+    <script src="../../../js/featherlight.min.js?1569315308"></script>
+    <script src="../../../js/html5shiv-printshiv.min.js?1569315308"></script>
+    <script src="../../../js/highlight.pack.js?1569315308"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="../../../js/modernizr.custom-3.6.0.js?1569231386"></script>
-    <script src="../../../js/learn.js?1569231386"></script>
-    <script src="../../../js/hugo-learn.js?1569231386"></script>
+    <script src="../../../js/modernizr.custom-3.6.0.js?1569315308"></script>
+    <script src="../../../js/learn.js?1569315308"></script>
+    <script src="../../../js/hugo-learn.js?1569315308"></script>
 
-    <link href="../../../mermaid/mermaid.css?1569231386" type="text/css" rel="stylesheet" />
-    <script src="../../../mermaid/mermaid.min.js?1569231386"></script>
+    <link href="../../../mermaid/mermaid.css?1569315308" type="text/css" rel="stylesheet" />
+    <script src="../../../mermaid/mermaid.min.js?1569315308"></script>
     <script>
 	var config = {
         startOnLoad:true,
