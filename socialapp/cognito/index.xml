@@ -30,12 +30,12 @@
       <guid>/socialapp/cognito/amplify-cognito/</guid>
       <description>Amazon Cognito를 사용하면 모바일 앱에 빠르고 손쉽게 사용자 가입, 로그인 및 액세스 제어 기능을 추가할 수 있습니다.
 안드로이드 프로젝트 최상위 위치에서 다음 명령을 실행합니다.
-amplify add auth  진행 중 선택항목은 아래 그림을 참고하세요.
+amplify add auth  진행 중 선택항목은 아래 그림의 내용을 참고하세요.
 domain name 설정 시 aws, amazon, cognito 및 _를 포함한 이름은 사용하실 수 없습니다. &amp;lsquo;android-workshop+랜덤문자&amp;rsquo; 형태로 이름을 입력해주셔야 합니다.
-redirect URI는 아래와 같이 입력하십시요.
+redirect URI는 아래와 같이 입력합니다.
 redirect signin URI :
 socialdemoapp://callback/  redirect signout URI :
-socialdemoapp://signout/  social providers 에서 facebook 선택시 Space bar 를 이용하셔서 체크하셔야 합니다.</description>
+socialdemoapp://signout/  social providers 에서 facebook 선택시 Space bar 를 이용해 선택할 수 있습니다.</description>
     </item>
     
     <item>
