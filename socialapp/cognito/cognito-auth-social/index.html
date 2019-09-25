@@ -18,21 +18,21 @@
     <title>소셜 로그인 기능 구현하기 :: AWS Android Social HoL</title>
 
     
-    <link href="../../../css/nucleus.css?1569329160" rel="stylesheet">
-    <link href="../../../css/fontawesome-all.min.css?1569329160" rel="stylesheet">
-    <link href="../../../css/hybrid.css?1569329160" rel="stylesheet">
-    <link href="../../../css/featherlight.min.css?1569329160" rel="stylesheet">
-    <link href="../../../css/perfect-scrollbar.min.css?1569329160" rel="stylesheet">
-    <link href="../../../css/auto-complete.css?1569329160" rel="stylesheet">
-    <link href="../../../css/theme.css?1569329160" rel="stylesheet">
-    <link href="../../../css/hugo-theme.css?1569329160" rel="stylesheet">
-    <link href="../../../css/jquery-ui.min.css?1569329160" rel="stylesheet">
+    <link href="../../../css/nucleus.css?1569402351" rel="stylesheet">
+    <link href="../../../css/fontawesome-all.min.css?1569402351" rel="stylesheet">
+    <link href="../../../css/hybrid.css?1569402351" rel="stylesheet">
+    <link href="../../../css/featherlight.min.css?1569402351" rel="stylesheet">
+    <link href="../../../css/perfect-scrollbar.min.css?1569402351" rel="stylesheet">
+    <link href="../../../css/auto-complete.css?1569402351" rel="stylesheet">
+    <link href="../../../css/theme.css?1569402351" rel="stylesheet">
+    <link href="../../../css/hugo-theme.css?1569402351" rel="stylesheet">
+    <link href="../../../css/jquery-ui.min.css?1569402351" rel="stylesheet">
     
-      <link href="../../../css/theme-mine.css?1569329160" rel="stylesheet">
+      <link href="../../../css/theme-mine.css?1569402351" rel="stylesheet">
     
 
-    <script src="../../../js/jquery-3.3.1.min.js?1569329160"></script>
-    <script src="../../../js/jquery-ui-1.12.1.min.js?1569329160"></script>
+    <script src="../../../js/jquery-3.3.1.min.js?1569402351"></script>
+    <script src="../../../js/jquery-ui-1.12.1.min.js?1569402351"></script>
 
 
     <style type="text/css">
@@ -64,14 +64,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="../../../js/lunr.min.js?1569329160"></script>
-<script type="text/javascript" src="../../../js/auto-complete.js?1569329160"></script>
+<script type="text/javascript" src="../../../js/lunr.min.js?1569402351"></script>
+<script type="text/javascript" src="../../../js/auto-complete.js?1569402351"></script>
 <script type="text/javascript">
     
         var baseurl = "";
     
 </script>
-<script type="text/javascript" src="../../../js/search.js?1569329160"></script>
+<script type="text/javascript" src="../../../js/search.js?1569402351"></script>
 
     
   </div>
@@ -906,6 +906,7 @@ public class AuthMainActivity extends AppCompatActivity {
 public class AuthMainActivity extends AppCompatActivity {
     
     ...
+
     @Override
     protected void onResume() {
         super.onResume();
@@ -915,11 +916,10 @@ public class AuthMainActivity extends AppCompatActivity {
         if (activityIntent.getData() != null &amp;&amp;
                 &quot;socialdemoapp&quot;.equals(activityIntent.getData().getScheme())) {
             if (AWSMobileClient.getInstance().handleAuthResponse(activityIntent))
-                CommonAction.openMain(context);
-            else
-                CommonAction.openAuthMain(context);
+                CommonAction.checkSession(this, true);
         }
     }
+
     ...
 
 }
@@ -936,6 +936,9 @@ public class AuthMainActivity extends AppCompatActivity {
 
 <p>로그인이 정상적으로 이루어진 경우 아래와 같은 앱 메인화면으로 이동하게 됩니다.
 <img src="../../../images/app-main-init.png" alt="Example Service" /></p>
+
+<p>워크샵 시작시에 설치한 데모 앱과 callback 주소의 URI scheme이 동일한 경우 아래와 같은 메시지 창을 확인하 실 수 있습니다.
+<img src="../../../images/app-select.png" alt="Example Service" /></p>
 
 <p>Cognito Hosted UI를 통해 서버간 소셜 인증이 정상적으로 이루어진 경우, 다음과 같이 Cognito User Pool에 사용자의 정보가 저장되게 됩니다.
 저장된 사용자 정보 확인은 AWS Console &gt; Cognito &gt; General Settings &gt; Users and groups에 Users 탭의 내용을 통해 확인하실 수 있습니다.
@@ -1498,20 +1501,20 @@ public class AuthMainActivity extends AppCompatActivity {
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="../../../js/clipboard.min.js?1569329160"></script>
-    <script src="../../../js/perfect-scrollbar.min.js?1569329160"></script>
-    <script src="../../../js/perfect-scrollbar.jquery.min.js?1569329160"></script>
-    <script src="../../../js/jquery.sticky.js?1569329160"></script>
-    <script src="../../../js/featherlight.min.js?1569329160"></script>
-    <script src="../../../js/html5shiv-printshiv.min.js?1569329160"></script>
-    <script src="../../../js/highlight.pack.js?1569329160"></script>
+    <script src="../../../js/clipboard.min.js?1569402351"></script>
+    <script src="../../../js/perfect-scrollbar.min.js?1569402351"></script>
+    <script src="../../../js/perfect-scrollbar.jquery.min.js?1569402351"></script>
+    <script src="../../../js/jquery.sticky.js?1569402351"></script>
+    <script src="../../../js/featherlight.min.js?1569402351"></script>
+    <script src="../../../js/html5shiv-printshiv.min.js?1569402351"></script>
+    <script src="../../../js/highlight.pack.js?1569402351"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="../../../js/modernizr.custom-3.6.0.js?1569329160"></script>
-    <script src="../../../js/learn.js?1569329160"></script>
-    <script src="../../../js/hugo-learn.js?1569329160"></script>
+    <script src="../../../js/modernizr.custom-3.6.0.js?1569402351"></script>
+    <script src="../../../js/learn.js?1569402351"></script>
+    <script src="../../../js/hugo-learn.js?1569402351"></script>
 
-    <link href="../../../mermaid/mermaid.css?1569329160" type="text/css" rel="stylesheet" />
-    <script src="../../../mermaid/mermaid.min.js?1569329160"></script>
+    <link href="../../../mermaid/mermaid.css?1569402351" type="text/css" rel="stylesheet" />
+    <script src="../../../mermaid/mermaid.min.js?1569402351"></script>
     <script>
 	var config = {
         startOnLoad:true,

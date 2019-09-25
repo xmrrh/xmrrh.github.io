@@ -17,7 +17,7 @@
       
       <guid>/cleanup/delete/</guid>
       <description>아래 명령어를 이용해 리소스를 한번에 삭제합니다.
-amplify delete  사진이 업로드된 S3의 버킷을 삭제합니다.
+amplify delete amplify push  사진이 업로드된 S3의 버킷을 삭제합니다.
 Pinpoint프로젝트를 삭제합니다.
 pinpoint&amp;gt;project&amp;gt;settings&amp;gt;General settings&amp;gt;Delete project</description>
     </item>

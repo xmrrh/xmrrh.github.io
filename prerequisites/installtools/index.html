@@ -18,21 +18,21 @@
     <title>안드로이드 툴 설치하기 :: AWS Android Social HoL</title>
 
     
-    <link href="../../css/nucleus.css?1569329160" rel="stylesheet">
-    <link href="../../css/fontawesome-all.min.css?1569329160" rel="stylesheet">
-    <link href="../../css/hybrid.css?1569329160" rel="stylesheet">
-    <link href="../../css/featherlight.min.css?1569329160" rel="stylesheet">
-    <link href="../../css/perfect-scrollbar.min.css?1569329160" rel="stylesheet">
-    <link href="../../css/auto-complete.css?1569329160" rel="stylesheet">
-    <link href="../../css/theme.css?1569329160" rel="stylesheet">
-    <link href="../../css/hugo-theme.css?1569329160" rel="stylesheet">
-    <link href="../../css/jquery-ui.min.css?1569329160" rel="stylesheet">
+    <link href="../../css/nucleus.css?1569402351" rel="stylesheet">
+    <link href="../../css/fontawesome-all.min.css?1569402351" rel="stylesheet">
+    <link href="../../css/hybrid.css?1569402351" rel="stylesheet">
+    <link href="../../css/featherlight.min.css?1569402351" rel="stylesheet">
+    <link href="../../css/perfect-scrollbar.min.css?1569402351" rel="stylesheet">
+    <link href="../../css/auto-complete.css?1569402351" rel="stylesheet">
+    <link href="../../css/theme.css?1569402351" rel="stylesheet">
+    <link href="../../css/hugo-theme.css?1569402351" rel="stylesheet">
+    <link href="../../css/jquery-ui.min.css?1569402351" rel="stylesheet">
     
-      <link href="../../css/theme-mine.css?1569329160" rel="stylesheet">
+      <link href="../../css/theme-mine.css?1569402351" rel="stylesheet">
     
 
-    <script src="../../js/jquery-3.3.1.min.js?1569329160"></script>
-    <script src="../../js/jquery-ui-1.12.1.min.js?1569329160"></script>
+    <script src="../../js/jquery-3.3.1.min.js?1569402351"></script>
+    <script src="../../js/jquery-ui-1.12.1.min.js?1569402351"></script>
 
 
     <style type="text/css">
@@ -64,14 +64,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="../../js/lunr.min.js?1569329160"></script>
-<script type="text/javascript" src="../../js/auto-complete.js?1569329160"></script>
+<script type="text/javascript" src="../../js/lunr.min.js?1569402351"></script>
+<script type="text/javascript" src="../../js/auto-complete.js?1569402351"></script>
 <script type="text/javascript">
     
         var baseurl = "";
     
 </script>
-<script type="text/javascript" src="../../js/search.js?1569329160"></script>
+<script type="text/javascript" src="../../js/search.js?1569402351"></script>
 
     
   </div>
@@ -859,13 +859,15 @@
 
 <p>Java SDK, Android SDK, and Android Studio가 필요합니다. 설치가 필요하면 아래 링크를 통해 각각 설치하십시요</p>
 
+<p><strong>참고로 Android SDK, AVD의 버젼은 크게 중요하지 않습니다.</strong></p>
+
 <h4 id="java-sdk-install">Java SDK Install</h4>
 
 <p>Java SDK8.0 이상 설치 되어있지 않다면 <a href="https://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html" target="_blank">Download</a></p>
 
 <h4 id="android-studio-및-sdk-install">Android Studio 및 SDK Install</h4>
 
-<p>Android Studio 3.3 이상 설치되어있지 않다면  <a href="https://developer.android.com/studio/" target="_blank">Download</a></p>
+<p>Android Studio 설치되어있지 않다면  <a href="https://developer.android.com/studio/" target="_blank">Download</a></p>
 
 <p>설치과정중 다음과 같이 <strong>Android SDK</strong>를 함께 인스톨 하세요.</p>
 
@@ -873,7 +875,11 @@
 
 <h4 id="android-avd-emulator-install">Android AVD (Emulator) Install</h4>
 
-<p>Android Studio를 설치하신 후 실행합니다. <b>Tools &gt; AVD Manager</b>를 선택하신 후  <b>Create Virtual Device.</b>을 선택합니다.</p>
+<p>Android Studio를 설치하신 후 실행합니다. 실행후 다음과 같은 화면에서 <strong>AVD Manager</strong> 를 선택하세요.</p>
+
+<p><img src="../../images/selectavd.png" alt="Create User" /></p>
+
+<p><b>Create Virtual Device.</b>을 선택합니다.</p>
 
 <p><img src="../../images/androidstudio-avd-1.png" alt="Create User" /></p>
 
@@ -881,7 +887,9 @@
 
 <p><img src="../../images/androidstudio-avd-2.png" alt="Create User" /></p>
 
-<p><b>Q</b> 를 선택하시고  <b> Next </b> 를 누르세요.</p>
+<p><b>설치된 AVD가 하나도 없다면 Pie 나 Q 를 선택하세요. Next </b> 를 누르세요.</p>
+
+<p><b>!! 설치시간이 매우 오래 걸립니다.  만약 Oreo, Nougat정도 설치되어 있으면 AVD는 추가 설치 없이 진행해도 됩니다. cancel을 눌러 취소하세요.</b></p>
 
 <p><img src="../../images/emul-q.png" alt="Create User" /></p>
 
@@ -1429,20 +1437,20 @@
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="../../js/clipboard.min.js?1569329160"></script>
-    <script src="../../js/perfect-scrollbar.min.js?1569329160"></script>
-    <script src="../../js/perfect-scrollbar.jquery.min.js?1569329160"></script>
-    <script src="../../js/jquery.sticky.js?1569329160"></script>
-    <script src="../../js/featherlight.min.js?1569329160"></script>
-    <script src="../../js/html5shiv-printshiv.min.js?1569329160"></script>
-    <script src="../../js/highlight.pack.js?1569329160"></script>
+    <script src="../../js/clipboard.min.js?1569402351"></script>
+    <script src="../../js/perfect-scrollbar.min.js?1569402351"></script>
+    <script src="../../js/perfect-scrollbar.jquery.min.js?1569402351"></script>
+    <script src="../../js/jquery.sticky.js?1569402351"></script>
+    <script src="../../js/featherlight.min.js?1569402351"></script>
+    <script src="../../js/html5shiv-printshiv.min.js?1569402351"></script>
+    <script src="../../js/highlight.pack.js?1569402351"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="../../js/modernizr.custom-3.6.0.js?1569329160"></script>
-    <script src="../../js/learn.js?1569329160"></script>
-    <script src="../../js/hugo-learn.js?1569329160"></script>
+    <script src="../../js/modernizr.custom-3.6.0.js?1569402351"></script>
+    <script src="../../js/learn.js?1569402351"></script>
+    <script src="../../js/hugo-learn.js?1569402351"></script>
 
-    <link href="../../mermaid/mermaid.css?1569329160" type="text/css" rel="stylesheet" />
-    <script src="../../mermaid/mermaid.min.js?1569329160"></script>
+    <link href="../../mermaid/mermaid.css?1569402351" type="text/css" rel="stylesheet" />
+    <script src="../../mermaid/mermaid.min.js?1569402351"></script>
     <script>
 	var config = {
         startOnLoad:true,

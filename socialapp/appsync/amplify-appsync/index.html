@@ -18,21 +18,21 @@
     <title>저장소 생성 및 API 생성 :: AWS Android Social HoL</title>
 
     
-    <link href="../../../css/nucleus.css?1569329160" rel="stylesheet">
-    <link href="../../../css/fontawesome-all.min.css?1569329160" rel="stylesheet">
-    <link href="../../../css/hybrid.css?1569329160" rel="stylesheet">
-    <link href="../../../css/featherlight.min.css?1569329160" rel="stylesheet">
-    <link href="../../../css/perfect-scrollbar.min.css?1569329160" rel="stylesheet">
-    <link href="../../../css/auto-complete.css?1569329160" rel="stylesheet">
-    <link href="../../../css/theme.css?1569329160" rel="stylesheet">
-    <link href="../../../css/hugo-theme.css?1569329160" rel="stylesheet">
-    <link href="../../../css/jquery-ui.min.css?1569329160" rel="stylesheet">
+    <link href="../../../css/nucleus.css?1569402351" rel="stylesheet">
+    <link href="../../../css/fontawesome-all.min.css?1569402351" rel="stylesheet">
+    <link href="../../../css/hybrid.css?1569402351" rel="stylesheet">
+    <link href="../../../css/featherlight.min.css?1569402351" rel="stylesheet">
+    <link href="../../../css/perfect-scrollbar.min.css?1569402351" rel="stylesheet">
+    <link href="../../../css/auto-complete.css?1569402351" rel="stylesheet">
+    <link href="../../../css/theme.css?1569402351" rel="stylesheet">
+    <link href="../../../css/hugo-theme.css?1569402351" rel="stylesheet">
+    <link href="../../../css/jquery-ui.min.css?1569402351" rel="stylesheet">
     
-      <link href="../../../css/theme-mine.css?1569329160" rel="stylesheet">
+      <link href="../../../css/theme-mine.css?1569402351" rel="stylesheet">
     
 
-    <script src="../../../js/jquery-3.3.1.min.js?1569329160"></script>
-    <script src="../../../js/jquery-ui-1.12.1.min.js?1569329160"></script>
+    <script src="../../../js/jquery-3.3.1.min.js?1569402351"></script>
+    <script src="../../../js/jquery-ui-1.12.1.min.js?1569402351"></script>
 
 
     <style type="text/css">
@@ -64,14 +64,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="../../../js/lunr.min.js?1569329160"></script>
-<script type="text/javascript" src="../../../js/auto-complete.js?1569329160"></script>
+<script type="text/javascript" src="../../../js/lunr.min.js?1569402351"></script>
+<script type="text/javascript" src="../../../js/auto-complete.js?1569402351"></script>
 <script type="text/javascript">
     
         var baseurl = "";
     
 </script>
-<script type="text/javascript" src="../../../js/search.js?1569329160"></script>
+<script type="text/javascript" src="../../../js/search.js?1569402351"></script>
 
     
   </div>
@@ -855,6 +855,12 @@
 
 <p><img src="../../../images/addapi.png" alt="Example Service" /></p>
 
+<p>과정 중 스키마를 입력하는 부분이 나옵니다. amplify init 시 설정하신 <strong>에디터</strong>가 스키마를 입력하는 단계에서 자동으로 뜹니다.</p>
+
+<p><strong>윈도우</strong> 사용자에 경우 선택하신 에디터가 없을 경우가 많습니다. 해당하는 에디터가 없을 경우 스키마 입력 창이 뜨지 않고  amplify add api가 종료되는데, 이 경우 콘솔에 보이는 path로 직접 이동하셔서 직접 아래 스키마를 넣어주세요.</p>
+
+<p>path : aws-android-workshop\amplify\backend/api/awsandroidworkshop/schema.graphql</p>
+
 <p>스키마는 아래 값을 사용합니다.</p>
 
 <p>아래 @model 을 사용하시면 DynamoDB table, AppSync DataSource, IAM role, AppSync Resolvers등을 생성해줍니다. @key에 의해 DynamoDB의 파티션키와 정렬키를 생성합니다. 즉, DEV-DAY로 생성된 Post중 upload time으로 정렬을 하는데 사용할 예정입니다.</p>
@@ -946,20 +952,6 @@ type Mutation {
 
 <pre><code class="language-bash">amplify codegen
 </code></pre>
-
-<p>만약 &ldquo;Codegen support only one GraphQL API per project&rdquo; 에러가 나올경우 아래 처럼 remove하시고 다시 추가하십시요</p>
-
-<pre><code class="language-bash">amplify codegen remove
-amplify add codegen --apiId xxx
-</code></pre>
-
-<p>api는 <b>AWS console &gt; service &gt; AppSync </b>에서 Api명을 선택시 확인가능합니다.</p>
-
-<p><img src="../../../images/console-codeapi.png" alt="Example Service" /></p>
-
-<p>진행 중 나오는 질문은 모두 default로 처리하십시요</p>
-
-<p><img src="../../../images/codeapi.png" alt="Example Service" /></p>
 
 <p>실제 저장되는 저장공간인 S3에 버킷을 생성합니다.</p>
 
@@ -1518,20 +1510,20 @@ amplify add codegen --apiId xxx
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="../../../js/clipboard.min.js?1569329160"></script>
-    <script src="../../../js/perfect-scrollbar.min.js?1569329160"></script>
-    <script src="../../../js/perfect-scrollbar.jquery.min.js?1569329160"></script>
-    <script src="../../../js/jquery.sticky.js?1569329160"></script>
-    <script src="../../../js/featherlight.min.js?1569329160"></script>
-    <script src="../../../js/html5shiv-printshiv.min.js?1569329160"></script>
-    <script src="../../../js/highlight.pack.js?1569329160"></script>
+    <script src="../../../js/clipboard.min.js?1569402351"></script>
+    <script src="../../../js/perfect-scrollbar.min.js?1569402351"></script>
+    <script src="../../../js/perfect-scrollbar.jquery.min.js?1569402351"></script>
+    <script src="../../../js/jquery.sticky.js?1569402351"></script>
+    <script src="../../../js/featherlight.min.js?1569402351"></script>
+    <script src="../../../js/html5shiv-printshiv.min.js?1569402351"></script>
+    <script src="../../../js/highlight.pack.js?1569402351"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="../../../js/modernizr.custom-3.6.0.js?1569329160"></script>
-    <script src="../../../js/learn.js?1569329160"></script>
-    <script src="../../../js/hugo-learn.js?1569329160"></script>
+    <script src="../../../js/modernizr.custom-3.6.0.js?1569402351"></script>
+    <script src="../../../js/learn.js?1569402351"></script>
+    <script src="../../../js/hugo-learn.js?1569402351"></script>
 
-    <link href="../../../mermaid/mermaid.css?1569329160" type="text/css" rel="stylesheet" />
-    <script src="../../../mermaid/mermaid.min.js?1569329160"></script>
+    <link href="../../../mermaid/mermaid.css?1569402351" type="text/css" rel="stylesheet" />
+    <script src="../../../mermaid/mermaid.min.js?1569402351"></script>
     <script>
 	var config = {
         startOnLoad:true,
