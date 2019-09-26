@@ -11,18 +11,6 @@
     
     
     <item>
-      <title>Fuzzy App Test</title>
-      <link>/devicefarm/fuzzy/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>/devicefarm/fuzzy/</guid>
-      <description>Fuzzy 테스트를 통해 간단하게 다양한 디바이스에서 테스트를 수행해 봅니다.
-⦁ 테스트 프로젝트를 생성하기 위하여 AWS콘솔로 돌아가 서비스 목록에서 Device Farm을 선택합니다. ⦁ 화면에 +Create a New project를 선택합니다. ⦁ Create project 팝업에서 적절한 Project name을 입력합니다. ⦁ Success문구와 함께 테스트 프로젝트 화면으로 진입하게됩니다. 앱 테스트를 위한 Device Farm project 생성이 완료되었습니다.
-⦁ Create a new run을 선택합니다.
-⦁ 안드로이드와 사과모양 아이콘을 클릭하고, 아래에 Spending되는 항목에서 Upload를 눌러서 이전에 생성해둔 apk파일을 선택합니다.</description>
-    </item>
-    
-    <item>
       <title>리모트 테스트 실행하기</title>
       <link>/devicefarm/remote/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
@@ -34,6 +22,18 @@
 생성된 프로젝트 화면에서 &amp;ldquo;Remote access&amp;rdquo;탭을 선택하고 &amp;ldquo;+Start a new session&amp;rdquo;을 선택합니다.
 디바이스 선택화면에서 &amp;ldquo;Show available&amp;hellip;&amp;rdquo; 체크박스를 체크합니다. 이는 30초 이내에 기동할 수 있는 여유가 있는 디바이스만 선택하는 옵션입니다. &amp;ldquo;Name&amp;rdquo; 필드를 통해 원하는 디바이스를 검색 할 수도 있습니다. 적절한 디바이스를 선택합니다.
 화면 최하단의 &amp;ldquo;Confirm and start session&amp;rdquo;을 선택해서 다음으로 진행합니다.</description>
+    </item>
+    
+    <item>
+      <title>Fuzzy App Test</title>
+      <link>/devicefarm/fuzzy/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/devicefarm/fuzzy/</guid>
+      <description>Fuzzy 테스트를 통해 간단하게 다양한 디바이스에서 테스트를 수행해 봅니다.
+⦁ 테스트 프로젝트를 생성하기 위하여 AWS콘솔로 돌아가 서비스 목록에서 Device Farm을 선택합니다. ⦁ 화면에 +Create a New project를 선택합니다. ⦁ Create project 팝업에서 적절한 Project name을 입력합니다. ⦁ Success문구와 함께 테스트 프로젝트 화면으로 진입하게됩니다. 앱 테스트를 위한 Device Farm project 생성이 완료되었습니다.
+⦁ Create a new run을 선택합니다.
+⦁ 안드로이드와 사과모양 아이콘을 클릭하고, 아래에 Spending되는 항목에서 Upload를 눌러서 이전에 생성해둔 apk파일을 선택합니다.</description>
     </item>
     
     <item>

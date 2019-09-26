@@ -54,6 +54,10 @@
   </url>
   
   <url>
+    <loc>/devicefarm/remote/</loc>
+  </url>
+  
+  <url>
     <loc>/prerequisites/</loc>
   </url>
   
@@ -110,10 +114,6 @@
   
   <url>
     <loc>/devicefarm/fuzzy/</loc>
-  </url>
-  
-  <url>
-    <loc>/devicefarm/remote/</loc>
   </url>
   
   <url>

@@ -18,21 +18,21 @@
     <title>Espresso Framework를 통한 순차 테스트 :: AWS Android Social HoL</title>
 
     
-    <link href="../../css/nucleus.css?1569462113" rel="stylesheet">
-    <link href="../../css/fontawesome-all.min.css?1569462113" rel="stylesheet">
-    <link href="../../css/hybrid.css?1569462113" rel="stylesheet">
-    <link href="../../css/featherlight.min.css?1569462113" rel="stylesheet">
-    <link href="../../css/perfect-scrollbar.min.css?1569462113" rel="stylesheet">
-    <link href="../../css/auto-complete.css?1569462113" rel="stylesheet">
-    <link href="../../css/theme.css?1569462113" rel="stylesheet">
-    <link href="../../css/hugo-theme.css?1569462113" rel="stylesheet">
-    <link href="../../css/jquery-ui.min.css?1569462113" rel="stylesheet">
+    <link href="../../css/nucleus.css?1569476902" rel="stylesheet">
+    <link href="../../css/fontawesome-all.min.css?1569476902" rel="stylesheet">
+    <link href="../../css/hybrid.css?1569476902" rel="stylesheet">
+    <link href="../../css/featherlight.min.css?1569476902" rel="stylesheet">
+    <link href="../../css/perfect-scrollbar.min.css?1569476902" rel="stylesheet">
+    <link href="../../css/auto-complete.css?1569476902" rel="stylesheet">
+    <link href="../../css/theme.css?1569476902" rel="stylesheet">
+    <link href="../../css/hugo-theme.css?1569476902" rel="stylesheet">
+    <link href="../../css/jquery-ui.min.css?1569476902" rel="stylesheet">
     
-      <link href="../../css/theme-mine.css?1569462113" rel="stylesheet">
+      <link href="../../css/theme-mine.css?1569476902" rel="stylesheet">
     
 
-    <script src="../../js/jquery-3.3.1.min.js?1569462113"></script>
-    <script src="../../js/jquery-ui-1.12.1.min.js?1569462113"></script>
+    <script src="../../js/jquery-3.3.1.min.js?1569476902"></script>
+    <script src="../../js/jquery-ui-1.12.1.min.js?1569476902"></script>
 
 
     <style type="text/css">
@@ -64,14 +64,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="../../js/lunr.min.js?1569462113"></script>
-<script type="text/javascript" src="../../js/auto-complete.js?1569462113"></script>
+<script type="text/javascript" src="../../js/lunr.min.js?1569476902"></script>
+<script type="text/javascript" src="../../js/auto-complete.js?1569476902"></script>
 <script type="text/javascript">
     
         var baseurl = "";
     
 </script>
-<script type="text/javascript" src="../../js/search.js?1569462113"></script>
+<script type="text/javascript" src="../../js/search.js?1569476902"></script>
 
     
   </div>
@@ -798,9 +798,9 @@
  
   
     
-      <li data-nav-id="/devicefarm/fuzzy/" title="Fuzzy App Test" class="dd-item ">
-        <a href="../../devicefarm/fuzzy/">
-        Fuzzy App Test
+      <li data-nav-id="/devicefarm/remote/" title="리모트 테스트 실행하기" class="dd-item ">
+        <a href="../../devicefarm/remote/">
+        리모트 테스트 실행하기
         
         </a>
     </li>
@@ -817,9 +817,9 @@
  
   
     
-      <li data-nav-id="/devicefarm/remote/" title="리모트 테스트 실행하기" class="dd-item ">
-        <a href="../../devicefarm/remote/">
-        리모트 테스트 실행하기
+      <li data-nav-id="/devicefarm/fuzzy/" title="Fuzzy App Test" class="dd-item ">
+        <a href="../../devicefarm/fuzzy/">
+        Fuzzy App Test
         
         </a>
     </li>
@@ -941,7 +941,7 @@
 
 <p><img src="../../images/ins1.png" alt="Create User" /></p>
 
-<p>⦁   예제에서는 ID admin, PASSWORD에 test입력 -&gt; 버튼 1클릭-&gt;버튼2클릭-&gt; POLLYDEMO선택 -&gt;Polly화면에서 test입력후 Read 버튼 선택 -&gt; 뒤로가기 후 종료되는 시나리오로 구성 해 보았습니다.</p>
+<p>⦁   예제에서는 로그인 -&gt; 글쓰기 후 종료되는 시나리오로 구성 해 보았습니다.</p>
 
 <p><img src="../../images/ins2.png" alt="Create User" /></p>
 
@@ -951,8 +951,6 @@
 <p>⦁   Espresso Test 로컬 AVD로 실행해보기
 ⦁   우선 로컬에서 Espresso를 통한 순차테스트를 진행해 보겠습니다. 상단 아이콘에서 Edit Confgurations를 선택합니다.</p>
 
-<p><img src="../../images/ins3.png" alt="Create User" /></p>
-
 <p>⦁   Run/Debug Configuraions 팝업에서 Android Instrumented Tests를 선택해서 추가합니다.
 ⦁   해당 아이템에서 Name을 지정하고, General 탭의 Module에서 app을 선택합니다. Test항목에서 All in Package를 선택합니다.</p>
 
@@ -960,9 +958,26 @@
 
 <p>⦁   package에서 해당 앱 패키지를 선택합니다.</p>
 
-<p><img src="../../images/ins5.png" alt="Create User" /></p>
+<p>⦁   Prefer Android Virtual Device 항목에서 이전에 생성해둔 AVD를 선택합니다. 그런다음 OK를 누르면 테스트 환경 설정이 완료됩니다.
++ 추가로 Dependency의 해결을 위해 app의 build.gradle 명세에 testInstrumentationRunner &ldquo;android.support.test.runner.AndroidJUnitRunner&rdquo; 부분을 주석처리하고 testInstrumentationRunner &ldquo;androidx.test.runner.AndroidJUnitRunner&rdquo;를 추가해줍니다.
++ 테스트시 카메라를 액세스 하므로 카메라에 대한 유저 권한을 획득하여 줍니다. manifests명세에 </manifest> 블럭 위에 아래코드를 추가해 줍니다.</p>
 
-<p>⦁   Prefer Android Virtual Device 항목에서 이전에 생성해둔 AVD를 선택합니다. 그런다음 OK를 누르면 테스트 환경 설정이 완료됩니다.</p>
+<pre><code>    &lt;uses-permission android:name=&quot;android.permission.CAMERA&quot; /&gt;
+
+    &lt;uses-feature
+        android:name=&quot;android.hardware.camera&quot;
+        android:required=&quot;false&quot; /&gt;
+    &lt;uses-feature
+        android:name=&quot;android.hardware.camera.autofocus&quot;
+        android:required=&quot;false&quot; /&gt;
+</code></pre>
+
+<ul>
+<li><p>테스트용 앱을 빌드하면 기본적으로 실제 디바이스에서 실행이 안될 수 있습니다. 이를 해제하기 위해 아래의 파라미터를 gradle.properties에 추가해주시면 됩니다.</p>
+
+<pre><code>android.injected.testOnly=false
+</code></pre></li>
+</ul>
 
 <p><img src="../../images/ins6.png" alt="Create User" /></p>
 
@@ -996,8 +1011,7 @@
 <p>⦁   이제 Espresso로 생성된 instrumentation test를 업로드 해야 합니다. 일반적은 테스트 패키지의 경로는 프로젝트명/ /app/build/outputs/apk/androidTest/debug/app-debug-androidTest.apk에 빌드되어 있습니다. 혹은 해당위치가 없거나 잘 모르시겠다면 이전 단계 로컬 테스트에서 출력되는 내용에 해당 경로에 대한 내용이 있으니 참고하시면 됩니다.
 * 하단의 Advanced Configuration (optional)은 테스트에 대한 비디오 기록 및 App Performance 데이터에 대한 모니터링 여부를 위한 것입니다. Default로 두시면 됩니다.</p>
 
-<p><img src="../../images/ins13.png" alt="Create User" />
-<img src="../../images/ins14.png" alt="Create User" /></p>
+<p><img src="../../images/ins14.png" alt="Create User" /></p>
 
 <p>⦁   업로드가 완료되면 Test instrumentation에 대한 정보가 표출됩니다. 기본 패키지에 대한 도메인 정보와, Runner에 대한 정보가 표시됩니다. 여기서는 espresso가 junit기반이므로 AndroidJUnitRunner로 표시됩니다. 하단의 Test filter에 대한 enviroment설정은 그대로 두고 Next step으로 진행합니다.
 ⦁   Select devices에는 기존 Fuzz테스트와 마찬가지로 Top Devices로 설정하겠습니다. 때에 따라서 원하는 기종으로 구성하시거나 테스트시간을 단축하고자 한다면, 몇개의 기종으로 테스트를 하신다면 좋을 것입니다. 각 기종에 대한 해당 테스트 앱 패키지의 호환성을 체크하고, Next step으로 진행합니다.
@@ -1607,10 +1621,10 @@
 
 
         
-            <a class="nav nav-prev" href="../../devicefarm/remote/" title="리모트 테스트 실행하기"> <i class="fas fa-chevron-left"></i></a>
+            <a class="nav nav-prev" href="../../devicefarm/fuzzy/" title="Fuzzy App Test"> <i class="fas fa-chevron-left"></i></a>
         
         
-            <a class="nav nav-next" href="../../devicefarm/fuzzy/" title="Fuzzy App Test" style="margin-right: 0px;"><i class="fas fa-chevron-right"></i></a>
+            <a class="nav nav-next" href="../../devicefarm/remote/" title="리모트 테스트 실행하기" style="margin-right: 0px;"><i class="fas fa-chevron-right"></i></a>
         
     </div>
 
@@ -1619,20 +1633,20 @@
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="../../js/clipboard.min.js?1569462113"></script>
-    <script src="../../js/perfect-scrollbar.min.js?1569462113"></script>
-    <script src="../../js/perfect-scrollbar.jquery.min.js?1569462113"></script>
-    <script src="../../js/jquery.sticky.js?1569462113"></script>
-    <script src="../../js/featherlight.min.js?1569462113"></script>
-    <script src="../../js/html5shiv-printshiv.min.js?1569462113"></script>
-    <script src="../../js/highlight.pack.js?1569462113"></script>
+    <script src="../../js/clipboard.min.js?1569476902"></script>
+    <script src="../../js/perfect-scrollbar.min.js?1569476902"></script>
+    <script src="../../js/perfect-scrollbar.jquery.min.js?1569476902"></script>
+    <script src="../../js/jquery.sticky.js?1569476902"></script>
+    <script src="../../js/featherlight.min.js?1569476902"></script>
+    <script src="../../js/html5shiv-printshiv.min.js?1569476902"></script>
+    <script src="../../js/highlight.pack.js?1569476902"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="../../js/modernizr.custom-3.6.0.js?1569462113"></script>
-    <script src="../../js/learn.js?1569462113"></script>
-    <script src="../../js/hugo-learn.js?1569462113"></script>
+    <script src="../../js/modernizr.custom-3.6.0.js?1569476902"></script>
+    <script src="../../js/learn.js?1569476902"></script>
+    <script src="../../js/hugo-learn.js?1569476902"></script>
 
-    <link href="../../mermaid/mermaid.css?1569462113" type="text/css" rel="stylesheet" />
-    <script src="../../mermaid/mermaid.min.js?1569462113"></script>
+    <link href="../../mermaid/mermaid.css?1569476902" type="text/css" rel="stylesheet" />
+    <script src="../../mermaid/mermaid.min.js?1569476902"></script>
     <script>
 	var config = {
         startOnLoad:true,
