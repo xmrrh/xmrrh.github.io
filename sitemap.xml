@@ -109,6 +109,14 @@
   </url>
   
   <url>
+    <loc>/devicefarm/fuzzy/</loc>
+  </url>
+  
+  <url>
+    <loc>/devicefarm/remote/</loc>
+  </url>
+  
+  <url>
     <loc>/prerequisites/installtools/</loc>
   </url>
   
@@ -122,6 +130,10 @@
   
   <url>
     <loc>/socialapp/pinpoint/s3iam/</loc>
+  </url>
+  
+  <url>
+    <loc>/devicefarm/instrumented/</loc>
   </url>
   
   <url>
@@ -139,6 +151,10 @@
   
   <url>
     <loc>/cleanup/</loc>
+  </url>
+  
+  <url>
+    <loc>/devicefarm/</loc>
   </url>
   
   <url>

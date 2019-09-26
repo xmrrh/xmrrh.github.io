@@ -1,0 +1,1649 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en-US" prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb#">
+<html lang="en" class="js csstransforms3d">
+  <head>
+    <meta charset="utf-8">
+    <meta property="og:title" content="Games On AWS" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://jenosys.github.io/tic-tac-toe-workshop-hol/tic-tac-toe/" />
+    <meta property="og:image" content="https://jenosys.github.io/tic-tac-toe-workshop-hol/images/tic-tac-toe/dashboard.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="generator" content="Hugo 0.57.2" />
+    <meta name="description" content="ECS HoL">
+<meta name="author" content="Brent Langston">
+
+    <link rel="shortcut icon" href="../../images/favicon.ico" type="image/x-icon" />
+<link rel="icon" href="../../images/favicon.ico" type="image/x-icon" />
+
+    <title>Espresso Framework를 통한 순차 테스트 :: AWS Android Social HoL</title>
+
+    
+    <link href="../../css/nucleus.css?1569462113" rel="stylesheet">
+    <link href="../../css/fontawesome-all.min.css?1569462113" rel="stylesheet">
+    <link href="../../css/hybrid.css?1569462113" rel="stylesheet">
+    <link href="../../css/featherlight.min.css?1569462113" rel="stylesheet">
+    <link href="../../css/perfect-scrollbar.min.css?1569462113" rel="stylesheet">
+    <link href="../../css/auto-complete.css?1569462113" rel="stylesheet">
+    <link href="../../css/theme.css?1569462113" rel="stylesheet">
+    <link href="../../css/hugo-theme.css?1569462113" rel="stylesheet">
+    <link href="../../css/jquery-ui.min.css?1569462113" rel="stylesheet">
+    
+      <link href="../../css/theme-mine.css?1569462113" rel="stylesheet">
+    
+
+    <script src="../../js/jquery-3.3.1.min.js?1569462113"></script>
+    <script src="../../js/jquery-ui-1.12.1.min.js?1569462113"></script>
+
+
+    <style type="text/css">
+      :root #header + #content > #left > #rlblock_left{
+          display:none !important;
+      }
+      
+        :not(pre) > code + .copy-to-clipboard {
+            display: none;
+        }
+      
+    </style>
+    
+  </head>
+  <body class="" data-url="/devicefarm/instrumented/">
+    <nav id="sidebar" class="">
+
+
+
+  <div id="header-wrapper">
+    <div id="header">
+      <a href="../../" title="Go home"><svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 30" width="60%" style="padding:20px 0px;"><defs><style>.cls-1{fill:#fff;}.cls-2{fill:#f90;fill-rule:evenodd;}</style></defs><title>AWS-Logo_White-Color</title><path class="cls-1" d="M14.09,10.85a4.7,4.7,0,0,0,.19,1.48,7.73,7.73,0,0,0,.54,1.19.77.77,0,0,1,.12.38.64.64,0,0,1-.32.49l-1,.7a.83.83,0,0,1-.44.15.69.69,0,0,1-.49-.23,3.8,3.8,0,0,1-.6-.77q-.25-.42-.51-1a6.14,6.14,0,0,1-4.89,2.3,4.54,4.54,0,0,1-3.32-1.19,4.27,4.27,0,0,1-1.22-3.2A4.28,4.28,0,0,1,3.61,7.75,6.06,6.06,0,0,1,7.69,6.46a12.47,12.47,0,0,1,1.76.13q.92.13,1.91.36V5.73a3.65,3.65,0,0,0-.79-2.66A3.81,3.81,0,0,0,7.86,2.3a7.71,7.71,0,0,0-1.79.22,12.78,12.78,0,0,0-1.79.57,4.55,4.55,0,0,1-.58.22l-.26,0q-.35,0-.35-.52V2a1.09,1.09,0,0,1,.12-.58,1.2,1.2,0,0,1,.47-.35A10.88,10.88,0,0,1,5.77.32,10.19,10.19,0,0,1,8.36,0a6,6,0,0,1,4.35,1.35,5.49,5.49,0,0,1,1.38,4.09ZM7.34,13.38a5.36,5.36,0,0,0,1.72-.31A3.63,3.63,0,0,0,10.63,12,2.62,2.62,0,0,0,11.19,11a5.63,5.63,0,0,0,.16-1.44v-.7a14.35,14.35,0,0,0-1.53-.28,12.37,12.37,0,0,0-1.56-.1,3.84,3.84,0,0,0-2.47.67A2.34,2.34,0,0,0,5,11a2.35,2.35,0,0,0,.61,1.76A2.4,2.4,0,0,0,7.34,13.38Zm13.35,1.8a1,1,0,0,1-.64-.16,1.3,1.3,0,0,1-.35-.65L15.81,1.51a3,3,0,0,1-.15-.67.36.36,0,0,1,.41-.41H17.7a1,1,0,0,1,.65.16,1.4,1.4,0,0,1,.33.65l2.79,11,2.59-11A1.17,1.17,0,0,1,24.39.6a1.1,1.1,0,0,1,.67-.16H26.4a1.1,1.1,0,0,1,.67.16,1.17,1.17,0,0,1,.32.65L30,12.39,32.88,1.25A1.39,1.39,0,0,1,33.22.6a1,1,0,0,1,.65-.16h1.54a.36.36,0,0,1,.41.41,1.36,1.36,0,0,1,0,.26,3.64,3.64,0,0,1-.12.41l-4,12.86a1.3,1.3,0,0,1-.35.65,1,1,0,0,1-.64.16H29.25a1,1,0,0,1-.67-.17,1.26,1.26,0,0,1-.32-.67L25.67,3.64,23.11,14.34a1.26,1.26,0,0,1-.32.67,1,1,0,0,1-.67.17Zm21.36.44a11.28,11.28,0,0,1-2.56-.29,7.44,7.44,0,0,1-1.92-.67,1,1,0,0,1-.61-.93v-.84q0-.52.38-.52a.9.9,0,0,1,.31.06l.42.17a8.77,8.77,0,0,0,1.83.58,9.78,9.78,0,0,0,2,.2,4.48,4.48,0,0,0,2.43-.55,1.76,1.76,0,0,0,.86-1.57,1.61,1.61,0,0,0-.45-1.16A4.29,4.29,0,0,0,43,9.22l-2.41-.76A5.15,5.15,0,0,1,38,6.78a3.94,3.94,0,0,1-.83-2.41,3.7,3.7,0,0,1,.45-1.85,4.47,4.47,0,0,1,1.19-1.37A5.27,5.27,0,0,1,40.51.29,7.4,7.4,0,0,1,42.6,0a8.87,8.87,0,0,1,1.12.07q.57.07,1.08.19t.95.26a4.27,4.27,0,0,1,.7.29,1.59,1.59,0,0,1,.49.41.94.94,0,0,1,.15.55v.79q0,.52-.38.52a1.76,1.76,0,0,1-.64-.2,7.74,7.74,0,0,0-3.2-.64,4.37,4.37,0,0,0-2.21.47,1.6,1.6,0,0,0-.79,1.48,1.58,1.58,0,0,0,.49,1.18,4.94,4.94,0,0,0,1.83.92L44.55,7a5.08,5.08,0,0,1,2.57,1.6A3.76,3.76,0,0,1,47.9,11a4.21,4.21,0,0,1-.44,1.93,4.4,4.4,0,0,1-1.21,1.47,5.43,5.43,0,0,1-1.85.93A8.25,8.25,0,0,1,42.05,15.62Z"></path><path class="cls-2" d="M45.19,23.81C39.72,27.85,31.78,30,25,30A36.64,36.64,0,0,1,.22,20.57c-.51-.46-.06-1.09.56-.74A49.78,49.78,0,0,0,25.53,26.4,49.23,49.23,0,0,0,44.4,22.53C45.32,22.14,46.1,23.14,45.19,23.81Z"></path><path class="cls-2" d="M47.47,21.21c-.7-.9-4.63-.42-6.39-.21-.53.06-.62-.4-.14-.74,3.13-2.2,8.27-1.57,8.86-.83s-.16,5.89-3.09,8.35c-.45.38-.88.18-.68-.32C46.69,25.8,48.17,22.11,47.47,21.21Z"></path></svg></a>
+
+    </div>
+    
+        <div class="searchbox">
+    <label for="search-by"><i class="fas fa-search"></i></label>
+    <input data-search-input id="search-by" type="search" placeholder="Search...">
+    <span data-search-clear=""><i class="fas fa-times"></i></span>
+</div>
+
+<script type="text/javascript" src="../../js/lunr.min.js?1569462113"></script>
+<script type="text/javascript" src="../../js/auto-complete.js?1569462113"></script>
+<script type="text/javascript">
+    
+        var baseurl = "";
+    
+</script>
+<script type="text/javascript" src="../../js/search.js?1569462113"></script>
+
+    
+  </div>
+
+    <div class="highlightable">
+    <ul class="topics">
+
+        
+          
+          
+
+
+ 
+  
+    
+    <li data-nav-id="/prerequisites/" title="워크샵 시작하기" class="dd-item 
+        
+        
+        
+        ">
+      <a href="../../prerequisites/">
+          워크샵 시작하기
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+          
+          
+        
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/prerequisites/installtools/" title="안드로이드 툴 설치하기" class="dd-item ">
+        <a href="../../prerequisites/installtools/">
+        안드로이드 툴 설치하기
+        
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/prerequisites/gitclone/" title="워크샵 저장소 복제하기" class="dd-item ">
+        <a href="../../prerequisites/gitclone/">
+        워크샵 저장소 복제하기
+        
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/prerequisites/workspace/" title="안드로이드 스튜디오 프로젝트 생성" class="dd-item ">
+        <a href="../../prerequisites/workspace/">
+        안드로이드 스튜디오 프로젝트 생성
+        
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+          
+          
+
+
+ 
+  
+    
+    <li data-nav-id="/socialapp/" title="서비스 구성" class="dd-item 
+        
+        
+        
+        ">
+      <a href="../../socialapp/">
+          서비스 구성
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+            
+          
+          
+          
+        
+          
+            
+            
+
+
+ 
+  
+    
+    <li data-nav-id="/socialapp/amplifyinstall/" title="Android Amplify 초기화" class="dd-item 
+        
+        
+        
+        ">
+      <a href="../../socialapp/amplifyinstall/">
+          Android Amplify 초기화
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+          
+          
+        
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/socialapp/amplifyinstall/install_cli/" title="Amplify CLI 설치" class="dd-item ">
+        <a href="../../socialapp/amplifyinstall/install_cli/">
+        Amplify CLI 설치
+        
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/socialapp/amplifyinstall/amplifyinit/" title="Amplify 초기화" class="dd-item ">
+        <a href="../../socialapp/amplifyinstall/amplifyinit/">
+        Amplify 초기화
+        
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+    <li data-nav-id="/socialapp/cognito/" title="회원관리 기능 구현하기" class="dd-item 
+        
+        
+        
+        ">
+      <a href="../../socialapp/cognito/">
+          회원관리 기능 구현하기
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+          
+          
+        
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/socialapp/cognito/facebook-config/" title="Facebook OAuth 설정하기" class="dd-item ">
+        <a href="../../socialapp/cognito/facebook-config/">
+        Facebook OAuth 설정하기
+        
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/socialapp/cognito/amplify-cognito/" title="Amazon Cognito Service 만들기" class="dd-item ">
+        <a href="../../socialapp/cognito/amplify-cognito/">
+        Amazon Cognito Service 만들기
+        
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/socialapp/cognito/cognito-splash/" title="앱 시작 화면 만들기" class="dd-item ">
+        <a href="../../socialapp/cognito/cognito-splash/">
+        앱 시작 화면 만들기
+        
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/socialapp/cognito/cognito-auth-social/" title="소셜 로그인 기능 구현하기" class="dd-item ">
+        <a href="../../socialapp/cognito/cognito-auth-social/">
+        소셜 로그인 기능 구현하기
+        
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/socialapp/cognito/cognito-auth-email/" title="이메일 기반 회원 가입 기능 구현하기" class="dd-item ">
+        <a href="../../socialapp/cognito/cognito-auth-email/">
+        이메일 기반 회원 가입 기능 구현하기
+        
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/socialapp/cognito/cognito-auth-login/" title="이메일 기반 로그인 기능 구현하기" class="dd-item ">
+        <a href="../../socialapp/cognito/cognito-auth-login/">
+        이메일 기반 로그인 기능 구현하기
+        
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+    <li data-nav-id="/socialapp/appsync/" title="소셜 게시물 저장소 만들기" class="dd-item 
+        
+        
+        
+        ">
+      <a href="../../socialapp/appsync/">
+          소셜 게시물 저장소 만들기
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+          
+          
+        
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/socialapp/appsync/amplify-appsync/" title="저장소 생성 및 API 생성" class="dd-item ">
+        <a href="../../socialapp/appsync/amplify-appsync/">
+        저장소 생성 및 API 생성
+        
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/socialapp/appsync/android-appsync/" title="게시물 작성하기 " class="dd-item ">
+        <a href="../../socialapp/appsync/android-appsync/">
+        게시물 작성하기 
+        
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/socialapp/appsync/s3iam/" title="IAM 권한 주기" class="dd-item ">
+        <a href="../../socialapp/appsync/s3iam/">
+        IAM 권한 주기
+        
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/socialapp/appsync/android-appsync-query/" title="게시물 리스트업하기 " class="dd-item ">
+        <a href="../../socialapp/appsync/android-appsync-query/">
+        게시물 리스트업하기 
+        
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+    <li data-nav-id="/socialapp/translate/" title="Amazon Translate 연동하기" class="dd-item 
+        
+        
+        
+        ">
+      <a href="../../socialapp/translate/">
+          Amazon Translate 연동하기
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+          
+          
+        
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/socialapp/translate/translate/" title="Translate서비스 연동하기" class="dd-item ">
+        <a href="../../socialapp/translate/translate/">
+        Translate서비스 연동하기
+        
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/socialapp/translate/translateiam/" title="IAM 권한 주기" class="dd-item ">
+        <a href="../../socialapp/translate/translateiam/">
+        IAM 권한 주기
+        
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+    <li data-nav-id="/socialapp/pinpoint/" title="Push 메시지 보내기" class="dd-item 
+        
+        
+        
+        ">
+      <a href="../../socialapp/pinpoint/">
+          Push 메시지 보내기
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+          
+          
+        
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/socialapp/pinpoint/fcm-settings/" title=" Firebase Cloud Messaging (FCM)설정하기" class="dd-item ">
+        <a href="../../socialapp/pinpoint/fcm-settings/">
+         Firebase Cloud Messaging (FCM)설정하기
+        
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/socialapp/pinpoint/amplify-pinpoint/" title="Amazon Pinpoint 서비스 생성" class="dd-item ">
+        <a href="../../socialapp/pinpoint/amplify-pinpoint/">
+        Amazon Pinpoint 서비스 생성
+        
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/socialapp/pinpoint/android-pinpoint/" title="Push Notification을 위한 안드로이드 코드 작성하기  " class="dd-item ">
+        <a href="../../socialapp/pinpoint/android-pinpoint/">
+        Push Notification을 위한 안드로이드 코드 작성하기  
+        
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/socialapp/pinpoint/s3iam/" title="Push 메시지 보내기" class="dd-item ">
+        <a href="../../socialapp/pinpoint/s3iam/">
+        Push 메시지 보내기
+        
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+          
+          
+
+
+ 
+  
+    
+    <li data-nav-id="/cleanup/" title="클린 업" class="dd-item 
+        
+        
+        
+        ">
+      <a href="../../cleanup/">
+          클린 업
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+          
+          
+        
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/cleanup/delete/" title="리소스 삭제" class="dd-item ">
+        <a href="../../cleanup/delete/">
+        리소스 삭제
+        
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+          
+          
+
+
+ 
+  
+    
+    <li data-nav-id="/devicefarm/" title="DeviceFarm 테스트" class="dd-item 
+        parent
+        
+        
+        ">
+      <a href="../../devicefarm/">
+          DeviceFarm 테스트
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+          
+          
+        
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/devicefarm/fuzzy/" title="Fuzzy App Test" class="dd-item ">
+        <a href="../../devicefarm/fuzzy/">
+        Fuzzy App Test
+        
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/devicefarm/remote/" title="리모트 테스트 실행하기" class="dd-item ">
+        <a href="../../devicefarm/remote/">
+        리모트 테스트 실행하기
+        
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/devicefarm/instrumented/" title="Espresso Framework를 통한 순차 테스트" class="dd-item active">
+        <a href="../../devicefarm/instrumented/">
+        Espresso Framework를 통한 순차 테스트
+        
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+          
+         
+    </ul>
+
+    
+    
+
+    
+  </div>
+</nav>
+
+
+
+
+
+        <section id="body">
+        <div id="overlay"></div>
+        <div class="padding highlightable">
+              
+              <div>
+                <div id="top-bar">
+                
+                
+                <div id="breadcrumbs" itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb">
+                    <span id="sidebar-toggle-span">
+                        <a href="#" id="sidebar-toggle" data-sidebar-toggle="">
+                          <i class="fas fa-bars"></i>
+                        </a>
+                    </span>
+                  
+                  <span id="toc-menu"><i class="fas fa-list-alt"></i></span>
+                  
+                  <span class="links">
+                    
+          
+          
+            
+            
+          
+          
+            
+            
+          
+          
+            <a href='../../'>Android App On AWS</a> > <a href='../../devicefarm/'>DeviceFarm 테스트</a> > Espresso Framework를 통한 순차 테스트
+          
+         
+          
+         
+          
+           
+                  </span>
+                </div>
+                
+                    <div class="progress">
+    <div class="wrapper">
+
+    </div>
+</div>
+
+                
+              </div>
+            </div>
+            
+
+        
+        <div id="body-inner">
+          
+            <h1>Espresso Framework를 통한 순차 테스트</h1>
+          
+
+        
+
+
+<p><strong>Espresso Framework</strong> 를 통해 필요한 절차지향적 테스트를 수행합니다.</p>
+
+<p>⦁   Built-in Espresso test
+⦁   Espresso는 기본적으로 내재되어있는 Android Test support library를 기반으로 합니다. Android Studio에 기본 탑재되어있는 Espresso Test Recoder를 통해 간편하게 원하는 순차형식으로 테스트 프리셋을 구성 하실 수 있으며, 이것을 이용하여 Device Farm에서 개발자의 의도대로 앱을 테스트 해 볼 수 있습니다.</p>
+
+<p>⦁   Android studio로 돌아와서 메뉴 바에서 Run &gt; Record Espresso Test를 선택합니다.
+⦁   앱을 실행 할 때와 마찬가지로 AVD를 선택하는 팝업이 뜨게 됩니다. 앞서 설정했던 디바이스를 선택하고 OK를 누릅니다.
+⦁   Record Your Test팝업 창과 더불어 AVD실행 화면이 뜨게 됩니다. 이때 앱 화면에서 동작하는 순서대로 오른쪽 Record List에 기록되게 됩니다.
+* Add Assertion 기능은 해당 뷰나 텍스트, 화면이 존재하는지 안하는지 확인하는 절차 기능입니다.</p>
+
+<p><img src="../../images/ins1.png" alt="Create User" /></p>
+
+<p>⦁   예제에서는 ID admin, PASSWORD에 test입력 -&gt; 버튼 1클릭-&gt;버튼2클릭-&gt; POLLYDEMO선택 -&gt;Polly화면에서 test입력후 Read 버튼 선택 -&gt; 뒤로가기 후 종료되는 시나리오로 구성 해 보았습니다.</p>
+
+<p><img src="../../images/ins2.png" alt="Create User" /></p>
+
+<p>⦁   테스트를 구성 후 OK버튼을 눌러 테스트 코드를 저장합니다. 이름은 Default값으로 진행하겠습니다.
+⦁   메뉴에서 다시 Build &gt; Rebuild Project를 진행하고, Build메뉴의 Build APK(s)를 실행해서 APK를 생성합니다.</p>
+
+<p>⦁   Espresso Test 로컬 AVD로 실행해보기
+⦁   우선 로컬에서 Espresso를 통한 순차테스트를 진행해 보겠습니다. 상단 아이콘에서 Edit Confgurations를 선택합니다.</p>
+
+<p><img src="../../images/ins3.png" alt="Create User" /></p>
+
+<p>⦁   Run/Debug Configuraions 팝업에서 Android Instrumented Tests를 선택해서 추가합니다.
+⦁   해당 아이템에서 Name을 지정하고, General 탭의 Module에서 app을 선택합니다. Test항목에서 All in Package를 선택합니다.</p>
+
+<p><img src="../../images/ins4.png" alt="Create User" /></p>
+
+<p>⦁   package에서 해당 앱 패키지를 선택합니다.</p>
+
+<p><img src="../../images/ins5.png" alt="Create User" /></p>
+
+<p>⦁   Prefer Android Virtual Device 항목에서 이전에 생성해둔 AVD를 선택합니다. 그런다음 OK를 누르면 테스트 환경 설정이 완료됩니다.</p>
+
+<p><img src="../../images/ins6.png" alt="Create User" /></p>
+
+<p>⦁  이제 상단의 Run 메뉴를 확인해 보면 아까 추가했던 테스트 환경구성이 보일 것입니다. 환경구성을 선택하고 Run하게 되면, 기존의 앱을 AVD로 실행하던 것과 같이 디바이스가 실행되고 난 후, 앱이 실행되면 아까 기록했던 동작들을 차례로 수행하게 됩니다</p>
+
+<p><img src="../../images/ins7.png" alt="Create User" /></p>
+
+<p>⦁  Run Console을 확인해보면, 성공적으로 테스트를 수행 후 Tests ran to completion. 이라는 메세지를 확인 할 수 있습니다.</p>
+
+<p><img src="../../images/ins8.png" alt="Create User" />v</p>
+
+<p>⦁  이로써 Built-in test framework인 espresso를 설정하고, 이를 통해서 로컬 AVD에서 테스트를 수행 해 보았습니다. 다음 챕터에서는 Device farm을 통해 espresso 테스트를 수행하고 결과를 모니터링 해 보겠습니다.</p>
+
+<p><img src="../../images/ins9.png" alt="Create User" /></p>
+
+<p>⦁   Device Farm을 통한 Espresso Test 실행 및 결과 모니터링
+⦁   전반적인 절차는 앞서 시행했던 Fuzz 테스트와 비슷합니다. Device Farm 콘솔로 다시 와서 Fuzz를 실행했던 프로젝트 목록에서 +Create a new project를 선택합니다.
+⦁   +Create a new run을 선택합니다.</p>
+
+<p><img src="../../images/ins10.png" alt="Create User" /></p>
+
+<p>⦁   Choose application 단계에서 안드로이드/애플 을 선택해주세요.
+⦁   Upload 버튼에서 빌드된 Apk를 업로드 하거나, 앞서 업로드 했던 리스트에서 선택합니다. Next step으로 다음으로 진행합니다.</p>
+
+<p><img src="../../images/ins11.png" alt="Create User" /></p>
+
+<p>⦁   Configure your test설정 화면에서 Test유형을 Instrumentation으로 설정합니다.</p>
+
+<p><img src="../../images/ins12.png" alt="Create User" /></p>
+
+<p>⦁   이제 Espresso로 생성된 instrumentation test를 업로드 해야 합니다. 일반적은 테스트 패키지의 경로는 프로젝트명/ /app/build/outputs/apk/androidTest/debug/app-debug-androidTest.apk에 빌드되어 있습니다. 혹은 해당위치가 없거나 잘 모르시겠다면 이전 단계 로컬 테스트에서 출력되는 내용에 해당 경로에 대한 내용이 있으니 참고하시면 됩니다.
+* 하단의 Advanced Configuration (optional)은 테스트에 대한 비디오 기록 및 App Performance 데이터에 대한 모니터링 여부를 위한 것입니다. Default로 두시면 됩니다.</p>
+
+<p><img src="../../images/ins13.png" alt="Create User" />
+<img src="../../images/ins14.png" alt="Create User" /></p>
+
+<p>⦁   업로드가 완료되면 Test instrumentation에 대한 정보가 표출됩니다. 기본 패키지에 대한 도메인 정보와, Runner에 대한 정보가 표시됩니다. 여기서는 espresso가 junit기반이므로 AndroidJUnitRunner로 표시됩니다. 하단의 Test filter에 대한 enviroment설정은 그대로 두고 Next step으로 진행합니다.
+⦁   Select devices에는 기존 Fuzz테스트와 마찬가지로 Top Devices로 설정하겠습니다. 때에 따라서 원하는 기종으로 구성하시거나 테스트시간을 단축하고자 한다면, 몇개의 기종으로 테스트를 하신다면 좋을 것입니다. 각 기종에 대한 해당 테스트 앱 패키지의 호환성을 체크하고, Next step으로 진행합니다.
+⦁   Sepecify device state는 default로 진행합니다. 혹여 테스트 상에 한글에 대한 호환성이 필요하시면 Device locale에 Korean (ko_KR)로 설정합니다. 다음 단계로 진행합니다.</p>
+
+<p><img src="../../images/ins15.png" alt="Create User" /></p>
+
+<p>⦁   테스트 진행에 대한 Summery를 보실 수 있으며, Execution timeout에서 MAXIMUM MINUTES PER DEVICE를 5분으로 설정합니다. Confirm and start run을 실행 해 줍니다.
+⦁   이제 Run list에 해당 테스트 작업이 진행되고, 평균 10분내외에 작업이 완료됩니다.</p>
+
+<p><img src="../../images/ins16.png" alt="Create User" /></p>
+
+<p>⦁   Devices 목록에서 상세를 보시면 로컬에서 실행했던 순차 테스트 그대로 돌아가는 모습을 확인 할 수 있습니다.</p>
+
+<p><img src="../../images/ins17.png" alt="Create User" /></p>
+
+
+<footer class=" footline" >
+	
+</footer>
+
+
+        
+        </div>
+        
+
+      </div>
+
+    <div id="navigation">
+        
+        
+
+        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                        
+                        
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                        
+                        
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+            
+        
+
+        
+
+
+        
+            <a class="nav nav-prev" href="../../devicefarm/remote/" title="리모트 테스트 실행하기"> <i class="fas fa-chevron-left"></i></a>
+        
+        
+            <a class="nav nav-next" href="../../devicefarm/fuzzy/" title="Fuzzy App Test" style="margin-right: 0px;"><i class="fas fa-chevron-right"></i></a>
+        
+    </div>
+
+    </section>
+
+    <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
+      <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
+    </div>
+    <script src="../../js/clipboard.min.js?1569462113"></script>
+    <script src="../../js/perfect-scrollbar.min.js?1569462113"></script>
+    <script src="../../js/perfect-scrollbar.jquery.min.js?1569462113"></script>
+    <script src="../../js/jquery.sticky.js?1569462113"></script>
+    <script src="../../js/featherlight.min.js?1569462113"></script>
+    <script src="../../js/html5shiv-printshiv.min.js?1569462113"></script>
+    <script src="../../js/highlight.pack.js?1569462113"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <script src="../../js/modernizr.custom-3.6.0.js?1569462113"></script>
+    <script src="../../js/learn.js?1569462113"></script>
+    <script src="../../js/hugo-learn.js?1569462113"></script>
+
+    <link href="../../mermaid/mermaid.css?1569462113" type="text/css" rel="stylesheet" />
+    <script src="../../mermaid/mermaid.min.js?1569462113"></script>
+    <script>
+	var config = {
+        startOnLoad:true,
+        flowchart:{
+	    curve:'basis'
+        }
+      };
+        mermaid.initialize(config);
+    </script>
+    
+
+  </body>
+</html>
+
