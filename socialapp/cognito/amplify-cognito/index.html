@@ -18,21 +18,21 @@
     <title>Amazon Cognito Service 만들기 :: AWS Android Social HoL</title>
 
     
-    <link href="../../../css/nucleus.css?1569421637" rel="stylesheet">
-    <link href="../../../css/fontawesome-all.min.css?1569421637" rel="stylesheet">
-    <link href="../../../css/hybrid.css?1569421637" rel="stylesheet">
-    <link href="../../../css/featherlight.min.css?1569421637" rel="stylesheet">
-    <link href="../../../css/perfect-scrollbar.min.css?1569421637" rel="stylesheet">
-    <link href="../../../css/auto-complete.css?1569421637" rel="stylesheet">
-    <link href="../../../css/theme.css?1569421637" rel="stylesheet">
-    <link href="../../../css/hugo-theme.css?1569421637" rel="stylesheet">
-    <link href="../../../css/jquery-ui.min.css?1569421637" rel="stylesheet">
+    <link href="../../../css/nucleus.css?1569456970" rel="stylesheet">
+    <link href="../../../css/fontawesome-all.min.css?1569456970" rel="stylesheet">
+    <link href="../../../css/hybrid.css?1569456970" rel="stylesheet">
+    <link href="../../../css/featherlight.min.css?1569456970" rel="stylesheet">
+    <link href="../../../css/perfect-scrollbar.min.css?1569456970" rel="stylesheet">
+    <link href="../../../css/auto-complete.css?1569456970" rel="stylesheet">
+    <link href="../../../css/theme.css?1569456970" rel="stylesheet">
+    <link href="../../../css/hugo-theme.css?1569456970" rel="stylesheet">
+    <link href="../../../css/jquery-ui.min.css?1569456970" rel="stylesheet">
     
-      <link href="../../../css/theme-mine.css?1569421637" rel="stylesheet">
+      <link href="../../../css/theme-mine.css?1569456970" rel="stylesheet">
     
 
-    <script src="../../../js/jquery-3.3.1.min.js?1569421637"></script>
-    <script src="../../../js/jquery-ui-1.12.1.min.js?1569421637"></script>
+    <script src="../../../js/jquery-3.3.1.min.js?1569456970"></script>
+    <script src="../../../js/jquery-ui-1.12.1.min.js?1569456970"></script>
 
 
     <style type="text/css">
@@ -64,14 +64,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="../../../js/lunr.min.js?1569421637"></script>
-<script type="text/javascript" src="../../../js/auto-complete.js?1569421637"></script>
+<script type="text/javascript" src="../../../js/lunr.min.js?1569456970"></script>
+<script type="text/javascript" src="../../../js/auto-complete.js?1569456970"></script>
 <script type="text/javascript">
     
         var baseurl = "";
     
 </script>
-<script type="text/javascript" src="../../../js/search.js?1569421637"></script>
+<script type="text/javascript" src="../../../js/search.js?1569456970"></script>
 
     
   </div>
@@ -853,13 +853,13 @@
 <pre><code class="language-shell">amplify add auth
 </code></pre>
 
-<p>진행 중 선택항목은 아래 그림을 참고하세요.</p>
+<p>진행 중 선택항목은 아래 그림의 내용을 참고하세요.</p>
 
 <p><img src="../../../images/amplify-auth-config.png" alt="Example Service" /></p>
 
 <p><strong>domain name 설정 시 aws, amazon, cognito 및 _를 포함한 이름은 사용하실 수 없습니다. &lsquo;android-workshop+랜덤문자&rsquo; 형태로 이름을 입력해주셔야 합니다.</strong></p>
 
-<p>redirect URI는 아래와 같이 입력하십시요.</p>
+<p>redirect URI는 아래와 같이 입력합니다.</p>
 
 <p><strong>redirect signin URI :</strong></p>
 
@@ -871,11 +871,13 @@
 <pre><code class="language-shell">socialdemoapp://signout/
 </code></pre>
 
-<p><strong>social providers</strong>  에서  facebook 선택시 <strong>Space bar</strong> 를 이용하셔서 체크하셔야 합니다.</p>
+<p><strong>social providers</strong>  에서  facebook 선택시 <strong>Space bar</strong> 를 이용해 선택할 수 있습니다.</p>
 
-<p><strong>App ID</strong>와 <strong>App Secret</strong> 정보는 앞단계에서 생성한 Facebook 인증 정보의 App ID와 App Secret를 사용하십시요.</p>
+<p><strong>App ID</strong>와 <strong>App Secret</strong> 정보는 앞단계에서 생성한 Facebook 인증 정보의 App ID와 App Secret를 사용합니다.</p>
 
-<p>완료되면 다음 명령어를 통해 클라우드 리소스를 업데이트 합니다.</p>
+<p><strong>Do you want to configure advanced settings for the GraphQL API?</strong>에서는 No를 선택합니다.</p>
+
+<p>완료되면 다음 명령어를 통해 관련된 AWS 리소스를 업데이트 합니다.</p>
 
 <pre><code class="language-shell">amplify push
 </code></pre>
@@ -896,16 +898,16 @@
 <ol>
 <li><p>Facebook 개발자 사이트에서 이전 장에서 생성한 앱(AWSAndroidWorkshop)을 선택합니다.</p></li>
 
-<li><p>좌측 네비게이션 바에서 Settings &gt; Basic을 선택한다. App Domains에 Amplify CLI 실행 결과 출력된 Hosted UI Endpoint (Cognito의 User Pool Domain Name과 동일한 값) 값을 저장한다. <br>
+<li><p>좌측 네비게이션 바에서 Settings &gt; Basic을 선택합니다. App Domains에 Amplify CLI 실행 결과 출력된 Hosted UI Endpoint (Cognito의 User Pool Domain Name과 동일한 값으로 AWS 관리 콘솔의 메뉴[AWS console &gt; Services &gt; Cognito &gt; User Pools &gt; Domain Name]에서도 확인 가능) 값을 저장합니다. <br>
 <strong>https://&lt;your-user-pool-domain&gt;</strong>
 <img src="../../../images/facebook-app-domain.png" alt="Facebook" /></p></li>
 
-<li><p>Facebook 개발자 사이트의 Dashboard 메뉴로 이동한다. <br>
-Add a Product에서 Facebook Login 항목의 Set Up 버튼을 선택한다.
+<li><p>Facebook 개발자 사이트의 Dashboard 메뉴로 이동합니다. <br>
+Add a Product에서 Facebook Login 항목의 Set Up 버튼을 선택합니다.
 <img src="../../../images/facebook-add-product.png" alt="Facebook" /></p></li>
 
-<li><p>Facebook 개발자 사이트의 Products &gt; Facebook Login &gt; Settings 항목으로 이동한다. <br>
-Embedded Browser OAuth Login을 활성화 하고, Valid OAuth Redirects URIs에 아래 형식의 URI를 입력한다. <br>
+<li><p>Facebook 개발자 사이트의 Products &gt; Facebook Login &gt; Settings 항목으로 이동합니다. <br>
+Embedded Browser OAuth Login을 활성화 하고, Valid OAuth Redirects URIs에 아래 형식의 URI를 입력 후, Save Changes를 클릭합니다. <br>
 <strong>https://&lt;your-user-pool-domain&gt;/oauth2/idpresponse</strong>
 <img src="../../../images/facebook-oauth-redirect.png" alt="Facebook" /></p></li>
 </ol>
@@ -1458,20 +1460,20 @@ Embedded Browser OAuth Login을 활성화 하고, Valid OAuth Redirects URIs에 
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="../../../js/clipboard.min.js?1569421637"></script>
-    <script src="../../../js/perfect-scrollbar.min.js?1569421637"></script>
-    <script src="../../../js/perfect-scrollbar.jquery.min.js?1569421637"></script>
-    <script src="../../../js/jquery.sticky.js?1569421637"></script>
-    <script src="../../../js/featherlight.min.js?1569421637"></script>
-    <script src="../../../js/html5shiv-printshiv.min.js?1569421637"></script>
-    <script src="../../../js/highlight.pack.js?1569421637"></script>
+    <script src="../../../js/clipboard.min.js?1569456970"></script>
+    <script src="../../../js/perfect-scrollbar.min.js?1569456970"></script>
+    <script src="../../../js/perfect-scrollbar.jquery.min.js?1569456970"></script>
+    <script src="../../../js/jquery.sticky.js?1569456970"></script>
+    <script src="../../../js/featherlight.min.js?1569456970"></script>
+    <script src="../../../js/html5shiv-printshiv.min.js?1569456970"></script>
+    <script src="../../../js/highlight.pack.js?1569456970"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="../../../js/modernizr.custom-3.6.0.js?1569421637"></script>
-    <script src="../../../js/learn.js?1569421637"></script>
-    <script src="../../../js/hugo-learn.js?1569421637"></script>
+    <script src="../../../js/modernizr.custom-3.6.0.js?1569456970"></script>
+    <script src="../../../js/learn.js?1569456970"></script>
+    <script src="../../../js/hugo-learn.js?1569456970"></script>
 
-    <link href="../../../mermaid/mermaid.css?1569421637" type="text/css" rel="stylesheet" />
-    <script src="../../../mermaid/mermaid.min.js?1569421637"></script>
+    <link href="../../../mermaid/mermaid.css?1569456970" type="text/css" rel="stylesheet" />
+    <script src="../../../mermaid/mermaid.min.js?1569456970"></script>
     <script>
 	var config = {
         startOnLoad:true,
