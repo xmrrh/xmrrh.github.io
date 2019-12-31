@@ -18,21 +18,21 @@
     <title>게시물 리스트업하기  :: AWS Android Social HoL</title>
 
     
-    <link href="../../../css/nucleus.css?1574173941" rel="stylesheet">
-    <link href="../../../css/fontawesome-all.min.css?1574173941" rel="stylesheet">
-    <link href="../../../css/hybrid.css?1574173941" rel="stylesheet">
-    <link href="../../../css/featherlight.min.css?1574173941" rel="stylesheet">
-    <link href="../../../css/perfect-scrollbar.min.css?1574173941" rel="stylesheet">
-    <link href="../../../css/auto-complete.css?1574173941" rel="stylesheet">
-    <link href="../../../css/theme.css?1574173941" rel="stylesheet">
-    <link href="../../../css/hugo-theme.css?1574173941" rel="stylesheet">
-    <link href="../../../css/jquery-ui.min.css?1574173941" rel="stylesheet">
+    <link href="../../../css/nucleus.css?1577772290" rel="stylesheet">
+    <link href="../../../css/fontawesome-all.min.css?1577772290" rel="stylesheet">
+    <link href="../../../css/hybrid.css?1577772290" rel="stylesheet">
+    <link href="../../../css/featherlight.min.css?1577772290" rel="stylesheet">
+    <link href="../../../css/perfect-scrollbar.min.css?1577772290" rel="stylesheet">
+    <link href="../../../css/auto-complete.css?1577772290" rel="stylesheet">
+    <link href="../../../css/theme.css?1577772290" rel="stylesheet">
+    <link href="../../../css/hugo-theme.css?1577772290" rel="stylesheet">
+    <link href="../../../css/jquery-ui.min.css?1577772290" rel="stylesheet">
     
-      <link href="../../../css/theme-mine.css?1574173941" rel="stylesheet">
+      <link href="../../../css/theme-mine.css?1577772290" rel="stylesheet">
     
 
-    <script src="../../../js/jquery-3.3.1.min.js?1574173941"></script>
-    <script src="../../../js/jquery-ui-1.12.1.min.js?1574173941"></script>
+    <script src="../../../js/jquery-3.3.1.min.js?1577772290"></script>
+    <script src="../../../js/jquery-ui-1.12.1.min.js?1577772290"></script>
 
 
     <style type="text/css">
@@ -64,14 +64,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="../../../js/lunr.min.js?1574173941"></script>
-<script type="text/javascript" src="../../../js/auto-complete.js?1574173941"></script>
+<script type="text/javascript" src="../../../js/lunr.min.js?1577772290"></script>
+<script type="text/javascript" src="../../../js/auto-complete.js?1577772290"></script>
 <script type="text/javascript">
     
         var baseurl = "";
     
 </script>
-<script type="text/javascript" src="../../../js/search.js?1574173941"></script>
+<script type="text/javascript" src="../../../js/search.js?1577772290"></script>
 
     
   </div>
@@ -1000,7 +1000,20 @@ public void queryList() {
     };
 </code></pre>
 
-<p>필요한 class들을 import합니다. Android Studio에서 import가 필요한 구문에는 붉은 색으로 에러를 표시합니다. 해당 위치에 커서를 옮기시고, [MAC] option 키와 Enter키 ( [Window] Alt 키와 Enter 키) 를 동시에 누른 후 import class 를 선택하시면 자동으로 필요한 class가 import됩니다.</p>
+<p>필요한 class들을 import합니다.</p>
+
+<pre><code class="language-java">import com.amazonaws.amplify.generated.graphql.ListPostsQuery;
+import com.amazonaws.mobileconnectors.appsync.fetcher.AppSyncResponseFetchers;
+import com.apollographql.apollo.GraphQLCall;
+import com.apollographql.apollo.api.Response;
+import com.apollographql.apollo.exception.ApolloException;
+import java.util.ArrayList;
+import javax.annotation.Nonnull;
+import type.ModelSortDirection;
+
+</code></pre>
+
+<p>Android Studio에서 import가 필요한 구문에는 붉은 색으로 에러를 표시합니다. 해당 위치에 커서를 옮기시고, [MAC] option 키와 Enter키 ( [Window] Alt 키와 Enter 키) 를 동시에 누른 후 import class 를 선택하시면 자동으로 필요한 class가 import됩니다.</p>
 
 <p><img src="../../../images/optionenter.png" width="80%" hight="80%">
 <img src="../../../images/importclass.png" width="80%" hight="80%"></p>
@@ -1126,7 +1139,9 @@ public class PostAdapter extends RecyclerView.Adapter&lt;PostAdapter.Holder&gt; 
 
 <p>MainActivity.java의 onCreate()함수 아랫부분에 아래와 같이 작성해주세요</p>
 
-<pre><code class="language-java">protected void onCreate(Bundle savedInstanceState) {
+<pre><code class="language-java">import androidx.recyclerview.widget.LinearLayoutManager;
+
+protected void onCreate(Bundle savedInstanceState) {
   ...
     mAdapter = new PostAdapter(getApplicationContext());
 
@@ -1753,20 +1768,20 @@ public class PostAdapter extends RecyclerView.Adapter&lt;PostAdapter.Holder&gt; 
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="../../../js/clipboard.min.js?1574173941"></script>
-    <script src="../../../js/perfect-scrollbar.min.js?1574173941"></script>
-    <script src="../../../js/perfect-scrollbar.jquery.min.js?1574173941"></script>
-    <script src="../../../js/jquery.sticky.js?1574173941"></script>
-    <script src="../../../js/featherlight.min.js?1574173941"></script>
-    <script src="../../../js/html5shiv-printshiv.min.js?1574173941"></script>
-    <script src="../../../js/highlight.pack.js?1574173941"></script>
+    <script src="../../../js/clipboard.min.js?1577772290"></script>
+    <script src="../../../js/perfect-scrollbar.min.js?1577772290"></script>
+    <script src="../../../js/perfect-scrollbar.jquery.min.js?1577772290"></script>
+    <script src="../../../js/jquery.sticky.js?1577772290"></script>
+    <script src="../../../js/featherlight.min.js?1577772290"></script>
+    <script src="../../../js/html5shiv-printshiv.min.js?1577772290"></script>
+    <script src="../../../js/highlight.pack.js?1577772290"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="../../../js/modernizr.custom-3.6.0.js?1574173941"></script>
-    <script src="../../../js/learn.js?1574173941"></script>
-    <script src="../../../js/hugo-learn.js?1574173941"></script>
+    <script src="../../../js/modernizr.custom-3.6.0.js?1577772290"></script>
+    <script src="../../../js/learn.js?1577772290"></script>
+    <script src="../../../js/hugo-learn.js?1577772290"></script>
 
-    <link href="../../../mermaid/mermaid.css?1574173941" type="text/css" rel="stylesheet" />
-    <script src="../../../mermaid/mermaid.min.js?1574173941"></script>
+    <link href="../../../mermaid/mermaid.css?1577772290" type="text/css" rel="stylesheet" />
+    <script src="../../../mermaid/mermaid.min.js?1577772290"></script>
     <script>
 	var config = {
         startOnLoad:true,
